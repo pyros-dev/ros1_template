@@ -21,7 +21,7 @@ class Answer(object):
 
 class Fibonacci(object):
     """Unit of testable functionality as an iterator"""
-    def __init__(self, answer):
+    def __init__(self):
         self.n = 0
         self.m = 1
 
