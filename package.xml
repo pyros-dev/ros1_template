@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package>
+  <name>ros1_template</name>
+  <version>0.1.1</version>
+  <description>
+    Template ROS node for use with catkin following good practices
+  </description>
+  <maintainer email="asmodehn@gmail.com">AlexV</maintainer>
+  <license>BSD</license>
+  <url type="website">https://github.com/pyros-dev/ros1_template</url>
+  <url type="repository">https://github.com/pyros-dev/ros1_template</url>
+  <author email="asmodehn@gmail.com">AlexV</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <export>
+    <doc TODO></doc>
+  </export>
+</package>

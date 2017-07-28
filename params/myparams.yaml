@@ -1,0 +1,8 @@
+# Simple YAML will be put in ROS parameters by launch file
+# ref : https://yaml.org
+my:
+   param1: 100
+   param2: true
+   paramlist:
+    - A: 'myAstr'
+    - B: 'myBstr'
