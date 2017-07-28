@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# License: Unspecified
+# License: MIT
 #
 
 from __future__ import absolute_import, division, print_function
@@ -41,6 +41,11 @@ def show_epilog():
     return "never enough testing"
 
 
+def callback(data):
+    rospy.loginfo("The next Fibonacci Number was heard: {0}".format(data.question))
+    return
+
+
 if __name__ == '__main__':
 
     # we trim the arguments we received from the launcher
@@ -57,34 +62,10 @@ if __name__ == '__main__':
     # Here we have parsed all CLI arguments
 
     # We can now init the node (a ROS node is a process, that is an instance of the python interpreter)
-    rospy.init_node('prophet_node', )
-
-    # retrieving ros parameters
-    fib_init = rospy.get_param("~fib_init")
+    rospy.init_node('follower_node', )
 
     # setting up the publisher to the topic
-    fibonacci_pub = rospy.Publisher('~fibonacci', ros1_template_msgs.Fibonacci, queue_size=1)
+    fibonacci_pub = rospy.Sublisher('~fibonacci', ros1_template_msgs.Fibonacci, callback)
 
-    fib = ros1_template.Fibonacci(fib_init[0], fib_init[1])
-
-    rate = rospy.Rate(1)  # 1Hz
-
-    try:
-        # Just spin and publish for ever, be proactive !
-        while not rospy.is_shutdown():
-            # building the message we need to broadcast dynamically
-            fib_number = ros1_template_msgs.Fibonacci(
-                number=fib.next()
-            )
-            # logging it first
-            rospy.loginfo("broadcasting : {0}".format(fib_number))
-            # publishing it
-            fibonacci_pub.publish(fib_number)
-            # sleeping a bit to not burn the CPU
-            rate.sleep()
-
-    except Exception as exc:
-        rospy.logwarn("{0} detected in node {1} : {2}".format(type(exc), rospy.get_name(), str(exc)))
-    finally:
-        rospy.logwarn("{0} is shutting down !".format(rospy.get_name()))
-
+    # Just spin for ever, everything else is reactive !
+    rospy.spin()

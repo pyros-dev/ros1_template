@@ -84,13 +84,13 @@ if __name__ == '__main__':
     answer = ros1_template.Answer(answer_part)
 
     # setting up the service
-    rospy.Service('~answer', ros1_template_srvs.Question,
+    rospy.Service('~answer', ros1_template_srvs.Answer,
                   # we use a partial function application to pass initial Answer instance
                   functools.partial(callback, answer)
     )
 
     # setting up a service responding with an error
-    rospy.Service('~error', ros1_template_srvs.Question, error_callback)
+    rospy.Service('~error', ros1_template_srvs.Answer, error_callback)
 
     # Just spin for ever, everything else is reactive !
     rospy.spin()

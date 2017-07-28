@@ -12,4 +12,9 @@
     <rosparam command="load" file="$(arg config_override)" />
   </node>
 
+  <!-- Launch follower node -->
+  <node pkg="ros1_template" type="follower_node.py" name="follower">
+    <remap from="prophet/fibonacci" to="follower/fibonacci" />
+  </node>
+
 </launch>
