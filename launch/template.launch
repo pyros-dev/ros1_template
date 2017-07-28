@@ -2,20 +2,14 @@
   Standard launch file. for more information check http://wiki.ros.org/roslaunch/XML.
  -->
 <launch>
-  <!-- ****************************** Robot Args ****************************** -->
-  <arg name="robot_name"        default="Cybernetic Pirate" doc="used for rocon_uri rapp compatibility checks"/>
 
-  <group ns="ros1">
-    <node pkg="rocon_app_manager" type="standalone.py" name="app_manager">
-      <rosparam command="load" file="$(arg rapp_preferred_configuration_file)" />
-      <rosparam param="rapp_package_whitelist" subst_value="True">$(arg rapp_package_whitelist)</rosparam>
-      <rosparam param="rapp_package_blacklist" subst_value="True">$(arg rapp_package_blacklist)</rosparam>
-      <param name="robot_name" value="$(arg robot_name)"/>
-      <param name="robot_type" value="$(arg robot_type)"/>
-      <param name="auto_start_rapp" value="$(arg auto_start_rapp)"/>
-      <param name="screen" value="$(arg screen)"/>
-      <param name="auto_rapp_installation" value="$(arg auto_rapp_installation)" />
-    </node>
-  </group>
+  <!-- Args -->
+  <arg name="config_override"        default="$(find ros1_template)/config/override.yaml" doc="used by upper launchers to customize configuration"/>
+
+  <!-- Launch ROS template node -->
+  <node pkg="ros1_template" type="template_node.py" name="template">
+    <rosparam command="load" file="$(find ros1_template)/config/default.yaml" />
+    <rosparam command="load" file="$(arg config_override)" />
+  </node>
 
 </launch>

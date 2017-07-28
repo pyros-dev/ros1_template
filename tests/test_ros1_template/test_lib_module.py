@@ -2,14 +2,18 @@ from __future__ import absolute_import, division, print_function
 
 """
 Test for lib_module
+Reference : http://pythontesting.net/framework/nose/nose-introduction/
 """
 
 import unittest
 
 # Here we are testing the core python code, importing only that module
+from ros1_template import lib_module
+
 # Since we are at a different hierarchical level than ros1_template,
 # It is mandatory to install the module first (which is good practice to make sure the install process also works)
-from ros1_template import lib_module
+# Works out of the box with catkin build,
+# When running from pure python, use a virtual environment !
 
 
 # Basic nose test
@@ -21,7 +25,7 @@ def test_answer():
 class TestAnswer(unittest.TestCase):
 
     # fixture
-    def setup(self):
+    def setUp(self):
         self.answer = lib_module.Answer()
 
     def test_retrieve(self):
@@ -32,7 +36,7 @@ class TestAnswer(unittest.TestCase):
 class TestFibonacci(unittest.TestCase):
 
     # fixture
-    def setup(self):
+    def setUp(self):
         self.fib = lib_module.Fibonacci()
 
     def test_next(self):

@@ -1,0 +1,6 @@
+# Override YAML will be merged in ROS parameters by launch file
+# ref : https://yaml.org
+my:
+   param2: false
+   paramlist:
+    - C: 'myCstr'
