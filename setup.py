@@ -7,7 +7,8 @@ d = generate_distutils_setup(
     packages=['ros1_template'],
     scripts=[
         'scripts/question.py',
-        'nodes/template_node.py',
+        'nodes/oracle_node.py',
+        'nodes/prophet_node.py',
     ],
 )
 

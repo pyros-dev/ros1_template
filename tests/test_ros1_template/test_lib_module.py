@@ -26,7 +26,7 @@ class TestAnswer(unittest.TestCase):
 
     # fixture
     def setUp(self):
-        self.answer = lib_module.Answer()
+        self.answer = lib_module.Answer(6)
 
     def test_retrieve(self):
         assert self.answer.retrieve() == 42
@@ -37,7 +37,7 @@ class TestFibonacci(unittest.TestCase):
 
     # fixture
     def setUp(self):
-        self.fib = lib_module.Fibonacci()
+        self.fib = lib_module.Fibonacci(0, 1, 17)
 
     def test_next(self):
         assert self.fib.next() == 1
@@ -46,7 +46,11 @@ class TestFibonacci(unittest.TestCase):
         assert self.fib.next() == 5
         assert self.fib.next() == 8
         assert self.fib.next() == 13
-        assert self.fib.next() == 21
+        # assert self.fib.next() == 21  # we max at 17
+        assert self.fib.next() == 1
+        assert self.fib.next() == 2
+        assert self.fib.next() == 3
+        assert self.fib.next() == 5
 
     def test_next_again(self):
         assert self.fib.next() == 1
@@ -55,7 +59,11 @@ class TestFibonacci(unittest.TestCase):
         assert self.fib.next() == 5
         assert self.fib.next() == 8
         assert self.fib.next() == 13
-        assert self.fib.next() == 21
+        # assert self.fib.next() == 21  # we max at 17
+        assert self.fib.next() == 1
+        assert self.fib.next() == 2
+        assert self.fib.next() == 3
+        assert self.fib.next() == 5
 
 
 # In case we run this by itself, outside of a testing framework like nose

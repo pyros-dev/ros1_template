@@ -42,7 +42,7 @@ add_message_files(
   DIRECTORY
     msg
   FILES
-    Answer.msg
+    Fibonacci.msg
 )
 
 ##############################################################################
@@ -53,7 +53,7 @@ add_service_files(
   DIRECTORY
     srv
   FILES
-    Question.srv
+    Answer.srv
 )
 
 generate_messages()

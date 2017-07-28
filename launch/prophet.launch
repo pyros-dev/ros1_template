@@ -1,0 +1,15 @@
+<!--
+  Standard launch file. for more information check http://wiki.ros.org/roslaunch/XML.
+ -->
+<launch>
+
+  <!-- Args -->
+  <arg name="config_override"        default="$(find ros1_template)/config/prophet-override.yaml" doc="used by upper launchers to customize configuration"/>
+
+  <!-- Launch oracle node -->
+  <node pkg="ros1_template" type="prophet_node.py" name="prophet">
+    <rosparam command="load" file="$(find ros1_template)/config/prophet-default.yaml" />
+    <rosparam command="load" file="$(arg config_override)" />
+  </node>
+
+</launch>
