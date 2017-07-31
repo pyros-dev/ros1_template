@@ -5,4 +5,6 @@
 ##############################################################################
 
 find_package(catkin REQUIRED COMPONENTS rostest)
-add_rostest(remappings/remappings.test)
+add_rostest(oracle/oracle.test)
+add_rostest(prophet/prophet.test)
+add_rostest(prophet/follower.test)

@@ -44,5 +44,5 @@ class TestOracle(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    rospy.init_node("test_oracle")
+    rospy.init_node("test_oracle")  # NOT mandatory for using services, but it is what cli rostest does under the hood.
     rostest.rosrun('ros1_template', 'test_oracle', TestOracle)

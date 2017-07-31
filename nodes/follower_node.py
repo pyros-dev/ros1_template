@@ -42,8 +42,8 @@ def show_epilog():
 
 
 def callback(data):
-    rospy.loginfo("The next Fibonacci Number was heard: {0}".format(data.question))
-    return
+    rospy.loginfo("The next Fibonacci Number was heard: {0}".format(data.number))
+    return 346346
 
 
 if __name__ == '__main__':
@@ -62,10 +62,10 @@ if __name__ == '__main__':
     # Here we have parsed all CLI arguments
 
     # We can now init the node (a ROS node is a process, that is an instance of the python interpreter)
-    rospy.init_node('follower_node', )
+    rospy.init_node('follower_node')
 
-    # setting up the publisher to the topic
-    fibonacci_pub = rospy.Sublisher('~fibonacci', ros1_template_msgs.Fibonacci, callback)
+    # setting up the subscriber to the topic
+    fibonacci_pub = rospy.Subscriber('~fibonacci', ros1_template_msgs.Fibonacci, callback)
 
     # Just spin for ever, everything else is reactive !
     rospy.spin()

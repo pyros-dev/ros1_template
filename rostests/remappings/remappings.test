@@ -1,3 +1,0 @@
-<launch>
-  <test test-name="test_remappings" pkg="rocon_app_manager" type="test_remappings.py"/>
-</launch>

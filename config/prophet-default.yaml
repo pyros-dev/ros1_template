@@ -1,5 +1,5 @@
 # Simple YAML will be put in ROS parameters by launch file
 # ref : https://yaml.org
 fib_init:
-- A: 0
-- B: 1
+- 0
+- 1
