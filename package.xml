@@ -12,6 +12,7 @@
   <author email="asmodehn@gmail.com">AlexV</author>
 
   <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>roslint</build_depend>
   <build_depend>message_generation</build_depend>
   <run_depend>message_runtime</run_depend>
 
