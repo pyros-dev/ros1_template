@@ -16,35 +16,35 @@ Usage
 - Build the workspace (Ref : http://wiki.ros.org/catkin/Tutorials/using_a_workspace
 - Source the devel workspace::
 
-  source devel/setup.bash
+    $ source devel/setup.bash
 
 - manually run some python test::
 
-  nosetests ros1_template
+    $ nosetests ros1_template
 
 - manually run some ROS tests::
 
-  rostest ros1_template
+    $ rostest ros1_template
 
 - run all the tests::
 
-  catkin run_tests
+    $ catkin run_tests
 
-- launch some nodes::
+- launch some nodes (log on terminal)::
 
-  roslaunch ros1_template --screen
+    $ roslaunch ros1_template all.launch --screen
 
 - install that workspace::
 
-  make install
+    $ make install
 
 - source the install workspace::
 
-  source devel/setup.bash
+    $ source devel/setup.bash
 
-- launch some nodes::
+- launch some nodes (log in files in .ros/log)::
 
-  roslaunch ros1_template --screen
+    $ roslaunch ros1_template all.launch
 
 
 
