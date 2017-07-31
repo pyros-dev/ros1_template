@@ -16,11 +16,6 @@ from ros1_template import lib_module
 # When running from pure python, use a virtual environment !
 
 
-# Basic nose test
-def test_answer():
-    assert lib_module.answer() == 42
-
-
 # Basic UnitTest TestCase
 class TestAnswer(unittest.TestCase):
 
@@ -47,6 +42,8 @@ class TestFibonacci(unittest.TestCase):
         assert self.fib.next() == 8
         assert self.fib.next() == 13
         # assert self.fib.next() == 21  # we max at 17
+
+        assert self.fib.next() == 1
         assert self.fib.next() == 1
         assert self.fib.next() == 2
         assert self.fib.next() == 3
@@ -60,6 +57,8 @@ class TestFibonacci(unittest.TestCase):
         assert self.fib.next() == 8
         assert self.fib.next() == 13
         # assert self.fib.next() == 21  # we max at 17
+
+        assert self.fib.next() == 1
         assert self.fib.next() == 1
         assert self.fib.next() == 2
         assert self.fib.next() == 3

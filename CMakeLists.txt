@@ -73,7 +73,9 @@ catkin_package(CATKIN_DEPENDS
 
 install(
     PROGRAMS
-        nodes/template_node.py
+        nodes/oracle_node.py
+        nodes/prophet_node.py
+        nodes/follower_node.py
         scripts/question.py
     DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
     )
@@ -81,7 +83,7 @@ install(
 install(DIRECTORY launch
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
 
-install(DIRECTORY param
+install(DIRECTORY config
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
 
 

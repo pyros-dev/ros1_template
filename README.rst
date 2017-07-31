@@ -20,11 +20,11 @@ Usage
 
 - manually run some python test::
 
-    $ nosetests ros1_template
+    $ nosetests tests/test_ros1_template/test_lib_module.py
 
 - manually run some ROS tests::
 
-    $ rostest ros1_template
+    $ rostest ros1_template oracle.test
 
 - run all the tests::
 
@@ -40,7 +40,7 @@ Usage
 
 - source the install workspace::
 
-    $ source devel/setup.bash
+    $ source install/setup.bash
 
 - launch some nodes (log in files in .ros/log)::
 
