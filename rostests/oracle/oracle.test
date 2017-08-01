@@ -1,0 +1,6 @@
+<launch>
+  <node pkg="ros1_template" type="oracle_node.py" name="oracle">
+    <param name="answer_part" value="6"/>
+  </node>
+  <test test-name="test_oracle" pkg="ros1_template" type="test_oracle.py"/>
+</launch>
