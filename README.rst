@@ -12,7 +12,7 @@ Usage
 -----
 
 - Create a catkin_workspace ( Ref : http://wiki.ros.org/catkin/Tutorials/create_a_workspace )
-- Add this ros1_template pacakge to the workspace (and maybe more like beginner_tutorials)
+- Add this ros1_template pacakge into ``src/`` of the workspace (and maybe more like beginner_tutorials)
 - Build the workspace (Ref : http://wiki.ros.org/catkin/Tutorials/using_a_workspace
 - Source the devel workspace::
 
