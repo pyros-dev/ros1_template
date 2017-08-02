@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# License: Unspecified
+# License: MIT
 #
 
 from __future__ import absolute_import, division, print_function
@@ -20,8 +20,7 @@ import sys
 import time
 
 import rospy
-import ros1_template
-import ros1_template.msg as ros1_template_msgs
+import ros1_template_msgs.msg as ros1_template_msgs
 
 
 ##############################################################################
@@ -41,6 +40,11 @@ def show_epilog():
     return "never enough testing"
 
 
+def callback(data):
+    rospy.loginfo("The next Fibonacci Number was heard: {0}".format(data.number))
+    # return data is ignored
+
+
 if __name__ == '__main__':
 
     # we trim the arguments we received from the launcher
@@ -57,34 +61,10 @@ if __name__ == '__main__':
     # Here we have parsed all CLI arguments
 
     # We can now init the node (a ROS node is a process, that is an instance of the python interpreter)
-    rospy.init_node('prophet_node', )
+    rospy.init_node('fibonacci_sub_node')
 
-    # retrieving ros parameters
-    fib_init = rospy.get_param("~fib_init")
+    # setting up the subscriber to the topic
+    fibonacci_pub = rospy.Subscriber('~fibonacci', ros1_template_msgs.Fibonacci, callback)
 
-    # setting up the publisher to the topic
-    fibonacci_pub = rospy.Publisher('~fibonacci', ros1_template_msgs.Fibonacci, queue_size=1)
-
-    fib = ros1_template.Fibonacci(fib_init[0], fib_init[1])
-
-    rate = rospy.Rate(1)  # 1Hz
-
-    try:
-        # Just spin and publish for ever, be proactive !
-        while not rospy.is_shutdown():
-            # building the message we need to broadcast dynamically
-            fib_number = ros1_template_msgs.Fibonacci(
-                number=fib.next()
-            )
-            # logging it first
-            rospy.loginfo("broadcasting : {0}".format(fib_number))
-            # publishing it
-            fibonacci_pub.publish(fib_number)
-            # sleeping a bit to not burn the CPU
-            rate.sleep()
-
-    except Exception as exc:
-        rospy.logwarn("{0} detected in node {1} : {2}".format(type(exc), rospy.get_name(), str(exc)))
-    finally:
-        rospy.logwarn("{0} is shutting down !".format(rospy.get_name()))
-
+    # Just spin for ever, everything else is reactive !
+    rospy.spin()

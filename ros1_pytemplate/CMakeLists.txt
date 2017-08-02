@@ -3,7 +3,7 @@
 ##############################################################################
 
 cmake_minimum_required(VERSION 2.8.3)
-project(ros1_template)
+project(ros1_pytemplate)
 
 ##############################################################################
 # Dependencies
@@ -11,7 +11,6 @@ project(ros1_template)
 
 find_package(catkin REQUIRED
             COMPONENTS
-            message_generation
             roslint
 )
 
@@ -31,40 +30,14 @@ catkin_python_setup()
 
 # Lint Python modules
 file(GLOB_RECURSE ${PROJECT_NAME}_PY_SRCS
-     RELATIVE ${PROJECT_SOURCE_DIR} scripts/*.py nodes/*.py ros1_template/*.py)
+     RELATIVE ${PROJECT_SOURCE_DIR} scripts/*.py nodes/*.py ros1_pytemplate/*.py)
 roslint_python(${${PROJECT_NAME}_PY_SRCS})
-
-##############################################################################
-# Messages
-##############################################################################
-
-add_message_files(
-  DIRECTORY
-    msg
-  FILES
-    Fibonacci.msg
-)
-
-##############################################################################
-# Services
-##############################################################################
-
-add_service_files(
-  DIRECTORY
-    srv
-  FILES
-    Answer.srv
-)
-
-generate_messages()
 
 ##############################################################################
 # Catkin
 ##############################################################################
 
-catkin_package(CATKIN_DEPENDS
-             message_runtime
-)
+catkin_package()
 
 
 ##############################################################################
@@ -73,10 +46,10 @@ catkin_package(CATKIN_DEPENDS
 
 install(
     PROGRAMS
-        nodes/oracle_node.py
-        nodes/prophet_node.py
-        nodes/follower_node.py
-        scripts/question.py
+        nodes/answer_server_node.py
+        nodes/fibonacci_sub_node.py
+        nodes/fibonacci_pub_node.py
+        scripts/question_cli.py
     DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
     )
 

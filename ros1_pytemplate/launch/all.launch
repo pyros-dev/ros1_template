@@ -1,0 +1,20 @@
+<!--
+  Standard launch file. for more information check http://wiki.ros.org/roslaunch/XML.
+ -->
+<launch>
+
+  <!-- Args -->
+  <arg name="answer_override"        default="$(find ros1_pytemplate)/config/answer-override.yaml" doc="used by upper launchers to customize configuration"/>
+  <arg name="fibonacci_override"        default="$(find ros1_pytemplate)/config/fibonacci-override.yaml" doc="used by upper launchers to customize configuration"/>
+
+  <!-- Launch ROS template node -->
+  <group ns="ros1_template">
+      <include file="$(find ros1_pytemplate)/launch/answer.launch">
+        <arg name="config_override" value="$(arg answer_override)"/>
+      </include>
+      <include file="$(find ros1_pytemplate)/launch/fibonacci.launch">
+        <arg name="config_override" value="$(arg fibonacci_override)"/>
+      </include>
+  </group>
+
+</launch>

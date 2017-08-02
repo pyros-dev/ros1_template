@@ -5,6 +5,6 @@
 ##############################################################################
 
 find_package(catkin REQUIRED COMPONENTS rostest)
-add_rostest(oracle/oracle.test)
-add_rostest(prophet/prophet.test)
-add_rostest(prophet/follower.test)
+add_rostest(answer_server/answer_server.test)
+add_rostest(fibonacci_pubsub/fibonacci_pub.test)
+add_rostest(fibonacci_pubsub/fibonacci_sub.test)

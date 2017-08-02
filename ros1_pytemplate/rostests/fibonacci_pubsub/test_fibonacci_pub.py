@@ -17,21 +17,21 @@ import time
 import rospy
 import rostest
 import roslaunch
-import ros1_template.msg as ros1_template_msgs
+import ros1_template_msgs.msg as ros1_template_msgs
 
 ##############################################################################
 # Test Class
 ##############################################################################
 
 
-class TestProphet(unittest.TestCase):
+class TestFibonacciPub(unittest.TestCase):
     def setUp(self):
         self.fibnumbers = []
 
         def fibcb(data):
             self.fibnumbers += [data.number]
 
-        self.fibsub = rospy.Subscriber('/prophet/fibonacci', ros1_template_msgs.Fibonacci, fibcb)
+        self.fibsub = rospy.Subscriber('/fibonacci_pub/fibonacci', ros1_template_msgs.Fibonacci, fibcb)
 
     def tearDown(self):
         pass
@@ -61,13 +61,13 @@ if __name__ == '__main__':
 
     # Same as <node pkg="ros1_template" type="prophet_node.py" name="prophet"/> in .test file
     # Ref : http://docs.ros.org/indigo/api/roslaunch/html/index.html
-    follower = roslaunch.core.Node('ros1_template', 'prophet_node.py', name='prophet')
+    follower = roslaunch.core.Node('ros1_pytemplate', 'fibonacci_pub_node.py', name='fibonacci_pub')
     follower_proc = launch.launch(follower)
     assert follower_proc.is_alive()
 
     # Same as <test test-name="test_prophet" pkg="ros1_template" type="test_prophet.py"/> in .test file
-    rospy.init_node("test_prophet")  # mandatory for using topics
-    test_result = rostest.rosrun('ros1_template', 'test_prophet', TestProphet)
+    rospy.init_node("test_fibonacci_pub")  # mandatory for using topics
+    test_result = rostest.rosrun('ros1_pytemplate', 'test_fibonacci_pub', TestFibonacciPub)
 
     # cleaning up
     follower_proc.stop()

@@ -17,7 +17,7 @@ import time
 import rospy
 import rostest
 import roslaunch
-import ros1_template.msg as ros1_template_msgs
+import ros1_template_msgs.msg as ros1_template_msgs
 import rosgraph_msgs.msg as rosgraph_msgs
 
 ##############################################################################
@@ -27,15 +27,15 @@ import rosgraph_msgs.msg as rosgraph_msgs
 
 # test this with:
 # > rostest ros1_template test_follower.test
-class TestFollower(unittest.TestCase):
+class TestFibonacciSub(unittest.TestCase):
 
     def setUp(self):
-        self.fib_pub = rospy.Publisher('/follower/fibonacci', ros1_template_msgs.Fibonacci)
+        self.fib_pub = rospy.Publisher('/fibonacci_sub/fibonacci', ros1_template_msgs.Fibonacci)
 
         self.follower_logmsg = []
 
         def logcb(data):
-            if data.name == '/follower':
+            if data.name == '/fibonacci_sub':
                 self.follower_logmsg += [data.msg]
 
         # We re listening on the log topic to assert the follower did its job.
@@ -72,13 +72,13 @@ if __name__ == '__main__':
 
     # Same as <node pkg="ros1_template" type="follower_node.py" name="follower"/> in .test file
     # Ref : http://docs.ros.org/indigo/api/roslaunch/html/index.html
-    follower = roslaunch.core.Node('ros1_template', 'follower_node.py', name='follower')
+    follower = roslaunch.core.Node('ros1_pytemplate', 'fibonacci_sub_node.py', name='fibonacci_sub')
     follower_proc = launch.launch(follower)
     assert follower_proc.is_alive()
 
     # Same as <test test-name="test_follower" pkg="ros1_template" type="test_follower.py"/> in .test file
-    rospy.init_node("test_follower")
-    test_result = rostest.rosrun('ros1_template', 'test_follower', TestFollower)
+    rospy.init_node("test_fibonacci_sub")
+    test_result = rostest.rosrun('ros1_pytemplate', 'test_fibonacci_sub', TestFibonacciSub)
 
     # cleaning up
     follower_proc.stop()

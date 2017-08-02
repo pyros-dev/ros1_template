@@ -8,7 +8,7 @@ Reference : http://pythontesting.net/framework/nose/nose-introduction/
 import unittest
 
 # Here we are testing the core python code, importing only that module
-from ros1_template import lib_module
+from ros1_pytemplate import lib_module
 
 # Since we are at a different hierarchical level than ros1_template,
 # It is mandatory to install the module first (which is good practice to make sure the install process also works)

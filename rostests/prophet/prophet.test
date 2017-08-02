@@ -1,6 +1,0 @@
-<launch>
-  <node pkg="ros1_template" type="prophet_node.py" name="prophet">
-    <param name="fib_init" value="[0, 1]"/>
-  </node>
-  <test test-name="test_prophet" pkg="ros1_template" type="test_prophet.py"/>
-</launch>
