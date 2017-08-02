@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<package>
+  <name>ros1_pip_template</name>
+  <version>0.1.1</version>
+  <description>
+    Template ROS node for use with catkin_pip following good practices
+  </description>
+  <maintainer email="asmodehn@gmail.com">AlexV</maintainer>
+  <license>BSD</license>
+  <url type="website">https://github.com/pyros-dev/ros1-pip-template</url>
+  <url type="repository">https://github.com/pyros-dev/ros1-pip-template</url>
+  <author email="asmodehn@gmail.com">AlexV</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <!-- We need catkin_pip to integrate properly with pip -->
+  <buildtool_depend>catkin_pip</buildtool_depend>
+
+  <!-- we are generating messages from catkin, so we also need these -->
+  <build_depend>message_generation</build_depend>
+  <!-- NOT NEEDED ? <run_depend>message_runtime</run_depend> -->
+
+  <!--
+   A basic ROS package, needed only by the ros scripts, not the base python package.
+   Therefore it is declared only here and not in the setup.py
+  -->
+  <run_depend>pyros_utils</run_depend>
+
+  <!--
+   A python package, packaged as a deb on the system and exposed via http:/github.com/ros/rosdistro.
+   This is the one we refer to here, but the original package from pip is referenced from setup.py,
+   for the source version to rely on pip package management (already crossplatform) instead of rosdeps.
+  -->
+  <run_depend>python-requests</run_depend>
+
+  <export>
+    <doc> TODO</doc>
+  </export>
+</package>
