@@ -5,7 +5,7 @@
 from setuptools import setup
 
 # Ref : https://packaging.python.org/single_source_version/#single-sourcing-the-version
-with open('ros1_pip_template/_version.py') as vf:
+with open('ros1_pip_pytemplate/_version.py') as vf:
     exec(vf.read())
 
 # IMPORTANT : to work with this package (as with any python package),
@@ -13,11 +13,11 @@ with open('ros1_pip_template/_version.py') as vf:
 # to avoid polluting your system with random packages of random versions.
 # CHECK : https://virtualenvwrapper.readthedocs.io/en/latest
 setup(
-    name='ros1_pip_template',
+    name='ros1_pip_pytemplate',
     version=__version__,
     packages=[
-        'ros1_pip_template',
-        'ros1_pip_template.tests',
+        'ros1_pip_pytemplate',
+        'ros1_pip_pytemplate.tests',
     ],
     install_requires=[
         'pyros-setup',  # pyros-setup is needed, but only when running from python environment

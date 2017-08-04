@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <package>
-  <name>ros1_pip_template</name>
+  <name>ros1_pip_pytemplate</name>
   <version>0.1.1</version>
   <description>
     Template ROS node for use with catkin_pip following good practices
@@ -15,10 +15,6 @@
 
   <!-- We need catkin_pip to integrate properly with pip -->
   <buildtool_depend>catkin_pip</buildtool_depend>
-
-  <!-- we are generating messages from catkin, so we also need these -->
-  <build_depend>message_generation</build_depend>
-  <!-- NOT NEEDED ? <run_depend>message_runtime</run_depend> -->
 
   <!--
    A basic ROS package, needed only by the ros scripts, not the base python package.
