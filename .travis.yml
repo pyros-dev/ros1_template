@@ -9,9 +9,9 @@ compiler:
 env:
   matrix:
   # add NOT_TEST_BUILD=true NOT_TEST_INSTALL=true to skip build or install tests
-    - ROS_DISTRO="indigo"  DOCKER_IMAGE=indigo-trusty-shadow-fixed
-    - ROS_DISTRO="kinetic" DOCKER_IMAGE=kinetic-xenial-shadow-fixed
-    - ROS_DISTRO="lunar"   DOCKER_IMAGE=lunar-xenial-shadow-fixed
+    - ROS_DISTRO="indigo"  DOCKER_IMAGE=rosindustrial/ci:indigo-trusty-shadow-fixed
+    - ROS_DISTRO="kinetic" DOCKER_IMAGE=rosindustrial/ci:kinetic-xenial-shadow-fixed
+    - ROS_DISTRO="lunar"   DOCKER_IMAGE=rosindustrial/ci:lunar-xenial-shadow-fixed
 
 install:
   - git clone https://github.com/ros-industrial/industrial_ci.git .ci_config
