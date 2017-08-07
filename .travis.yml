@@ -7,32 +7,20 @@ compiler:
   - gcc
 
 env:
+  global:
+    - VERBOSE_OUTPUT=true
+    - WRITABLE_SOURCE=true
   matrix:
   # add NOT_TEST_BUILD=true NOT_TEST_INSTALL=true to skip build or install tests
-    #- ROS_DISTRO="indigo" ROS_REPOSITORY_PATH=http://packages.ros.org/ros/ubuntu
-    - ROS_DISTRO="indigo" ROS_REPO=ros-shadow-fixed
-    #- ROS_DISTRO="indigo" PRERELEASE=true
-    #- ROS_DISTRO="kinetic"  ROS_REPOSITORY_PATH=http://packages.ros.org/ros/ubuntu
-    - ROS_DISTRO="kinetic"  ROS_REPO=ros-shadow-fixed
-    #- ROS_DISTRO="kinetic"  PRERELEASE=true
-    #- ROS_DISTRO="lunar"   ROS_REPOSITORY_PATH=http://packages.ros.org/ros/ubuntu
-    - ROS_DISTRO="lunar"   ROS_REPO=ros-shadow-fixed
-    #- ROS_DISTRO="lunar"   PRERELEASE=true
-
-matrix:
-  allow_failures:
-  # Run docker-based ROS prerelease test http://wiki.ros.org/bloom/Tutorials/PrereleaseTest
-  # Because we might not want to run prerelease test for all PRs, it's omitted from pass-fail criteria.
-    - env: ROS_DISTRO="indigo" PRERELEASE=true
-    - env: ROS_DISTRO="kinetic"  PRERELEASE=true
-    - env: ROS_DISTRO="lunar"  PRERELEASE=true
+    - ROS_DISTRO="indigo"  DOCKER_IMAGE=rosindustrial/ci:indigo-trusty-shadow-fixed
+    - ROS_DISTRO="kinetic" DOCKER_IMAGE=rosindustrial/ci:kinetic-xenial-shadow-fixed
+    - ROS_DISTRO="lunar"   DOCKER_IMAGE=rosindustrial/ci:lunar-xenial-shadow-fixed
 
 install:
-  - git clone https://github.com/ros-industrial/industrial_ci.git .ci_config
+  - git clone -b target-repo-rw https://github.com/ipa-mdl/industrial_ci.git .ci_config
 
 script:
   - .ci_config/travis.sh
-#  - ./travis.sh  # Enable this when you have a package-local script
 
 notifications:
   email: false
