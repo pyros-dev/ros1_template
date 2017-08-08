@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>ros1_cpptemplate</name>
+  <version>0.1.1</version>
+  <description>
+    C++ Template library following good practices
+  </description>
+  <maintainer email="Reimann.Alex.8.8@gmail.com">Alexander Reimann</maintainer>
+  <license>BSD</license>
+  <url type="website">https://github.com/pyros-dev/ros1_template</url>
+  <url type="repository">https://github.com/pyros-dev/ros1_template</url>
+  <author email="Reimann.Alex.8.8@gmail.com">Alexander Reimann</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>roslint</build_depend>
+  <build_depend>rostest</build_depend>
+
+  <export>
+    <doc> TODO</doc>
+  </export>
+</package>
