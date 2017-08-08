@@ -1,0 +1,6 @@
+<launch>
+  <include file="$(find ros1_pytemplate)/launch/answer.launch">
+    <arg name="config_override" value="config_answer.yml"/>
+  </include>
+  <test test-name="test_answer_server" pkg="ros1_pytemplate" type="test_answer_server.py"/>
+</launch>

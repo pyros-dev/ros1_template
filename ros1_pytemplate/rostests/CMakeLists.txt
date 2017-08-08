@@ -5,10 +5,14 @@
 ##############################################################################
 
 find_package(catkin REQUIRED COMPONENTS rostest)
-add_rostest(launchers/fibonacci_launch.test)
-add_rostest(launchers/answer_launch.test)
-add_rostest(launchers/all_launch.test)
+
+# Unit (Node) tests
 add_rostest(answer_server/answer_server.test)
 add_rostest(fibonacci_pubsub/fibonacci_pub.test)
 add_rostest(fibonacci_pubsub/fibonacci_sub.test)
+
+# Integration (launchers + config) Tests
+add_rostest(integration/fibonacci_pubsub.test)
+add_rostest(integration/answer_server.test)
+add_rostest(integration/all.test)
 
