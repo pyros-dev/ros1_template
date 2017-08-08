@@ -4,7 +4,7 @@
 <launch>
 
   <!-- Args -->
-  <arg name="config_override"        default="$(find ros1_template)/config/fibonacci-override.yaml" doc="used by upper launchers to customize configuration"/>
+  <arg name="config_override"        default="$(find ros1_pytemplate)/config/fibonacci-override.yaml" doc="used by upper launchers to customize configuration"/>
 
   <!-- Launch oracle node -->
   <node pkg="ros1_pytemplate" type="fibonacci_pub_node.py" name="fibonacci_pub">
