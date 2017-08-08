@@ -1,4 +1,4 @@
-ros1_pip_template package
+ros1_pip_pytemplate package
 =========================
 
 Subpackages
@@ -6,15 +6,15 @@ Subpackages
 
 .. toctree::
 
-    ros1_pip_template.tests
+    ros1_pip_pytemplate.tests
 
 Submodules
 ----------
 
-ros1_pip_template.lib_module module
+ros1_pip_pytemplate.lib_module module
 -----------------------------------
 
-.. automodule:: ros1_pip_template.lib_module
+.. automodule:: ros1_pip_pytemplate.lib_module
     :members:
     :undoc-members:
     :show-inheritance:
@@ -23,7 +23,7 @@ ros1_pip_template.lib_module module
 Module contents
 ---------------
 
-.. automodule:: ros1_pip_template
+.. automodule:: ros1_pip_pytemplate
     :members:
     :undoc-members:
     :show-inheritance:

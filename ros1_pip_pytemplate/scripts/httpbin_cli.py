@@ -33,7 +33,7 @@ logging.config.dictConfig(
             'logfile': {
                 'level': 'DEBUG',
                 'class': 'logging.handlers.RotatingFileHandler',
-                'filename': 'ros1_pip_template.log',
+                'filename': 'ros1_pip_pytemplate.log',
                 'maxBytes': 1024,
                 'backupCount': 3,
                 'formatter': 'verbose'
@@ -55,14 +55,14 @@ logging.config.dictConfig(
 )
 
 
-import ros1_pip_template
-for k in vars(ros1_pip_template):
-    print(k + ": " + str(getattr(ros1_pip_template, k)))
+import ros1_pip_pytemplate
+for k in vars(ros1_pip_pytemplate):
+    print(k + ": " + str(getattr(ros1_pip_pytemplate, k)))
 ##############################################################################
 # Main
 ##############################################################################
 
 if __name__ == '__main__':
     logger = logging.getLogger("question")
-    answer = ros1_pip_template.Httpbin()
-    logger.info(ros1_pip_template.Httpbin.get())
+    answer = ros1_pip_pytemplate.Httpbin()
+    logger.info(ros1_pip_pytemplate.Httpbin.get())

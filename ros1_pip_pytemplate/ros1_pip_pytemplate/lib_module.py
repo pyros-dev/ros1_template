@@ -3,7 +3,7 @@ from __future__ import absolute_import, division, print_function
 import sys
 
 # importing a pure python package
-# To be able to get ros1_pip_template packaged on ROS, first one would need to release a ROS package for requests
+# To be able to get ros1_pip_pytemplate packaged on ROS, first one would need to release a ROS package for requests
 # Using catkin_pip for this is probably the easiest solution.
 import requests
 
