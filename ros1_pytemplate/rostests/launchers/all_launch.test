@@ -1,0 +1,3 @@
+<launch>
+  <include file="$(find ros1_pytemplate)/launch/all.launch"/>
+</launch>
