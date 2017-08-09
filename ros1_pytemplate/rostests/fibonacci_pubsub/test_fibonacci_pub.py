@@ -57,7 +57,7 @@ if __name__ == '__main__':
     launch.start()
 
     # Same as <param name="fib_init" value="[0, 1]"/> in .test file
-    rospy.set_param("/prophet/fib_init", [0, 1])
+    rospy.set_param("/fibonacci_pub/fib_init", [0, 1])
 
     # Same as <node pkg="ros1_template" type="prophet_node.py" name="prophet"/> in .test file
     # Ref : http://docs.ros.org/indigo/api/roslaunch/html/index.html

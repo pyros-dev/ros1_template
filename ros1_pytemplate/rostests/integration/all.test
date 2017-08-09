@@ -4,6 +4,5 @@
     <arg name="fibonacci_override" value="$(find ros1_pytemplate)/rostests/integration/config_fibonacci.yml"/>
   </include>
   <test test-name="test_answer_server" pkg="ros1_pytemplate" type="test_answer_server.py"/>
-  <test test-name="test_fibonacci_pub" pkg="ros1_pytemplate" type="test_fibonacci_pub.py"/>
-  <test test-name="test_fibonacci_sub" pkg="ros1_pytemplate" type="test_fibonacci_sub.py"/>
+  <test test-name="test_fibonacci" pkg="ros1_pytemplate" type="test_fibonacci.py"/>
 </launch>

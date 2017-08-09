@@ -13,8 +13,8 @@
   </node>
 
   <!-- Launch follower node -->
-  <node pkg="ros1_pytemplate" type="fibonacci_sub_node.py" name="fibonacci_sub">
-    <remap from="fibonacci_pub/fibonacci" to="fibonacci_sub/fibonacci" />
+  <node pkg="ros1_pytemplate" type="echo.sh" name="fibonacci_sub">
+    <remap from="/fibonacci_sub/fibonacci" to="/fibonacci_pub/fibonacci" />
   </node>
 
 </launch>
