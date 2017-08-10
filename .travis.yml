@@ -15,7 +15,8 @@ env:
   # add NOT_TEST_BUILD=true NOT_TEST_INSTALL=true to skip build or install tests
     - ROS_DISTRO="indigo"  DOCKER_IMAGE=rosindustrial/ci:indigo-trusty-shadow-fixed
     - ROS_DISTRO="kinetic" DOCKER_IMAGE=rosindustrial/ci:kinetic-xenial-shadow-fixed
-    - ROS_DISTRO="lunar"   DOCKER_IMAGE=rosindustrial/ci:lunar-xenial-shadow-fixed
+    # TMP : not using shadow repo at the moment, and some dependency is not in ros repo yet
+    # - ROS_DISTRO="lunar"   DOCKER_IMAGE=rosindustrial/ci:lunar-xenial-shadow-fixed
 
 install:
   - git clone -b target-repo-rw https://github.com/ipa-mdl/industrial_ci.git .ci_config

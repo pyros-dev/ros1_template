@@ -1,13 +1,13 @@
-ros1_pip_template.tests package
+ros1_pip_pytemplate.tests package
 ===============================
 
 Submodules
 ----------
 
-ros1_pip_template.tests.test_lib_module_embedded module
+ros1_pip_pytemplate.tests.test_lib_module_embedded module
 -------------------------------------------------------
 
-.. automodule:: ros1_pip_template.tests.test_lib_module_embedded
+.. automodule:: ros1_pip_pytemplate.tests.test_lib_module_embedded
     :members:
     :undoc-members:
     :show-inheritance:
@@ -16,7 +16,7 @@ ros1_pip_template.tests.test_lib_module_embedded module
 Module contents
 ---------------
 
-.. automodule:: ros1_pip_template.tests
+.. automodule:: ros1_pip_pytemplate.tests
     :members:
     :undoc-members:
     :show-inheritance:
