@@ -12,6 +12,7 @@ project(ros1_pytemplate)
 find_package(catkin REQUIRED
             COMPONENTS
             roslint
+            ros1_template_msgs
 )
 
 if (CATKIN_ENABLE_TESTING)
