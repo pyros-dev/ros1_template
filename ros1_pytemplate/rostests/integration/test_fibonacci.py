@@ -14,8 +14,9 @@ import sys
 import unittest
 import time
 
-import pyros_setup
-pyros_setup.configurable_import().configure().activate()
+# Integrating tests with PyCharm (setup the ROS environment)
+# import pyros_setup
+# pyros_setup.configurable_import().configure().activate()
 
 import rospy
 import rostest
