@@ -1,6 +1,7 @@
 #include "ros1_cpptemplate/atomic_fibonacci.hpp"
 
 #include <iostream>
+#include <ros/console.h>
 
 namespace ros1_cpptemplate
 {
@@ -20,7 +21,7 @@ int AtomicFibonacci::nextAndPrint()
 {
   std::lock_guard<std::mutex> lock(mutex_);
   int next_number = next_();
-  std::cout << "[AtomicFibonacci]: Next fibonacci_number: " << next_number << std::endl;
+  ROS_INFO_STREAM("[AtomicFibonacci]: Next fibonacci_number: " << next_number);
   return next_number;
 }
 

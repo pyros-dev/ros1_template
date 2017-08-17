@@ -12,6 +12,7 @@ project(ros1_cpptemplate)
 find_package(catkin REQUIRED
             COMPONENTS
               roslint
+              rosconsole
 )
 
 ##############################################################################
@@ -24,6 +25,7 @@ catkin_package(
     LIBRARIES
         ${PROJECT_NAME}
     CATKIN_DEPENDS
+        rosconsole
 )
 
 ##############################################################################

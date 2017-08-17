@@ -31,7 +31,7 @@ public:
   virtual ~AtomicFibonacci();
 
     /**
-   * Get the next Fibonacci number and print it on std::cout
+   * Get the next Fibonacci number and log it
    * @return next Fibonacci number
    */
   virtual int nextAndPrint();

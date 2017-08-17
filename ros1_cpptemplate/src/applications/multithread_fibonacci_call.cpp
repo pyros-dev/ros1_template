@@ -8,6 +8,8 @@
 #include <thread>
 #include <chrono>
 
+#include <ros/console.h>
+
 using ros1_cpptemplate::AtomicFibonacci;
 using ros1_cpptemplate::AtomicFibonacciPtr;
 
@@ -21,7 +23,7 @@ int argToInt(char* arg)
   int value;
   string_stream >> value;
 
-//   std::cout << "Converted " << arg << " to " << value << std::endl;
+//   ROS_INFO_STREAM("Converted " << arg << " to " << value);
   return value;
 }
 
@@ -59,20 +61,20 @@ int main(int argc, char **argv)
       max_number = argToInt(argv[3]);
       break;
     default:
-      std::cout << "Wrong number of arguments! Max. 3, got " << argc << std::endl;
+      ROS_INFO_STREAM("Wrong number of arguments! Max. 3, got " << argc);
       return 1;
   }
 
-  std::cout << "Initializing AtomicFibonacci with: " << std::endl;
-  std::cout << "  last_number    = " << last_number << std::endl;
-  std::cout << "  current_number = " << current_number << std::endl;
-  std::cout << "  max_number     = " << max_number << std::endl;
+  ROS_INFO("Initializing AtomicFibonacci with: ");
+  ROS_INFO_STREAM("  last_number    = " << last_number);
+  ROS_INFO_STREAM("  current_number = " << current_number);
+  ROS_INFO_STREAM("  max_number     = " << max_number);
 
   AtomicFibonacciPtr atomic_fibonacci = std::make_shared<AtomicFibonacci>(last_number,
                                                                           current_number,
                                                                           max_number);
 
-  std::cout << "Initialized AtomicFibonacci object" << std::endl;
+  ROS_INFO_STREAM("Initialized AtomicFibonacci object");
 
   std::atomic<bool> start_flag;
   start_flag = false;
@@ -80,14 +82,14 @@ int main(int argc, char **argv)
   int number_of_threads = 20;
   std::vector<std::thread> threads;
 
-  std::cout << "Start spawning " << number_of_threads << " threads" << std::endl;
+  ROS_INFO_STREAM("Start spawning " << number_of_threads << " threads");
 
   for (int i = 0; i < number_of_threads; ++i)
   {
     threads.push_back(std::thread(&callFibonacci, atomic_fibonacci, std::ref(start_flag)));
   }
 
-  std::cout << "Spawning finished, let's go!" << std::endl;
+  ROS_INFO_STREAM("Spawning finished, let's go!");
 
   start_flag = true;
 
@@ -96,5 +98,5 @@ int main(int argc, char **argv)
     threads[i].join();
   }
 
-  std::cout << "Finished. Goodbye!" << std::endl;
+  ROS_INFO_STREAM("Finished. Goodbye!");
 }
