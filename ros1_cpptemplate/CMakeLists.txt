@@ -52,7 +52,7 @@ set(ROSLINT_CUSTOM_EXTENSIONS "--extensions=h,hpp,cpp")
 set(ROSLINT_CPP_OPTS ${ROSLINT_CUSTOM_FILTER} ${ROSLINT_CUSTOM_EXTENSIONS})
 
 file(GLOB_RECURSE LINT_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *.h *.hpp *.cpp)
-roslint_cpp(${LINT_FILES}) # Lint _all_ cpp files
+roslint_cpp(${LINT_FILES})
 roslint_add_test()
 
 ##############################################################################
