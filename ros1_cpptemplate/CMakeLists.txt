@@ -43,6 +43,13 @@ include_directories(include ${catkin_INCLUDE_DIRS})
 add_subdirectory(src)
 
 ##############################################################################
+# Installs
+##############################################################################
+install(DIRECTORY include/${PROJECT_NAME}/
+        DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
+        FILES_MATCHING PATTERN "*.h" PATTERN "*.hpp")
+
+##############################################################################
 # Linter
 ##############################################################################
 
