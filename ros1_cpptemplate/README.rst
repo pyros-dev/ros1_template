@@ -1,8 +1,8 @@
 ROS1 CPP Template
 ====================
 
-This package is a template to be used as a reference when creating c++ libraries (and applications if wanted) to be used in a ROS package. The main part of the implementation should go into this package and be independent from ROS.  
-The only packge dependencies are on the *roslint* and *rostest* for testing (build dependency only) and *rosconsole* to have a uniform way for logging. In this package we are following http://wiki.ros.org/BestPractices as much as possible, where it makes sense.
+This package is a template to be used as a reference when creating c++ libraries (and applications if wanted) to be used in a ROS package. The main part of the implementation should go into this package and be independent from ROS.
+The only packge dependencies are on the *roslint* for checking the coding style (build dependency only) and *rosconsole* to have a uniform way for logging. In this package we are following http://wiki.ros.org/BestPractices as much as possible, where it makes sense.
 
 Usage
 -----
