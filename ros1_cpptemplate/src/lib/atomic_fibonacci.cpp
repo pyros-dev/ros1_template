@@ -1,27 +1,40 @@
 #include "ros1_cpptemplate/atomic_fibonacci.hpp"
 
-#include <iostream>
 #include <ros/console.h>
+#include <iostream>
+#include <sstream>
 
 namespace ros1_cpptemplate
 {
 
-AtomicFibonacci::AtomicFibonacci(const int& last_number, const int& current_number, const int& max_number)
+AtomicFibonacci::AtomicFibonacci(const int& last_number, const int& current_number, const int& max_number, const std::string& name)
 {
   last_number_ = last_number;
   current_number_ = current_number;
   max_number_ = max_number;
+
+  if (name == "")
+  {
+    //don't show empty []
+    log_prefix_ = "";
+  }
+  else
+  {
+    std::stringstream log_prefix_string_stream;
+    log_prefix_string_stream << "[" << name << "] ";
+    log_prefix_ = log_prefix_string_stream.str();
+  }
 }
 
 AtomicFibonacci::~AtomicFibonacci()
 {
 }
 
-int AtomicFibonacci::nextAndPrint()
+int AtomicFibonacci::nextAndLog(const std::string& log_prefix)
 {
   std::lock_guard<std::mutex> lock(mutex_);
   int next_number = next_();
-  ROS_INFO_STREAM("Next fibonacci_number: " << next_number);
+  ROS_INFO_STREAM(log_prefix_ << log_prefix << "Next fibonacci_number: " << next_number);
   return next_number;
 }
 

@@ -35,7 +35,7 @@ void callFibonacci(AtomicFibonacciPtr atomic_fibonacci, std::atomic<bool>& start
     std::this_thread::sleep_for(sleep_duration);
   }
 
-  atomic_fibonacci->nextAndPrint();
+  atomic_fibonacci->nextAndLog();
 }
 
 int main(int argc, char **argv)

@@ -1,6 +1,7 @@
 #ifndef ros1_cpp_template_ATOMIC_FIBONACCI_HPP_
 #define ros1_cpp_template_ATOMIC_FIBONACCI_HPP_
 
+#include <string>
 #include <mutex>
 #include <memory>
 
@@ -23,7 +24,7 @@ public:
    * @param max_number max_number after the sequence gets reset to (0, 1)
    */
   AtomicFibonacci(const int& last_number, const int& current_number,
-                  const int& max_number = 256);
+                  const int& max_number = 256, const std::string& name = "");
 
   /**
    * Deconstructor
@@ -34,7 +35,7 @@ public:
    * Get the next Fibonacci number and log it
    * @return next Fibonacci number
    */
-  virtual int nextAndPrint();
+  virtual int nextAndLog(const std::string& log_prefix = "");
 
   /**
    * Get the next Fibonacci number
@@ -76,6 +77,9 @@ private:
 
   /// max Fibonacci number before reseting the sequence
   int max_number_;
+
+  /// log prefix
+  std::string log_prefix_;
 };
 typedef std::shared_ptr<AtomicFibonacci> AtomicFibonacciPtr;
 
