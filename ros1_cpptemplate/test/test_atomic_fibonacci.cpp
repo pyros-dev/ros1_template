@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 
-#include <ros1_cpptemplate/atomic_fibonacci.hpp>
+#include "ros1_cpptemplate/atomic_fibonacci.hpp"
 
 namespace ros1_cpptemplate
 {

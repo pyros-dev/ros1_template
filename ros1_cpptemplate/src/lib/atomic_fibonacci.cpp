@@ -21,7 +21,7 @@ int AtomicFibonacci::nextAndPrint()
 {
   std::lock_guard<std::mutex> lock(mutex_);
   int next_number = next_();
-  ROS_INFO_STREAM("[AtomicFibonacci]: Next fibonacci_number: " << next_number);
+  ROS_INFO_STREAM("Next fibonacci_number: " << next_number);
   return next_number;
 }
 
