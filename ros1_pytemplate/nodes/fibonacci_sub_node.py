@@ -68,3 +68,5 @@ if __name__ == '__main__':
 
     # Just spin for ever, everything else is reactive !
     rospy.spin()
+
+    rospy.logwarn("{0} is shutting down !".format(rospy.get_name()))

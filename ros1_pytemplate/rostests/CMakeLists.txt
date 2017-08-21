@@ -13,6 +13,6 @@ add_rostest(fibonacci_pubsub/fibonacci_sub.test)
 
 # Integration (launchers + config) Tests
 add_rostest(integration/fibonacci_pubsub.test)
-add_rostest(integration/answer_server.test)
+add_rostest(integration/answer_server_cfg.test)
 add_rostest(integration/all.test)
 

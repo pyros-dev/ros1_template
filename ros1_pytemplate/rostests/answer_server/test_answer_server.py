@@ -9,11 +9,11 @@
 # Imports
 ##############################################################################
 
+import sys
+import unittest
+
 import rospy
 import rostest
-import unittest
-import tempfile
-import ros1_template_msgs.msg as ros1_template_msgs
 import ros1_template_msgs.srv as ros1_template_srvs
 
 
@@ -30,7 +30,6 @@ class TestAnswerServer(unittest.TestCase):
             answer_proxy = rospy.ServiceProxy('/answer_server/answer', ros1_template_srvs.Answer)
             req = ros1_template_srvs.AnswerRequest('What is the Answer to the Ultimate Question of Life, the Universe and Everthing ?')
             resp = answer_proxy(req)
-            print(resp)
             self.assertEqual(resp.answer, 42)
         except rospy.ServiceException as exc:
             print("service call failed: {0}".format(exc))
@@ -44,5 +43,6 @@ class TestAnswerServer(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    rospy.init_node("test_answer_server")  # NOT mandatory for using services, but it is what cli rostest does under the hood.
-    rostest.rosrun('ros1_pytemplate', 'test_answer_server', TestAnswerServer)
+    # Note : logging is managed by rostest
+    print("ARGV : %r", sys.argv)
+    rostest.rosrun('ros1_pytemplate', 'test_answer_server', TestAnswerServer, sys.argv)

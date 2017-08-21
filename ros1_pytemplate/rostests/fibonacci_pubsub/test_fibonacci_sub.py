@@ -16,7 +16,6 @@ import time
 
 import rospy
 import rostest
-import roslaunch
 import ros1_template_msgs.msg as ros1_template_msgs
 import rosgraph_msgs.msg as rosgraph_msgs
 
@@ -25,8 +24,6 @@ import rosgraph_msgs.msg as rosgraph_msgs
 ##############################################################################
 
 
-# test this with:
-# > rostest ros1_template test_follower.test
 class TestFibonacciSub(unittest.TestCase):
 
     def setUp(self):
@@ -64,24 +61,9 @@ class TestFibonacciSub(unittest.TestCase):
         self.assertEqual("The next Fibonacci Number was heard: 21", self.follower_logmsg[-1])
 
 # run this with:
-# > rosrun ros1_template test_follower.py
+# > rostest ros1_template fibonacci_sub.test
 if __name__ == '__main__':
-    # rostest does this for you
-    launch = roslaunch.scriptapi.ROSLaunch()
-    launch.start()
-
-    # Same as <node pkg="ros1_template" type="follower_node.py" name="follower"/> in .test file
-    # Ref : http://docs.ros.org/indigo/api/roslaunch/html/index.html
-    follower = roslaunch.core.Node('ros1_pytemplate', 'fibonacci_sub_node.py', name='fibonacci_sub')
-    follower_proc = launch.launch(follower)
-    assert follower_proc.is_alive()
-
-    # Same as <test test-name="test_follower" pkg="ros1_template" type="test_follower.py"/> in .test file
-    rospy.init_node("test_fibonacci_sub")
-    test_result = rostest.rosrun('ros1_pytemplate', 'test_fibonacci_sub', TestFibonacciSub)
-
-    # cleaning up
-    follower_proc.stop()
-    launch.stop()
-
+    # note : logging is managed by rostest
+    print("ARGV : %r", sys.argv)
+    test_result = rostest.rosrun('ros1_pytemplate', 'test_fibonacci_sub', TestFibonacciSub, sys.argv)
     sys.exit(test_result)

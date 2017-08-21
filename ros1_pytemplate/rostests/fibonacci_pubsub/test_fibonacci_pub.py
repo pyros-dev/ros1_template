@@ -16,7 +16,6 @@ import time
 
 import rospy
 import rostest
-import roslaunch
 import ros1_template_msgs.msg as ros1_template_msgs
 
 ##############################################################################
@@ -50,27 +49,9 @@ class TestFibonacciPub(unittest.TestCase):
 
 
 # run this with:
-# > rosrun ros1_template test_prophet.py
+# > rostest ros1_template fibonacci_pub.test
 if __name__ == '__main__':
-    # rostest does this for you
-    launch = roslaunch.scriptapi.ROSLaunch()
-    launch.start()
-
-    # Same as <param name="fib_init" value="[0, 1]"/> in .test file
-    rospy.set_param("/fibonacci_pub/fib_init", [0, 1])
-
-    # Same as <node pkg="ros1_template" type="prophet_node.py" name="prophet"/> in .test file
-    # Ref : http://docs.ros.org/indigo/api/roslaunch/html/index.html
-    follower = roslaunch.core.Node('ros1_pytemplate', 'fibonacci_pub_node.py', name='fibonacci_pub')
-    follower_proc = launch.launch(follower)
-    assert follower_proc.is_alive()
-
-    # Same as <test test-name="test_prophet" pkg="ros1_template" type="test_prophet.py"/> in .test file
-    rospy.init_node("test_fibonacci_pub")  # mandatory for using topics
-    test_result = rostest.rosrun('ros1_pytemplate', 'test_fibonacci_pub', TestFibonacciPub)
-
-    # cleaning up
-    follower_proc.stop()
-    launch.stop()
-
+    # note : logging is managed by rostest
+    print("ARGV : %r", sys.argv)
+    test_result = rostest.rosrun('ros1_pytemplate', 'test_fibonacci_pub', TestFibonacciPub, sys.argv)
     sys.exit(test_result)

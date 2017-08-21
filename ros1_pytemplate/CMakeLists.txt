@@ -15,13 +15,6 @@ find_package(catkin REQUIRED
             ros1_template_msgs
 )
 
-if (CATKIN_ENABLE_TESTING)
-  find_package(catkin REQUIRED
-            COMPONENTS
-             rostest
-  )
-endif()
-
 
 ##############################################################################
 # Python
@@ -66,6 +59,9 @@ install(DIRECTORY config
 ##############################################################################
 
 if (CATKIN_ENABLE_TESTING)
+    find_package(rostest)
+
+    roslint_add_test()
 
     ##########################################################################
     # Nose Tests

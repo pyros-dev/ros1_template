@@ -14,13 +14,8 @@ import sys
 import unittest
 import time
 
-# Integrating tests with PyCharm (setup the ROS environment)
-# import pyros_setup
-# pyros_setup.configurable_import().configure().activate()
-
 import rospy
 import rostest
-import roslaunch
 import rosgraph_msgs.msg as rosgraph_msgs
 
 ##############################################################################
@@ -56,38 +51,9 @@ class TestFibonacci(unittest.TestCase):
 
 
 # run this with:
-# > rosrun ros1_template test_prophet.py
+# > rostest ros1_template fibonacci_pubsub.test
 if __name__ == '__main__':
-    # rostest does this for you
-    launch = roslaunch.scriptapi.ROSLaunch()
-    launch.start()
-
-    # Same as <param name="fib_init" value="[0, 1]"/> in .test file
-    rospy.set_param("/fibonacci_pub/fib_init", [0, 1])
-
-    # TODO : roslaunch API to start a launchfile instead of directly running a node
-
-    # Same as <node pkg="ros1_template" type="fibonacci_pub_node.py" name="fibonacci_pub"/> in .test file
-    # Ref : http://docs.ros.org/indigo/api/roslaunch/html/index.html
-    pub = roslaunch.core.Node('ros1_pytemplate', 'fibonacci_pub_node.py', name='fibonacci_pub')
-    pub_proc = launch.launch(pub)
-    assert pub_proc.is_alive()
-
-    # Same as <node pkg="ros1_template" type="fibonacci_sub_node.py" name="fibonacci_sub"/> in .test file
-    # Ref : http://docs.ros.org/indigo/api/roslaunch/html/index.html
-    sub = roslaunch.core.Node('ros1_pytemplate', 'fibonacci_sub_node.py', name='fibonacci_sub',
-                              # remapping to connect sub to pub.
-                              remap_args=[("/fibonacci_sub/fibonacci", "/fibonacci_pub/fibonacci")])
-    sub_proc = launch.launch(sub)
-    assert sub_proc.is_alive()
-
-    # Same as <test test-name="test_prophet" pkg="ros1_template" type="test_prophet.py"/> in .test file
-    rospy.init_node("test_fibonacci")  # mandatory for using topics
-    test_result = rostest.rosrun('ros1_pytemplate', 'test_fibonacci', TestFibonacci)
-
-    # cleaning up
-    pub_proc.stop()
-    sub_proc.stop()
-    launch.stop()
-
+    # note : logging is managed by rostest
+    print("ARGV : %r", sys.argv)
+    test_result = rostest.rosrun('ros1_pytemplate', 'test_fibonacci', TestFibonacci, sys.argv)
     sys.exit(test_result)

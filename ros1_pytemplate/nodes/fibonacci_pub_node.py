@@ -57,7 +57,7 @@ if __name__ == '__main__':
     # Here we have parsed all CLI arguments
 
     # We can now init the node (a ROS node is a process, that is an instance of the python interpreter)
-    rospy.init_node('fibonacci_pub_node', )
+    rospy.init_node('fibonacci_pub_node')
 
     # retrieving ros parameters
     fib_init = rospy.get_param("~fib_init")
