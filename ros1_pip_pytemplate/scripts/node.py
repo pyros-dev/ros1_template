@@ -6,7 +6,6 @@
 
 from __future__ import absolute_import, division, print_function
 
-import functools
 
 """
 Module gathering all ROS side-effects
@@ -19,18 +18,46 @@ Module gathering all ROS side-effects
 import argparse
 import os
 import sys
-import time
-from urlparse import urlsplit
+import requests  # needed to get status codes definition
 
 import rospy
-import ros1_template
-import ros1_template.msg as ros1_template_msgs
-import ros1_template.srv as ros1_template_srvs
+import ros1_template_msgs.msg as ros1_template_msgs
+import ros1_template_msgs.srv as ros1_template_srvs
+
+from ros1_pip_pytemplate import Httpbin
+
+##############################################################################
+# ROS
+##############################################################################
+
+
+# We define the exception here instead of inside the library,
+# to keep side-effects outside of the core functionality
+# Another client of the library might want to treat status code differently,
+# but for ROS, treating non-OK status code as exception makes sense.
+class StatusCodeException(Exception):
+    pass
+
+httpbin = Httpbin()
+
+
+def callback(data):
+    response = httpbin.get(params={a.key: a.value for a in data.args})
+    if response.status_code == requests.status_codes.codes.OK:
+        return ros1_template_srvs.GetResponse(
+            origin=response.json().get('origin'),
+            url=response.json().get('url'),
+            args=[ros1_template_msgs.Arg(key=k, value=v)
+                  for k, v in response.json().get('args').items()],
+        )
+    else:
+        raise StatusCodeException(response.status_code)
 
 
 ##############################################################################
 # Main
 ##############################################################################
+
 
 def show_description():
     return "ros template client test script"
@@ -43,20 +70,6 @@ def show_usage(cmd):
 
 def show_epilog():
     return "never enough testing"
-
-
-def callback(answer, data):
-    rospy.loginfo("The question was asked: {0}".format(data.question))
-    return ros1_template_srvs.AnswerResponse(
-        # filling up the fields in the response message one by one
-        answer=answer.retrieve()
-    )
-
-
-def error_callback(data):
-    rospy.logerr("An error will be triggered...")
-    raise RuntimeError("ERROR ! No panic, it's just for testing.")
-    # Notice how the node keeps running, and you can call this service again...
 
 
 if __name__ == '__main__':
@@ -75,22 +88,15 @@ if __name__ == '__main__':
     # Here we have parsed all arguments
 
     # We can now init the node (a ROS node is a process, that is an instance of the python interpreter)
-    rospy.init_node('oracle_node', )
+    rospy.init_node('httpbin')
 
     # retrieving ros parameters
-    answer_part = rospy.get_param("~answer_part")
+    base_url = rospy.get_param("~base_url")
 
-    # Answer instance from ros_params:
-    answer = ros1_template.Answer(answer_part)
-
-    # setting up the service
-    rospy.Service('~answer', ros1_template_srvs.Answer,
-                  # we use a partial function application to pass initial Answer instance
-                  functools.partial(callback, answer)
-    )
-
-    # setting up a service responding with an error
-    rospy.Service('~error', ros1_template_srvs.Answer, error_callback)
+    # setting up the proxy service
+    rospy.Service('~get', ros1_template_srvs.Get, callback)
 
     # Just spin for ever, everything else is reactive !
     rospy.spin()
+
+    rospy.logwarn("{0} is shutting down !".format(rospy.get_name()))

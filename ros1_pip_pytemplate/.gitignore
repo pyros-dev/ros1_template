@@ -1,3 +1,4 @@
 *.pyc
 build
 .cache
+*.egg-info

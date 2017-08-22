@@ -32,9 +32,9 @@ setup(
         'pytest'
     ],
     scripts=[
-        'scripts/httpbin_cli.py',
-        'scripts/httpbin_node.py',
-        'scripts/httpbin_launch.py',
+        'scripts/cli.py',
+        'scripts/node.py',
+        'scripts/launch.py',
     ],
     author="AlexV",
     author_email="asmodehn@gmail.com",

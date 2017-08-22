@@ -2,17 +2,15 @@
 # CMake
 ##############################################################################
 
-cmake_minimum_required(VERSION 2.8.3)
+cmake_minimum_required(VERSION 2.8.12)
 project(ros1_pip_pytemplate)
 
 ##############################################################################
 # Dependencies (we are using catkin_pip here)
 ##############################################################################
 
-find_package(catkin REQUIRED
-            COMPONENTS
-            catkin_pip
-)
+find_package(catkin REQUIRED)
+find_package(catkin_pip REQUIRED)
 
 ##############################################################################
 # Catkin Pip
@@ -22,29 +20,28 @@ find_package(catkin REQUIRED
 # We usually dont want to do this from CMake, to make sure all mandatory (non-dev) dependencies
 # are properly listed in setup.py
 
-catkin_pip_package(ros1_pip_pytemplate)
+catkin_pip_target(ros1_pip_pytemplate)
+catkin_package()
 
 
 ##############################################################################
 # Installs
 ##############################################################################
 
-#  Working around https://github.com/pyros-dev/catkin_pip/issues/119 for now
-#
-# # Should these be handled by setup.py and pip ??
-# install(
-#     PROGRAMS
-#         scripts/httpbin_cli.py
-#         scripts/httpbin_node.py
-#         scripts/httpbin_launch.py
-#     DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
-#     )
-#
-# install(DIRECTORY launch
-#   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
-#
-# install(DIRECTORY config
-#   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
+# Should these be handled by setup.py and pip ??
+install(
+    PROGRAMS
+        scripts/cli.py
+        scripts/node.py
+        scripts/launch.py
+    DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+    )
+
+install(DIRECTORY launch
+    DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
+
+install(DIRECTORY config
+    DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
 
 
 ##############################################################################

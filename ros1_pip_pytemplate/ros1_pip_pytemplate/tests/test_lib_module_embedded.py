@@ -12,8 +12,10 @@ import requests
 # Here we are testing the core python code, importing only that module
 from .. import Httpbin
 
-# Since we are at a different hierarchical level than ros1_template,
-# It is mandatory to install the module first (which is good practice to make sure the install process also works)
+# Since we are at a different hierarchical level than ros1_pip_pytemplate,
+# It is mandatory to install the module before testing ,
+# which is good practice anyway, to make sure the install process also works.
+#
 # Works out of the box with catkin build,
 # When running from pure python, use a virtual environment !
 
