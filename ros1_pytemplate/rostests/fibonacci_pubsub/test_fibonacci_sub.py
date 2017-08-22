@@ -48,6 +48,9 @@ class TestFibonacciSub(unittest.TestCase):
         while time.time() - now < 5 and self.fib_pub.get_num_connections() < 1:
             time.sleep(.1)
 
+        # make sure we didnt timeout
+        self.assertTrue(self.fib_pub.get_num_connections() >= 1)
+
         self.fib_pub.publish(21)
 
         # wait for a message
@@ -55,6 +58,9 @@ class TestFibonacciSub(unittest.TestCase):
         # five seconds max
         while time.time() - now < 5 and len(self.follower_logmsg) < 1:
             time.sleep(.1)
+
+        # make sure we didn't timeout
+        self.assertTrue(len(self.follower_logmsg) >= 1)
 
         # asserting the log output
         self.assertTrue(len(self.follower_logmsg) >= 1)
@@ -64,6 +70,7 @@ class TestFibonacciSub(unittest.TestCase):
 # > rostest ros1_template fibonacci_sub.test
 if __name__ == '__main__':
     # note : logging is managed by rostest
-    print("ARGV : %r", sys.argv)
-    test_result = rostest.rosrun('ros1_pytemplate', 'test_fibonacci_sub', TestFibonacciSub, sys.argv)
-    sys.exit(test_result)
+    print("ARGV : {0}".format(sys.argv))
+    rospy.init_node('test_fibonacci_sub')  # mandatory for using topics
+    rostest.rosrun('ros1_pytemplate', 'test_fibonacci_sub', TestFibonacciSub, sys.argv)
+

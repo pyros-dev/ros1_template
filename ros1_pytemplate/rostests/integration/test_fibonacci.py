@@ -28,10 +28,10 @@ class TestFibonacci(unittest.TestCase):
         self.sub_logmsg = []
 
         def logcb(data):
-            if data.name == '/fibonacci_sub':
+            if data.name.endswith('/fibonacci_sub'):  # need to support different namespaces
                 self.sub_logmsg += [data.msg]
 
-        # We re listening on the log topic to assert the follower did its job.
+        # We're listening on the log topic to assert the follower did its job.
         self.logsub = rospy.Subscriber('/rosout', rosgraph_msgs.Log, logcb)
 
     def tearDown(self):
@@ -45,7 +45,7 @@ class TestFibonacci(unittest.TestCase):
             time.sleep(.1)
 
         # Here we only assert that we get the expected log (we do not check if fib is actually a fib
-        # since it should be already done by fibonacci_pub rostest
+        # since it should be already done by fibonacci_pub rostest)
         self.assertTrue(len(self.sub_logmsg) >= 1)
         self.assertTrue("The next Fibonacci Number was heard" in self.sub_logmsg[-1])
 
@@ -54,6 +54,6 @@ class TestFibonacci(unittest.TestCase):
 # > rostest ros1_template fibonacci_pubsub.test
 if __name__ == '__main__':
     # note : logging is managed by rostest
-    print("ARGV : %r", sys.argv)
-    test_result = rostest.rosrun('ros1_pytemplate', 'test_fibonacci', TestFibonacci, sys.argv)
-    sys.exit(test_result)
+    print("ARGV : {0}".format(sys.argv))
+    rospy.init_node('test_fibonacci')  # mandatory for using topics
+    rostest.rosrun('ros1_pytemplate', 'test_fibonacci', TestFibonacci, sys.argv)

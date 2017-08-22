@@ -52,6 +52,6 @@ class TestFibonacciPub(unittest.TestCase):
 # > rostest ros1_template fibonacci_pub.test
 if __name__ == '__main__':
     # note : logging is managed by rostest
-    print("ARGV : %r", sys.argv)
-    test_result = rostest.rosrun('ros1_pytemplate', 'test_fibonacci_pub', TestFibonacciPub, sys.argv)
-    sys.exit(test_result)
+    print("ARGV : {0}".format(sys.argv))
+    rospy.init_node('test_fibonacci_pub')  # mandatory for using topics
+    rostest.rosrun('ros1_pytemplate', 'test_fibonacci_pub', TestFibonacciPub, sys.argv)

@@ -2,5 +2,8 @@
   <include file="$(find ros1_pytemplate)/launch/answer.launch">
     <arg name="config_override" value="$(find ros1_pytemplate)/rostests/integration/config_answer.yml"/>
   </include>
-  <test test-name="test_answer_server" pkg="ros1_pytemplate" type="test_answer_server.py"/>
+  <test test-name="test_answer_server" pkg="ros1_pytemplate" type="test_answer_server.py">
+    <remap from="/test_answer_server/answer" to="/answer_server/answer"/>
+    <remap from="/test_answer_server/error" to="/answer_server/error"/>
+  </test>
 </launch>

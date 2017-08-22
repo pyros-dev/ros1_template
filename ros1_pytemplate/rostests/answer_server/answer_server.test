@@ -2,5 +2,10 @@
   <node pkg="ros1_pytemplate" type="answer_server_node.py" name="answer_server">
     <param name="answer_part" value="6"/>
   </node>
-  <test test-name="test_answer_server" pkg="ros1_pytemplate" type="test_answer_server.py"/>
+
+  <test test-name="test_answer_server" pkg="ros1_pytemplate" type="test_answer_server.py">
+    <!-- using remap in test, to write test code that will work no matter the namespace -->
+    <remap from="/test_answer_server/answer" to="/answer_server/answer"/>
+    <remap from="/test_answer_server/error" to="/answer_server/error"/>
+  <test/>
 </launch>
