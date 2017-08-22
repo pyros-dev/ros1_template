@@ -7,5 +7,5 @@
     <!-- using remap in test, to write test code that will work no matter the namespace -->
     <remap from="/test_answer_server/answer" to="/answer_server/answer"/>
     <remap from="/test_answer_server/error" to="/answer_server/error"/>
-  <test/>
+  </test>
 </launch>
