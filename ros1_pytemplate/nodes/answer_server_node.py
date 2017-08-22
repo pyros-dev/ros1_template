@@ -82,9 +82,10 @@ if __name__ == '__main__':
     answer = ros1_pytemplate.Answer(answer_part)
 
     # setting up the service
-    rospy.Service('~answer', ros1_template_srvs.Answer,
-                  # we use a partial function application to pass initial Answer instance
-                  functools.partial(callback, answer)
+    rospy.Service(
+        '~answer', ros1_template_srvs.Answer,
+        # we use a partial function application to pass initial Answer instance
+        functools.partial(callback, answer)
     )
 
     # setting up a service responding with an error

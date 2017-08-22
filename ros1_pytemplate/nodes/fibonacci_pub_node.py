@@ -87,4 +87,3 @@ if __name__ == '__main__':
         rospy.logwarn("{0} detected in node {1} : {2}".format(type(exc), rospy.get_name(), str(exc)))
     finally:
         rospy.logwarn("{0} is shutting down !".format(rospy.get_name()))
-
