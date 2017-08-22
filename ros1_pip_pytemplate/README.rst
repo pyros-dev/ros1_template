@@ -82,7 +82,7 @@ To create a pip package from this template, you should follow https://packaging.
 ROS Integration
 ---------------
 
-This package can integrate in a ROS system, by relying on launch files.
+This package can integrate in a ROS system, by relying on catkin (with catkin_pip) and launch files.
 Other launch files can launch it (including the provided launch file, or directly calling the node script) and use this node's provided ROS interface.
 
 Note that this template can be used when porting existing pip packages to ROS.

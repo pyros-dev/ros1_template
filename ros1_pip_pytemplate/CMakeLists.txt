@@ -33,7 +33,6 @@ install(
     PROGRAMS
         scripts/cli.py
         scripts/node.py
-        scripts/launch.py
     DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
     )
 

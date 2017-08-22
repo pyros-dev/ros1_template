@@ -34,7 +34,6 @@ setup(
     scripts=[
         'scripts/cli.py',
         'scripts/node.py',
-        'scripts/launch.py',
     ],
     author="AlexV",
     author_email="asmodehn@gmail.com",

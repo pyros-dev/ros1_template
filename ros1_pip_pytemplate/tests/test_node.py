@@ -3,7 +3,16 @@
 #
 # License: MIT
 #
-""" Testing the oracle """
+
+from __future__ import absolute_import, division, print_function
+
+"""
+Testing the node
+
+This module can however be run directly from a python virtual env
+where pyros_setup and pyros_utils have been installed and configured
+pyros_setup will take care of setting up this process environment for ROS.
+"""
 
 ##############################################################################
 # Imports
@@ -35,6 +44,7 @@ from pyros_utils import rostest_nose
 ##############################################################################
 
 oracle_proc = None
+
 
 # This should have the same effect as the <name>.test file for rostest.
 # Should be used only by nose ( or other python test tool )

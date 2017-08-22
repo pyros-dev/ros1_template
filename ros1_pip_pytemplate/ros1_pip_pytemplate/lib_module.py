@@ -3,12 +3,15 @@ from __future__ import absolute_import, division, print_function
 import sys
 
 # importing a pure python package
-# To be able to get ros1_pip_pytemplate packaged on ROS, first one would need to release a ROS package for requests
-# Using catkin_pip for this is probably the easiest solution.
 import requests
 
 """
-Module holding calls to a python package retrieved by pip
+Module holding calls to a pure python package retrieved by pip
+We use requests as an example of any python package you might want to interface and use in your ROS packages/nodes.
+
+To be able to get ros1_pip_pytemplate packaged on ROS (or even get the built "install space" working),
+first one would need to release (or at least build with catkin) a ROS package for requests.
+Using catkin_pip for this is probably the easiest solution.
 """
 
 import logging

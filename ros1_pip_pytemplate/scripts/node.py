@@ -9,6 +9,9 @@ from __future__ import absolute_import, division, print_function
 
 """
 Module gathering all ROS side-effects
+This module can however be run directly from a python virtual env
+where pyros_setup has been installed and configured
+pyros_setup will take care of setting up this process environment for ROS.
 """
 
 
@@ -20,7 +23,16 @@ import os
 import sys
 import requests  # needed to get status codes definition
 
-import rospy
+try:
+    import rospy
+    # This might break if ROS environment is not setup
+except ImportError:
+    import pyros_setup
+    pyros_setup.configurable_import().configure().activate()
+    import rospy
+
+# ROS environment is setup here
+
 import ros1_template_msgs.msg as ros1_template_msgs
 import ros1_template_msgs.srv as ros1_template_srvs
 

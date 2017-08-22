@@ -17,7 +17,8 @@ from .. import Httpbin
 # which is good practice anyway, to make sure the install process also works.
 #
 # Works out of the box with catkin build,
-# When running from pure python, use a virtual environment !
+# When running from pure python, use pip in a virtual environment !
+# https://packaging.python.org/tutorials/installing-packages/#creating-virtual-environments
 
 
 # Basic UnitTest TestCase
@@ -28,7 +29,9 @@ class TestHttpbin(unittest.TestCase):
         self.httpbin = Httpbin('http://httpbin.org')
 
     def test_retrieve(self):
-        status_code, json_data = self.httpbin.get(params={"answer": "42"})
+        resp = self.httpbin.get(params={"answer": "42"})
+        status_code = resp.status_code
+        json_data = resp.json()
         assert status_code == requests.status_codes.codes.OK
         assert json_data.get('origin') is not None
         assert json_data.get('url') is not None
