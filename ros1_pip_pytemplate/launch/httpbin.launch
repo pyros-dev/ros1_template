@@ -6,8 +6,8 @@
   <!-- Args -->
   <arg name="config_override"        default="$(find ros1_pip_pytemplate)/config/httpbin-override.yaml" doc="used by upper launchers to customize configuration"/>
 
-  <!-- Launch oracle node -->
-  <node pkg="ros1_pip_pytemplate" type="httpbin_node.py" name="httpbin">
+  <!-- Launch httpbin node -->
+  <node pkg="ros1_pip_pytemplate" type="node.py" name="httpbin">
     <rosparam command="load" file="$(find ros1_pip_pytemplate)/config/httpbin-default.yaml" />
     <rosparam command="load" file="$(arg config_override)" />
   </node>
