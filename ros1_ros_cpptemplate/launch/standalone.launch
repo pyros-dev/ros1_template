@@ -1,18 +1,6 @@
 <launch>
     <node pkg="nodelet" type="nodelet" name="nodelet_manager" args="manager"/>
 
-    <node pkg="nodelet" type="nodelet" name="nodelet_name" args="load ros1_ros_cpptemplate/Nodelet nodelet_manager">
-         <!--<rosparam file="$(find gopher_bootstrap)/parameters/navigation/footprints/$(env GOPHER_ROBOT).yaml"         command="load" />
-         <rosparam file="$(find gopher_bootstrap)/parameters/navigation/$(arg base_type)/local_costmap.yaml"         command="load" />
-
-         <rosparam file="$(find gopher_bootstrap)/parameters/navigation/navi_config_statics_defaults.yaml"           command="load" />
-         <rosparam file="$(find gopher_bootstrap)/parameters/navigation/$(arg base_type)/navi_config_statics.yaml"   command="load" />
-         <rosparam file="$(find gopher_bootstrap)/parameters/navigation/move_base.yaml"                              command="load" />
-
-         <remap from="closed_loop_rrt/navi_config_sub"           to="/navi/common/parameter_updates"/>
-         <remap from="closed_loop_rrt/config_sub"                to="/navi/move_base/local_planner/parameter_updates"/>
-         <remap from="closed_loop_rrt/sub_cost_map"              to="/navi/local_costmap/cost_map"/>
-
-         <param name="future_odom_topic"                         value="/core/trajectory_controller/future_odom"/>-->
+    <node pkg="nodelet" type="nodelet" name="ros1_ros_cpptemplate" args="load ros1_ros_cpptemplate/Nodelet nodelet_manager">
     </node>
 </launch>
