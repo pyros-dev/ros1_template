@@ -26,7 +26,8 @@ class Httpbin(object):
         _logger.debug("Httpbin proxy was initialized!")
 
     def get(self, headers=None, params=None):
-        return requests.get('http://httpbin.org/get', headers=headers or {}, params=params or {})
+        _logger.info("Sending GET request to {0}...".format(self.basename + '/get'))
+        return requests.get(self.basename + '/get', headers=headers or {}, params=params or {})
 
     # Note a more complete version of this is available there :
     # https://github.com/asmodehn/pyros-schemas-examples/tree/master/pyros_httpbin
