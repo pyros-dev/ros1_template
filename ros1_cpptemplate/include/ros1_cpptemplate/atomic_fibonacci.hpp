@@ -4,6 +4,7 @@
 #include <string>
 #include <mutex>
 #include <memory>
+#include <atomic>
 
 namespace ros1_cpptemplate
 {
@@ -51,6 +52,8 @@ public:
    */
   virtual int nextNext();
 
+  virtual void setMax(const int& value);
+
 protected:
   /**
    * Protected default construtor for easy mocking
@@ -76,7 +79,7 @@ private:
   int current_number_;
 
   /// max Fibonacci number before reseting the sequence
-  int max_number_;
+  std::atomic<int> max_number_;
 
   /// log prefix
   std::string log_prefix_;

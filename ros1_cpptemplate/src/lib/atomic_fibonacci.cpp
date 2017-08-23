@@ -70,4 +70,9 @@ int AtomicFibonacci::next_()
   return new_number;
 }
 
+void AtomicFibonacci::setMax(const int& value)
+{
+  max_number_ = value;
+}
+
 }  // namespace

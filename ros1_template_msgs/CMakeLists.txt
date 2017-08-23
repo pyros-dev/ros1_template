@@ -9,7 +9,7 @@ project(ros1_template_msgs)
 # Dependencies
 ##############################################################################
 
-find_package(catkin REQUIRED COMPONENTS message_generation)
+find_package(catkin REQUIRED COMPONENTS message_generation dynamic_reconfigure)
 
 
 ##############################################################################
@@ -37,10 +37,18 @@ add_service_files(
 generate_messages()
 
 ##############################################################################
+# Dynamic Reconfigure
+##############################################################################
+
+generate_dynamic_reconfigure_options(
+    cfg/Fibonacci.cfg
+)
+
+##############################################################################
 # Catkin
 ##############################################################################
 
 catkin_package(CATKIN_DEPENDS
              message_runtime
+             dynamic_reconfigure
 )
-
