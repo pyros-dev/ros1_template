@@ -1,0 +1,6 @@
+<launch>
+  <include file="$(find ros1_pytemplate)/launch/fibonacci.launch">
+    <arg name="config_override" value="$(find ros1_pytemplate)/rostests/integration/config_fibonacci.yml"/>
+  </include>
+  <test test-name="test_fibonacci" pkg="ros1_pytemplate" type="test_fibonacci.py"/>
+</launch>

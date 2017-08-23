@@ -9,17 +9,11 @@ project(ros1_pytemplate)
 # Dependencies
 ##############################################################################
 
-find_package(catkin REQUIRED
-            COMPONENTS
-            roslint
-)
+find_package(catkin REQUIRED)
+find_package(ros1_template_msgs REQUIRED)
 
-if (CATKIN_ENABLE_TESTING)
-  find_package(catkin REQUIRED
-            COMPONENTS
-             rostest
-  )
-endif()
+# Linter is not a big deal (optional)
+find_package(roslint)
 
 
 ##############################################################################
@@ -28,10 +22,12 @@ endif()
 
 catkin_python_setup()
 
-# Lint Python modules
-file(GLOB_RECURSE ${PROJECT_NAME}_PY_SRCS
+if (roslint_FOUND)
+  # Lint Python modules
+  file(GLOB_RECURSE ${PROJECT_NAME}_PY_SRCS
      RELATIVE ${PROJECT_SOURCE_DIR} scripts/*.py nodes/*.py ros1_pytemplate/*.py)
-roslint_python(${${PROJECT_NAME}_PY_SRCS})
+  roslint_python(${${PROJECT_NAME}_PY_SRCS})
+endif()
 
 ##############################################################################
 # Catkin
@@ -65,6 +61,12 @@ install(DIRECTORY config
 ##############################################################################
 
 if (CATKIN_ENABLE_TESTING)
+    # we always want to run rostests
+    find_package(rostest REQUIRED)
+
+    if (roslint_FOUND)
+        roslint_add_test()
+    endif()
 
     ##########################################################################
     # Nose Tests

@@ -4,9 +4,9 @@
 <launch>
 
   <!-- Args -->
-  <arg name="config_override"        default="$(find ros1_template)/config/fibonacci-override.yaml" doc="used by upper launchers to customize configuration"/>
+  <arg name="config_override"        default="$(find ros1_pytemplate)/config/fibonacci-override.yaml" doc="used by upper launchers to customize configuration"/>
 
-  <!-- Launch oracle node -->
+  <!-- Launch prophet node -->
   <node pkg="ros1_pytemplate" type="fibonacci_pub_node.py" name="fibonacci_pub">
     <rosparam command="load" file="$(find ros1_pytemplate)/config/fibonacci-default.yaml" />
     <rosparam command="load" file="$(arg config_override)" />
@@ -14,7 +14,8 @@
 
   <!-- Launch follower node -->
   <node pkg="ros1_pytemplate" type="fibonacci_sub_node.py" name="fibonacci_sub">
-    <remap from="fibonacci_pub/fibonacci" to="fibonacci_sub/fibonacci" />
+    <!-- careful with remapping algorithm and relative names : http://wiki.ros.org/Remapping Arguments -->
+    <remap from="fibonacci_sub/fibonacci" to="fibonacci_pub/fibonacci" />
   </node>
 
 </launch>

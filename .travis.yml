@@ -10,6 +10,7 @@ env:
   global:
     - VERBOSE_OUTPUT=true
     - WRITABLE_SOURCE=true
+    - ROS_PARALLEL_JOBS="-j1"
   matrix:
   # add NOT_TEST_BUILD=true NOT_TEST_INSTALL=true to skip build or install tests
     - ROS_DISTRO="indigo"  DOCKER_IMAGE=rosindustrial/ci:indigo-trusty-shadow-fixed

@@ -1,0 +1,17 @@
+<launch>
+  <include file="$(find ros1_pytemplate)/launch/all.launch">
+    <arg name="answer_override" value="$(find ros1_pytemplate)/rostests/integration/config_answer.yml"/>
+    <arg name="fibonacci_override" value="$(find ros1_pytemplate)/rostests/integration/config_fibonacci.yml"/>
+  </include>
+
+  <!-- Careful rostest will run multiple tests in parallel,
+       which means the nodes log output on terminal might be duplicated -->
+  <test test-name="test_answer_server" pkg="ros1_pytemplate" type="test_answer_server.py">
+    <remap from="/test_answer_server/answer" to="/ros1_template/answer_server/answer"/>
+    <remap from="/test_answer_server/error" to="/ros1_template/answer_server/error"/>
+  </test>
+
+  <test test-name="test_fibonacci" pkg="ros1_pytemplate" type="test_fibonacci.py"/>
+  <!-- remapping for this is taken care of in launch file -->
+
+</launch>

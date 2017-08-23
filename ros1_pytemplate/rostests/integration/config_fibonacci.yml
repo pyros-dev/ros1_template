@@ -1,0 +1,4 @@
+# Configuration for integration tests
+fib_init:
+- 0
+- 2
