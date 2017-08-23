@@ -68,17 +68,20 @@ import ros1_pip_pytemplate
 
 
 def show_description():
-    return "ros template client test script"
+    return "Command line interface to the ros1_pip_pytemplate library"
 
 
 def show_usage(cmd=None):
     cmd = sys.argv[0] if cmd is None else cmd
-    return "{0} [ [--help] [--version] [--<arg> <value>] ... [--<arg> <value>] ] ".format(cmd)
+    return "{0} [-h] [--version] [--<arg> <value>] ... [--<arg> <value>] ".format(cmd)
 
 
 def show_epilog():
     return "never enough testing"
 
+
+def show_version():
+    return ros1_pip_pytemplate.__version__, ros1_pip_pytemplate.__file__
 
 if __name__ == '__main__':
 
@@ -90,7 +93,15 @@ if __name__ == '__main__':
                                      epilog=show_epilog(),
                                      formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
+    parser.add_argument("--version", action='store_true', help="display the version number and exits.")
+
     parsed_known_args, unknown_args = parser.parse_known_args(sys.argv[1:])
+
+    logger.info("known args: {0}".format(parsed_known_args))
+
+    if parsed_known_args.version:
+        print(show_version())
+        sys.exit(0)
 
     # extracting argument from unknown args
     # Ref : https://stackoverflow.com/questions/9643248/argparse-accept-everything
