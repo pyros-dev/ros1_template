@@ -9,22 +9,25 @@
 #include <atomic>
 #include <iostream>
 
+static double CALLBACK_TEST_TIME_LIMIT_ = 1.0;
+
 class Int32CallbackTest
 {
 public:
-  Int32CallbackTest(const std::string& topic)
+  Int32CallbackTest(const std::string& topic) : got_msg_(false)
   {
-    got_msg_ = false;
     ros::NodeHandle node_handle;
     int queue_size = 1;
     ros::Subscriber subscriber = node_handle.subscribe(topic, queue_size, &Int32CallbackTest::callback, this);
 
-    while (subscriber.getNumPublishers() == 0 && ros::ok())
+    ros::Time time_out = ros::Time::now() + ros::Duration(CALLBACK_TEST_TIME_LIMIT_);
+
+    while (subscriber.getNumPublishers() == 0 && ros::Time::now() < time_out && ros::ok())
     {
       ros::Duration(0.001).sleep();
     }
 
-    while (!got_msg_.load() && ros::ok())
+    while (!got_msg_.load() && ros::Time::now() < time_out && ros::ok())
     {
       ros::spinOnce();
       ros::Duration(0.001).sleep();
@@ -63,6 +66,9 @@ int main(int argc, char **argv)
   srand(time_seed);
 
   ros::init(argc, argv, "publishers");
+
+  ros::NodeHandle node_handle("~");
+  node_handle.getParam("single_test_time_limit", CALLBACK_TEST_TIME_LIMIT_);
 
   return RUN_ALL_TESTS();
 }
