@@ -5,6 +5,7 @@
 #include <ros/subscriber.h>
 #include <ros/node_handle.h>
 
+#include <string>
 #include <memory>
 
 namespace ros1_ros_cpptemplate

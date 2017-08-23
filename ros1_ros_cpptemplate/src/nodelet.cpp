@@ -9,6 +9,8 @@
 
 #include <atomic>
 #include <thread>
+#include <string>
+#include <vector>
 
 namespace ros1_ros_cpptemplate
 {
@@ -41,7 +43,7 @@ public:
   {
     private_node_handle_ = this->getPrivateNodeHandle();
 
-    //get fixed parameters
+    // get fixed parameters
     double publish_rate = 10.0;
     private_node_handle_.getParam("publish_rate", publish_rate);
     int fibonacci_last_number = 0;
@@ -56,10 +58,13 @@ public:
     NODELET_INFO_STREAM("Initializing with publish rate " << publish_rate << " Hz");
 
     std::string fibonacci_log_name = "AtomicFibonacci";
-    AtomicFibonacciPtr atomic_fibonacci = std::make_shared<AtomicFibonacci>(fibonacci_last_number, fibonacci_current_number, fibonacci_max_number, fibonacci_log_name);
+    AtomicFibonacciPtr atomic_fibonacci = std::make_shared<AtomicFibonacci>(fibonacci_last_number,
+                                                                            fibonacci_current_number,
+                                                                            fibonacci_max_number, fibonacci_log_name);
 
     std::string internal_publish_topic_name = "fibonacci_publisher_internal";
-    publisher_used_interally_ = std::make_shared<Publisher>(atomic_fibonacci, private_node_handle_, internal_publish_topic_name);
+    publisher_used_interally_ = std::make_shared<Publisher>(atomic_fibonacci, private_node_handle_,
+                                                            internal_publish_topic_name);
     std::string other_publish_topic_name = "fibonacci_publisher_other";
     publisher_other_ = std::make_shared<Publisher>(atomic_fibonacci, private_node_handle_, other_publish_topic_name);
 
@@ -94,6 +99,6 @@ private:
   SubscriberPtr subscriber_;
 };
 
-} // namespace
+}  // namespace
 
 PLUGINLIB_EXPORT_CLASS(ros1_ros_cpptemplate::Nodelet, nodelet::Nodelet);

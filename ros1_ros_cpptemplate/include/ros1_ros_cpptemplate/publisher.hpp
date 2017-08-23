@@ -7,6 +7,7 @@
 #include <ros/node_handle.h>
 
 #include <memory>
+#include <string>
 
 namespace ros1_ros_cpptemplate
 {
@@ -22,7 +23,9 @@ public:
    *
    * @param atomic_fibonacci shared pointer to AtomicFibonacci object
    */
-  Publisher(ros1_cpptemplate::AtomicFibonacciPtr atomic_fibonacci, ros::NodeHandle& node_handle, const std::string& output_topic_name);
+  explicit Publisher(ros1_cpptemplate::AtomicFibonacciPtr atomic_fibonacci,
+                     ros::NodeHandle& node_handle,
+                     const std::string& output_topic_name);
 
   /**
    * Deconstructor

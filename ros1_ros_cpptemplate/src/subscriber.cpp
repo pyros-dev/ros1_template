@@ -1,6 +1,8 @@
 // own class header first: https://stackoverflow.com/a/2762596/8224054
 #include "ros1_ros_cpptemplate/subscriber.hpp"
 
+#include <string>
+
 namespace ros1_ros_cpptemplate
 {
 

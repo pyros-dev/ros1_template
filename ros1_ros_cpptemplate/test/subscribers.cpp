@@ -12,7 +12,8 @@ TEST(Subscriber, internal)
 {
   ros::NodeHandle node_handle;
   int queue_size = 1;
-  ros::Publisher publisher_to_interal_topic = node_handle.advertise<std_msgs::Int32>("fibonacci_publisher_internal", queue_size);
+  ros::Publisher publisher_to_interal_topic = node_handle.advertise<std_msgs::Int32>("fibonacci_publisher_internal",
+                                                                                     queue_size);
 
   while (publisher_to_interal_topic.getNumSubscribers() == 0 && ros::ok())
   {

@@ -3,13 +3,15 @@
 
 #include <std_msgs/Int32.h>
 #include <sstream>
+#include <string>
 
 namespace ros1_ros_cpptemplate
 {
 using ros1_cpptemplate::AtomicFibonacci;
 using ros1_cpptemplate::AtomicFibonacciPtr;
 
-Publisher::Publisher(AtomicFibonacciPtr atomic_fibonacci, ros::NodeHandle& node_handle, const std::string& output_topic_name)
+Publisher::Publisher(AtomicFibonacciPtr atomic_fibonacci, ros::NodeHandle& node_handle,
+                     const std::string& output_topic_name)
 {
   int queue_size = 1;
   bool latched = false;
@@ -35,8 +37,8 @@ void Publisher::publish()
 
   int next_number = atomic_fibonacci_->nextAndLog(log_prefix);
 
-  //Ptr to enable intraporcess publishing:
-  //http://wiki.ros.org/roscpp/Overview/Publishers%20and%20Subscribers#Intraprocess_Publishing
+  // Ptr to enable intraporcess publishing:
+  // http://wiki.ros.org/roscpp/Overview/Publishers%20and%20Subscribers#Intraprocess_Publishing
   std_msgs::Int32Ptr number_msg(new std_msgs::Int32());
   number_msg->data = next_number;
   publisher_.publish(number_msg);

@@ -17,10 +17,6 @@ find_package(catkin REQUIRED
               nodelet
 )
 
-if (CATKIN_ENABLE_TESTING)
-  find_package(rostest REQUIRED)
-endif()
-
 ##############################################################################
 # Catkin
 ##############################################################################
@@ -77,6 +73,7 @@ roslint_cpp(${LINT_FILES}) # Lint _all_ cpp files
 ##############################################################################
 
 if (CATKIN_ENABLE_TESTING)
+    find_package(rostest REQUIRED)
     roslint_add_test()
     add_subdirectory(test)
 endif()

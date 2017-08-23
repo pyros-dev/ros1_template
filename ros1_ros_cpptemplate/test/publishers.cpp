@@ -8,13 +8,14 @@
 
 #include <atomic>
 #include <iostream>
+#include <string>
 
 static double CALLBACK_TEST_TIME_LIMIT_ = 1.0;
 
 class Int32CallbackTest
 {
 public:
-  Int32CallbackTest(const std::string& topic) : got_msg_(false)
+  explicit Int32CallbackTest(const std::string& topic) : got_msg_(false)
   {
     ros::NodeHandle node_handle;
     int queue_size = 1;

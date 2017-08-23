@@ -3,11 +3,13 @@
 #include <ros/console.h>
 #include <iostream>
 #include <sstream>
+#include <string>
 
 namespace ros1_cpptemplate
 {
 
-AtomicFibonacci::AtomicFibonacci(const int& last_number, const int& current_number, const int& max_number, const std::string& name)
+AtomicFibonacci::AtomicFibonacci(const int& last_number, const int& current_number, const int& max_number,
+                                 const std::string& name)
 {
   last_number_ = last_number;
   current_number_ = current_number;
@@ -15,7 +17,7 @@ AtomicFibonacci::AtomicFibonacci(const int& last_number, const int& current_numb
 
   if (name == "")
   {
-    //don't show empty []
+    // don't show empty [] brackets
     log_prefix_ = "";
   }
   else
