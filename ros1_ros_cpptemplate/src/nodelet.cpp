@@ -68,7 +68,8 @@ public:
     atomic_fibonacci_ = std::make_shared<AtomicFibonacci>(fibonacci_last_number, fibonacci_current_number,
                                                           temp_fibonacci_max_number, fibonacci_log_name);
 
-    reconfigure_server_ = std::make_shared<dynamic_reconfigure::Server<ros1_template_msgs::FibonacciConfig>>(private_node_handle_);
+    reconfigure_server_ = std::make_shared<dynamic_reconfigure::Server<ros1_template_msgs::FibonacciConfig>>
+        (private_node_handle_);
     dynamic_reconfigure::Server<ros1_template_msgs::FibonacciConfig>::CallbackType reconfigure_cb =
         boost::bind(&Nodelet::reconfigureCB, this, _1, _2);
     reconfigure_server_->setCallback(reconfigure_cb);
