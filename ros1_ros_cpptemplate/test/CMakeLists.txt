@@ -20,3 +20,4 @@ endmacro()
 
 ros1_ros_cpptemplate_rostest_gtest_macro(publishers)
 ros1_ros_cpptemplate_rostest_gtest_macro(subscribers)
+ros1_ros_cpptemplate_rostest_gtest_macro(service)

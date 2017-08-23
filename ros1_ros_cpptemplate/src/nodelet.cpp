@@ -1,6 +1,7 @@
 
 #include "ros1_ros_cpptemplate/publisher.hpp"
 #include "ros1_ros_cpptemplate/subscriber.hpp"
+#include "ros1_ros_cpptemplate/service.hpp"
 #include <ros1_cpptemplate/atomic_fibonacci.hpp>
 
 #include <pluginlib/class_list_macros.h>
@@ -71,8 +72,9 @@ public:
     publish_threads_.emplace_back(&Nodelet::run, this, publish_rate, publisher_used_interally_);
     publish_threads_.emplace_back(&Nodelet::run, this, publish_rate, publisher_other_);
 
-    // subsciber stuff last, or at least after everything else is ready
+    // subsciber and service stuff last, or at least after everything else is ready
     subscriber_ = std::make_shared<Subscriber>(private_node_handle_, internal_publish_topic_name);
+    service_ = std::make_shared<Service>(atomic_fibonacci, private_node_handle_, "fibonacci_service");
 
     NODELET_INFO_STREAM("Initialized");
   }
@@ -97,6 +99,7 @@ private:
   std::vector<std::thread> publish_threads_;
 
   SubscriberPtr subscriber_;
+  ServicePtr service_;
 };
 
 }  // namespace

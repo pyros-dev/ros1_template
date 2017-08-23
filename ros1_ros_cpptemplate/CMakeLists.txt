@@ -14,6 +14,7 @@ find_package(catkin REQUIRED
               roslint
               rosconsole
               ros1_cpptemplate
+              ros1_template_msgs
               nodelet
 )
 
@@ -29,6 +30,7 @@ catkin_package(
     CATKIN_DEPENDS
         rosconsole
         ros1_cpptemplate
+        ros1_template_msgs
         nodelet
 )
 
