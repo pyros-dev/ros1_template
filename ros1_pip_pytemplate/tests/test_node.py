@@ -43,7 +43,8 @@ from pyros_utils import rostest_nose
 # Test Class
 ##############################################################################
 
-oracle_proc = None
+# Note: Here we want to test the logger
+# Not the terminal output, since this will depend on the top level launcher)
 
 
 # This should have the same effect as the <name>.test file for rostest.

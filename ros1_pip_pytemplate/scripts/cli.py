@@ -100,7 +100,8 @@ if __name__ == '__main__':
     logger.info("known args: {0}".format(parsed_known_args))
 
     if parsed_known_args.version:
-        print(show_version())
+        print("ROS1 pip pytemplate version " + ros1_pip_pytemplate.__version__ +
+              "\n from " + ros1_pip_pytemplate.__file__)
         sys.exit(0)
 
     # extracting argument from unknown args

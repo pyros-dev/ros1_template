@@ -6,6 +6,7 @@
 
 from __future__ import absolute_import, division, print_function
 
+
 """
 Testing the cli
 """
@@ -14,45 +15,67 @@ Testing the cli
 # Imports
 ##############################################################################
 
-import sys
-import unittest
-import tempfile
+import contextlib
+import sys  # late import to avoid breaking capsys fixture
+import os
+import runpy
+import pytest
 
-import rostest
-import roslaunch
-import ros1_template_msgs.msg as ros1_template_msgs
-import ros1_template_msgs.srv as ros1_template_srvs
 
-from pyros_utils import rostest_nose
-
+# a simple selftest for pytest capsys fixture
+def test_capsys(capsys):
+    print('smthg')
+    sys.stderr.write('smthgelse')
+    out, err = capsys.readouterr()
+    assert 'smthg' in out
+    assert 'smthgelse' in err
 
 ##############################################################################
 # Test Class
 ##############################################################################
 
-class TestAnswerServer(unittest.TestCase):
 
-    def test_answer_service(self):
-        rospy.wait_for_service('/answer_server/answer')
-        try:
-            answer_proxy = rospy.ServiceProxy('/answer_server/answer', ros1_template_srvs.Answer)
-            req = ros1_template_srvs.AnswerRequest('What is the Answer to the Ultimate Question of Life, the Universe and Everthing ?')
-            resp = answer_proxy(req)
-            print(resp)
-            self.assertEqual(resp.answer, 42)
-        except rospy.ServiceException as exc:
-            print("service call failed: {0}".format(exc))
+class TestCLI(object):  # not a unittest.TestCase, since we rely on pytest capsys fixture
 
-    def test_error_service(self):
-        rospy.wait_for_service('/answer_server/error')
-        with self.assertRaises(rospy.ServiceException):
-            error_proxy = rospy.ServiceProxy('/answer_server/error', ros1_template_srvs.Answer)
-            req = ros1_template_srvs.AnswerRequest('This works, right ?')
-            error_proxy(req)
+    def setup(self):
+        self.cli_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'scripts', 'cli.py')
+
+    def test_help(self, capsys):
+        import sys  # late import to avoid breaking capsys fixture
+        # redirecting stdout and stderr since we are testing a script running on command line
+        sys.argv = ['', '--help']
+        runpy.run_path(self.cli_path)
+
+        #outlines = sys.stdout.readlines()
+
+        # Note other output can get mixed here (internal loggers propagated upwards to the top)
+        # We only want to assert a subset of the output
+        # assert "" in outlines, outlines
+        # assert "" in outlines, outlines
+        # assert "" in outlines, outlines
+
+    def test_version(self, capsys):
+        # redirecting stdout and stderr since we are testing a script running on command line
+        sys.argv = ['', '--version']
+        with pytest.raises(SystemExit) as excinfo:
+            runpy.run_path(self.cli_path, run_name='__main__')
+
+        assert excinfo.value.code == 0  # success
+        assert excinfo.value.message == excinfo.value.code  # success
+
+        out, err = capsys.readouterr()
+
+        # Note other output can get mixed here (internal loggers propagated upwards to the top)
+        # We only want to assert a subset of the output
+        assert "ROS1 pip pytemplate version 0.1.1" in out
+
+    def test_default_noargs(self):
+        pass
+
+    def test_nargs(self):
+        pass
 
 
+# In case we run this directly, use pytest
 if __name__ == '__main__':
-    print("ARGV : %r", sys.argv)
-    # Note : Tests should be able to run with nosetests, or rostest ( which will launch nosetest here )
-    #rostest_nose.rostest_or_nose_main('ros1_pytemplate', 'test_answer_server', TestAnswerServer, sys.argv)
-    rostest.rosrun('ros1_pytemplate', 'test_answer_server', TestAnswerServer, sys.argv)
+    pytest.main(['-x', __file__])

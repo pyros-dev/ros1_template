@@ -43,6 +43,7 @@ class TestHttpbin(unittest.TestCase):
 
     # The parent package has already been imported and loggers have been created.
     # Here we patch the existing logger to confirm message is being logged
+    # Note there is also pytest-catchlog that can setup a pytest fixture for this...
     @mock.patch('ros1_pip_pytemplate.lib_module._logger')
     def test_retrieve(self, mock_logger):
         resp = self.httpbin.get(params={"answer": "42"})
