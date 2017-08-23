@@ -1,0 +1,3 @@
+# Simple YAML will be put in ROS parameters by launch file
+# ref : https://yaml.org
+fibonacci_max_number: 512
