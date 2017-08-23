@@ -58,7 +58,6 @@ TEST(Publishers, other)
   Int32CallbackTest("fibonacci_publisher_other");
 }
 
-// Run with "catkin_make run_tests_ros1_cpptemplate"
 int main(int argc, char **argv)
 {
   testing::InitGoogleTest(&argc, argv);
