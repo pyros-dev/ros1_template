@@ -10,6 +10,7 @@ from __future__ import absolute_import, division, print_function
 ##############################################################################
 import os
 import sys
+import ros1_pytemplate
 
 import logging.config
 logging.config.dictConfig(
@@ -54,8 +55,6 @@ logging.config.dictConfig(
     }
 )
 
-
-import ros1_pytemplate
 
 ##############################################################################
 # Main
