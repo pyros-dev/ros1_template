@@ -1,0 +1,6 @@
+<launch>
+  <include file="$(find ros1_ros_cpptemplate)/launch/standalone.launch"/>
+  <test test-name="test_subscribers" pkg="ros1_ros_cpptemplate" type="test_subscribers" time-limit="5.0">
+    <remap from="fibonacci_publisher_internal"    to="ros1_ros_cpptemplate/fibonacci_publisher_internal"/>
+  </test>
+</launch>

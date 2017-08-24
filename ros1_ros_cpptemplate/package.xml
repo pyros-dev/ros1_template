@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>ros1_ros_cpptemplate</name>
+  <version>0.1.1</version>
+  <description>
+    C++ ROS project template following good practices
+  </description>
+  <maintainer email="Reimann.Alex.8.8@gmail.com">Alexander Reimann</maintainer>
+  <license>BSD</license>
+  <url type="website">https://github.com/pyros-dev/ros1_template</url>
+  <url type="repository">https://github.com/pyros-dev/ros1_template</url>
+  <author email="Reimann.Alex.8.8@gmail.com">Alexander Reimann</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>roslint</build_depend>
+  <build_depend>rostest</build_depend>
+
+  <depend>rosconsole</depend>
+  <depend>ros1_cpptemplate</depend>
+  <depend>ros1_template_msgs</depend>
+  <depend>nodelet</depend>
+
+  <export>
+    <nodelet plugin="${prefix}/nodelets.xml"/>
+    <doc> TODO</doc>
+  </export>
+</package>

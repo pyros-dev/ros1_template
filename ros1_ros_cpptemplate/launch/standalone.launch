@@ -1,0 +1,9 @@
+<launch>
+    <arg name="config_override"        default="$(find ros1_ros_cpptemplate)/config/override.yaml" doc="used by upper launchers to customize configuration"/>
+
+    <node pkg="nodelet" type="nodelet" name="nodelet_manager" args="manager"/>
+    <node pkg="nodelet" type="nodelet" name="ros1_ros_cpptemplate" args="load ros1_ros_cpptemplate/Nodelet nodelet_manager">
+        <rosparam command="load"  file="$(find ros1_ros_cpptemplate)/config/default.yaml" />
+        <rosparam command="load"  file="$(arg config_override)" />
+    </node>
+</launch>

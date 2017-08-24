@@ -1,0 +1,6 @@
+# Simple YAML will be put in ROS parameters by launch file
+# ref : https://yaml.org
+publish_rate: 10.0
+start_last_number: 0
+start_current_number: 1
+fibonacci_max_number: 256

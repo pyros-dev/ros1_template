@@ -1,0 +1,16 @@
+<library path="lib/libros1_ros_cpptemplate">
+  <class name="ros1_ros_cpptemplate/Nodelet"
+         type="ros1_ros_cpptemplate::Nodelet"
+         base_class_type="nodelet::Nodelet">
+    <description>
+      Nodelet subscribing and publishing to AtomicFibonacci
+    </description>
+  </class>
+  <class name="ros1_ros_cpptemplate/CallbackNodelet"
+         type="ros1_ros_cpptemplate::CallbackNodelet"
+         base_class_type="nodelet::Nodelet">
+    <description>
+      Nodelet subscribing and re-publishing purely based on callbacks
+    </description>
+  </class>
+</library>
