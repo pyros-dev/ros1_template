@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# License: Unspecified
+# License: MIT
 #
 
 from __future__ import absolute_import, division, print_function
@@ -63,6 +63,7 @@ logging.config.dictConfig(
     }
 )
 
+
 ##############################################################################
 # ROS isolated in one function
 # ROS initialization, if not done in the launch environment, :
@@ -104,14 +105,21 @@ def node_spin(name, argv=None):
     import ros1_template_msgs.srv as ros1_template_srvs
 
     def callback(data):
+        rospy.loginfo("received request:\n  {t}\n{v}".format(
+            t=type(data),
+            v="\n".join(["    " + l for l in str(data).splitlines()])))
         response = httpbin.get(params={a.key: a.value for a in data.args})
         if response.status_code == requests.status_codes.codes.OK:
-            return ros1_template_srvs.GetResponse(
+            resp = ros1_template_srvs.GetResponse(
                 origin=response.json().get('origin'),
                 url=response.json().get('url'),
                 args=[ros1_template_msgs.Arg(key=k, value=v)
                       for k, v in response.json().get('args').items()],
             )
+            rospy.loginfo("sending response:\n  {t}\n{v}".format(
+                t=type(resp),
+                v="\n".join(["    " + l for l in str(resp).splitlines()])))
+            return resp
         else:
             raise StatusCodeException(response.status_code)
 
@@ -134,8 +142,8 @@ def show_description():
 
 
 def show_usage(cmd):
-    cmd = cmd or sys.argv[0]
-    return "{0} <origin_url> <replica_url> [--async]".format(cmd)
+    cmd = os.path.relpath(sys.argv[0], os.getcwd()) if cmd is None else cmd
+    return "{0} [-h|--help] [--version] [--base_url <url_string>] ".format(cmd)
 
 
 def show_epilog():
@@ -160,8 +168,6 @@ if __name__ == '__main__':
         help="the base url to connect to. If not provided, it will be retrieved from the ~base_url ROS parameter.")
 
     parsed_known_args, unknown_args = parser.parse_known_args(sys.argv[1:])
-
-    print("known args: {0}".format(parsed_known_args))
 
     if parsed_known_args.version:
         print("ROS1 pip pytemplate version " + ros1_pip_pytemplate.__version__ +

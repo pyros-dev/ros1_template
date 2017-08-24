@@ -6,6 +6,8 @@
 
 from __future__ import absolute_import, division, print_function
 
+import time
+
 """
 Testing the node
 
@@ -46,6 +48,8 @@ from pyros_utils import rostest_nose
 # Note: Here we want to test the logger
 # Not the terminal output, since this will depend on the top level launcher)
 
+httpbin_proc = None
+
 
 # This should have the same effect as the <name>.test file for rostest.
 # Should be used only by nose ( or other python test tool )
@@ -57,17 +61,18 @@ def setup_module():
         launch = roslaunch.scriptapi.ROSLaunch()
         launch.start()
 
-        # Same as <node pkg="ros1_pytemplate" type="answer_server_node.py" name="answer_server">
-        #            <param name="answer_part" value="6"/>
-        #         </node> in .test file
+        # Same as <node pkg="ros1_pip_pytemplate" type="node.py" name="httpbin">
+        #   <param name="base_url" value="http://httpbin.org"/>
+        # </node>
         # Ref : http://docs.ros.org/indigo/api/roslaunch/html/index.html
-        rospy.set_param('/answer_server/answer_part', 6)
-        oracle = roslaunch.core.Node('ros1_pytemplate', 'answer_server_node.py', name='answer_server')
-        oracle_proc = launch.launch(oracle)
-        assert oracle_proc.is_alive()
+        rospy.set_param('/httpbin/base_url', "http://httpbin.org")
+        httpbin = roslaunch.core.Node('ros1_pip_pytemplate', 'node_reactive.py', name='httpbin')
+        httpbin_proc = launch.launch(httpbin)
+        assert httpbin_proc.is_alive()
 
-        # No need of a node for using services, but this is what rostest does under the hood.
-        rospy.init_node('test_answer_server', anonymous=True, disable_signals=True)
+        # WE DO NOT NEED A NODE for sending requests to services
+        # But this is where we would do it...
+        # rospy.init_node('test_httpbin')
         # CAREFUL : this should be done only once per PROCESS
         # Here we enforce TEST RUN 1<->1 MODULE 1<->1 PROCESS. ROStest style.
 
@@ -75,33 +80,25 @@ def setup_module():
 def teardown_module():
     if not rostest_nose.is_rostest_enabled():
         rostest_nose.rostest_nose_teardown_module()
-        if oracle_proc and oracle_proc.is_alive():
-            oracle_proc.terminate()
+        if httpbin_proc and httpbin_proc.is_alive():
+            httpbin_proc.terminate()
 
 
-class TestAnswerServer(unittest.TestCase):
+class TestHttpbinProxy(unittest.TestCase):
 
-    def test_answer_service(self):
-        rospy.wait_for_service('/answer_server/answer')
+    def test_httpbin_get(self):
+        rospy.wait_for_service('/httpbin/get')
         try:
-            answer_proxy = rospy.ServiceProxy('/answer_server/answer', ros1_template_srvs.Answer)
-            req = ros1_template_srvs.AnswerRequest('What is the Answer to the Ultimate Question of Life, the Universe and Everthing ?')
-            resp = answer_proxy(req)
-            print(resp)
-            self.assertEqual(resp.answer, 42)
+            get_proxy = rospy.ServiceProxy('/httpbin/get', ros1_template_srvs.Get)
+            req = ros1_template_srvs.GetRequest(args=[])
+            resp = get_proxy(req)
+            self.assertEqual(resp.url, "http://httpbin.org/get")
+            self.assertEqual(resp.args, [])
         except rospy.ServiceException as exc:
             print("service call failed: {0}".format(exc))
-
-    def test_error_service(self):
-        rospy.wait_for_service('/answer_server/error')
-        with self.assertRaises(rospy.ServiceException):
-            error_proxy = rospy.ServiceProxy('/answer_server/error', ros1_template_srvs.Answer)
-            req = ros1_template_srvs.AnswerRequest('This works, right ?')
-            error_proxy(req)
 
 
 if __name__ == '__main__':
     print("ARGV : %r", sys.argv)
     # Note : Tests should be able to run with nosetests, or rostest ( which will launch nosetest here )
-    #rostest_nose.rostest_or_nose_main('ros1_pytemplate', 'test_answer_server', TestAnswerServer, sys.argv)
-    rostest.rosrun('ros1_pytemplate', 'test_answer_server', TestAnswerServer, sys.argv)
+    rostest_nose.rostest_or_nose_main('ros1_pip_pytemplate', 'test_httpbin', TestHttpbinProxy, sys.argv)

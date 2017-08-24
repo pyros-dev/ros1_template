@@ -32,7 +32,8 @@ catkin_package()
 install(
     PROGRAMS
         scripts/cli.py
-        scripts/node.py
+        scripts/node_reactive.py
+        # scripts/node_proactive.py
     DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
     )
 
