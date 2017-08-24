@@ -25,6 +25,44 @@ import sys
 import requests  # needed to get status codes definition
 
 
+import logging.config
+logging.config.dictConfig(
+    {
+        'version': 1,
+        'formatters': {
+            'verbose': {
+                'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
+            },
+            'simple': {
+                'format': '%(levelname)s %(name)s:%(message)s'
+            },
+        },
+        'handlers': {
+            'console': {
+                'level': 'INFO',
+                'class': 'logging.StreamHandler',
+                'formatter': 'simple',
+                'stream': 'ext://sys.stdout',
+            },
+            'logfile': {
+                'level': 'DEBUG',
+                'class': 'logging.handlers.RotatingFileHandler',
+                'filename': 'ros1_pip_pytemplate.log',
+                'maxBytes': 1024,
+                'backupCount': 3,
+                'formatter': 'verbose'
+            },
+        },
+        'loggers': {
+            'ros1_pip_pytemplate': {
+                'handlers': ['console'],
+                'level': 'INFO',
+                'propagate': True,
+            },
+        }
+    }
+)
+
 ##############################################################################
 # ROS isolated in one function
 # ROS initialization, if not done in the launch environment, :

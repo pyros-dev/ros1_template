@@ -44,15 +44,16 @@ class TestCLI(object):  # not a unittest.TestCase, since we rely on pytest capsy
         import sys  # late import to avoid breaking capsys fixture
         # redirecting stdout and stderr since we are testing a script running on command line
         sys.argv = ['', '--help']
-        runpy.run_path(self.cli_path)
+        with pytest.raises(SystemExit) as excinfo:
+            runpy.run_path(self.cli_path, run_name='__main__')
 
-        #outlines = sys.stdout.readlines()
+        assert excinfo.value.code == 0  # success
+
+        out, err = capsys.readouterr()
 
         # Note other output can get mixed here (internal loggers propagated upwards to the top)
         # We only want to assert a subset of the output
-        # assert "" in outlines, outlines
-        # assert "" in outlines, outlines
-        # assert "" in outlines, outlines
+        assert "usage: ../scripts/cli.py [-h|--help] [--version]" in out
 
     def test_version(self, capsys):
         # redirecting stdout and stderr since we are testing a script running on command line
@@ -61,7 +62,6 @@ class TestCLI(object):  # not a unittest.TestCase, since we rely on pytest capsy
             runpy.run_path(self.cli_path, run_name='__main__')
 
         assert excinfo.value.code == 0  # success
-        assert excinfo.value.message == excinfo.value.code  # success
 
         out, err = capsys.readouterr()
 
@@ -69,12 +69,48 @@ class TestCLI(object):  # not a unittest.TestCase, since we rely on pytest capsy
         # We only want to assert a subset of the output
         assert "ROS1 pip pytemplate version 0.1.1" in out
 
-    def test_default_noargs(self):
-        pass
+    def test_noargs(self, capsys):
+        # redirecting stdout and stderr since we are testing a script running on command line
+        sys.argv = ['']
+        runpy.run_path(self.cli_path, run_name='__main__')
 
-    def test_nargs(self):
-        pass
+        out, err = capsys.readouterr()
 
+        # Note other output can get mixed here (internal loggers propagated upwards to the top)
+        # We only want to assert a subset of the output
+        assert "STATUS: 200" in out
+        assert "args: {}" in out
+        assert "origin: " in out  # origin will depend on machine
+        assert "url: http://httpbin.org/get" in out
+
+    def test_args(self, capsys):
+        # redirecting stdout and stderr since we are testing a script running on command line
+        sys.argv = ['', '--arg1', 'val1', '--arg2', 'val2']
+        runpy.run_path(self.cli_path, run_name='__main__')
+
+        out, err = capsys.readouterr()
+
+        # Note other output can get mixed here (internal loggers propagated upwards to the top)
+        # We only want to assert a subset of the output
+        assert "STATUS: 200" in out
+        assert "args: {arg1: val1, arg2: val2}" in out
+        assert "origin: " in out  # origin will depend on machine
+        assert "url: http://httpbin.org/get?arg1=val1&arg2=val2" in out
+
+    def test_bad_arg(self, capsys):
+        # redirecting stdout and stderr since we are testing a script running on command line
+        sys.argv = ['', '-badarg']
+        with pytest.raises(SystemExit) as excinfo:
+            runpy.run_path(self.cli_path, run_name='__main__')
+
+        assert excinfo.value.code == 127  # error
+
+        out, err = capsys.readouterr()
+
+        # Note other output can get mixed here (internal loggers propagated upwards to the top)
+        # We only want to assert a subset of the output
+        assert "usage: ../scripts/cli.py [-h|--help] [--version]" in out
+        assert "Invalid Argument: -badarg" in err
 
 # In case we run this directly, use pytest
 if __name__ == '__main__':
