@@ -53,7 +53,8 @@ class TestCLI(object):  # not a unittest.TestCase, since we rely on pytest capsy
 
         # Note other output can get mixed here (internal loggers propagated upwards to the top)
         # We only want to assert a subset of the output
-        assert "usage: ../scripts/cli.py [-h|--help] [--version]" in out
+        rel_script_path = os.path.relpath(os.path.join(os.path.dirname(os.path.dirname(__file__)), 'scripts', 'cli.py'))
+        assert "usage: " + rel_script_path + " [-h|--help] [--version]" in out
 
     def test_version(self, capsys):
         # redirecting stdout and stderr since we are testing a script running on command line
@@ -109,7 +110,8 @@ class TestCLI(object):  # not a unittest.TestCase, since we rely on pytest capsy
 
         # Note other output can get mixed here (internal loggers propagated upwards to the top)
         # We only want to assert a subset of the output
-        assert "usage: ../scripts/cli.py [-h|--help] [--version]" in out
+        rel_script_path = os.path.relpath(os.path.join(os.path.dirname(os.path.dirname(__file__)), 'scripts', 'cli.py'))
+        assert "usage: " + rel_script_path + " [-h|--help] [--version]" in out
         assert "Invalid Argument: -badarg" in err
 
 # In case we run this directly, use pytest

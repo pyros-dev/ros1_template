@@ -33,7 +33,8 @@ setup(
     ],
     scripts=[
         'scripts/cli.py',
-        'scripts/node.py',
+        'scripts/node_reactive.py',
+        #'scripts/node_proactive.py',
     ],
     author="AlexV",
     author_email="asmodehn@gmail.com",

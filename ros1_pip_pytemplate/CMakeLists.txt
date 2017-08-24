@@ -57,9 +57,21 @@ if (CATKIN_ENABLE_TESTING)
     catkin_add_pytests(ros1_pip_pytemplate/tests)
 
     ##########################################################################
-    # Dev tests
+    # Dev tests (including ROS stuff)
     ##########################################################################
 
     catkin_add_pytests(tests)
+
+    ##########################################################################
+    # ROS tests : possible
+    # but might hit some of rostest issues
+    # https://github.com/ros/ros_comm/issues?utf8=%E2%9C%93&q=is%3Aissue%20rostest
+    # and do not add any value compared to the previous Dev tests.
+    ##########################################################################
+    find_package(rostest)
+    if (rostest_FOUND)
+        add_rostest(tests/node_reactive.test)
+        # add_rostest(tests/node_proactive.test)
+    endif()
 
 endif()
