@@ -27,6 +27,8 @@ setup(
         # Look for it in https://github.com/ros/rosdistro/blob/master/python.yaml
         # From source, we rely on basic python/pip system for it however (and we don't rely on ros dependency system).
         'requests',
+        # same for pyyaml
+        'pyyaml',
     ],
     tests_require=[
         'pytest'
