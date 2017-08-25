@@ -398,14 +398,24 @@ Distributed Computing Fallacies
 FWYTYK : time is relative
 -------------------------
 
-This            | can print:
---------------- | ----------
-`a=time.now()`  | - `True`
-`b=time.now()`  | - `False`
-`print(a>b)`    | - `no idea`
-                | - Error
-                | Crash
-
+<tr><td>This</td><td>can print:</td></tr>
+<tr>
+<td>
+```
+a=time.now()
+b=time.now()
+print(a>b)
+```
+</td>
+<td>
+- `True`
+- `False`
+- `no idea`
+- Error
+Crash
+</td>
+</tr>
+              
 +++
 
 FWYTYK : no total order
@@ -441,6 +451,7 @@ No mainstream distributed programming environment
 - Except Erlang (31 years old)
 - http://learnyousomeerlang.com/distribunomicon
 
+<tr><td>
 ```
 (Alice@alexv-pc)
 1> net_kernel:connect_node('Bob@alexv-pc').
@@ -452,6 +463,8 @@ true
 4> receive {hello, from, Other} -> Other ! <<"whats up !">> end.
 <<"whats up !">>
 ```
+</td>
+<td>
 @[1]@[2-3]@[3-4]@[5-6] 
 ```
 (Bob@alexv-pc)
@@ -463,6 +476,8 @@ true
 Shell got <<"whats up !">>
 ok
 ```
+</td>
+</tr>
 @[1]@[2-3]@[4-5]@[6-7]
 
 +++
