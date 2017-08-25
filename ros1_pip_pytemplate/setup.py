@@ -29,9 +29,11 @@ setup(
         'requests',
         # same for pyyaml
         'pyyaml',
+        # only for embedded tests
+        'mock'
     ],
     tests_require=[
-        'pytest'
+        'pytest',
     ],
     scripts=[
         'scripts/cli.py',

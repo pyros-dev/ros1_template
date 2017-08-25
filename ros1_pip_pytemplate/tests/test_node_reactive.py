@@ -70,12 +70,6 @@ def setup_module():
         httpbin_proc = launch.launch(httpbin)
         assert httpbin_proc.is_alive()
 
-        # WE DO NOT NEED A NODE for sending requests to services
-        # But this is where we would do it...
-        # rospy.init_node('test_httpbin')
-        # CAREFUL : this should be done only once per PROCESS
-        # Here we enforce TEST RUN 1<->1 MODULE 1<->1 PROCESS. ROStest style.
-
 
 def teardown_module():
     if not rostest_nose.is_rostest_enabled():
@@ -85,6 +79,15 @@ def teardown_module():
 
 
 class TestHttpbinProxy(unittest.TestCase):
+
+    @classmethod
+    def setUpClass(cls):
+        # WE DO NOT NEED A NODE for sending requests to services
+        # But this is where we would do it...
+        # rospy.init_node('test_httpbin')
+        # CAREFUL : this should be done only once per PROCESS
+        # Here we enforce TEST RUN 1<->1 MODULE 1<->1 PROCESS. ROStest style.
+        pass
 
     def test_httpbin_get(self):
         rospy.wait_for_service('/httpbin/get')
