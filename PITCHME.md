@@ -399,8 +399,8 @@ FWYTYK : time is relative
 -------------------------
 <table>
 <tr><td>This</td><td>can print:</td></tr>
-<tr rowspan="5">
-<td>
+<tr>
+<td rowspan="5">
 ```
 a=time.now()
 b=time.now()
@@ -421,8 +421,8 @@ FWYTYK : no total order
 
 <table>
 <tr><td>This</td><td>can print:</td></tr>
-<tr rowspan="7">
-<td>
+<tr>
+<td rowspan="7">
 ```
 int a=1
 a= a+1
@@ -453,8 +453,8 @@ Recent Research Area : CRDT - 2011
 +++
 
 
-distributed programming environment
------------------------------------
+distributed programming 
+-----------------------
 
 - Nothing mainstream, except Erlang (31 years old)
 - http://learnyousomeerlang.com/distribunomicon
@@ -469,7 +469,7 @@ true
 true
 4> receive {hello, from, Other} -> Other ! <<"whats up !">> end.
 <<"whats up !">>
------------------------------------------
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 (Bob@alexv-pc)
 1> nodes().
 ['Alice@alexv-pc']
