@@ -291,7 +291,7 @@ The ROS way
 ROS1 Template
 -------------
 
-- A reference for ROS nodes
+- A reference for ROS good practices
 - "pure" C++ library
 - C++ / ROS nodes and package
 - ROS / python nodes and package
@@ -494,14 +494,14 @@ Shell got <<"whats up !">>
 ok
 ```
 
-@[1,10,11](Two Erlang VMs)
-@[2-3](Connect a node to another)
-@[4-5](Check connections from Alice)
-@[12-13](Check connections from Bob)
-@[6-7](Register current REPL in a variable)
-@[14-15](Send message to Alice's REPL)
-@[8-9](Receive message and pattern match)
-@[16-18](Flush messages)
+@[10](Two Erlang VMs)
+@[10,2-3](Connect a node to another)
+@[10,4-5](Check connections from Alice)
+@[10,12-13](Check connections from Bob)
+@[10,6-7](Register current REPL in a variable)
+@[10,14-15](Send message to Alice's REPL)
+@[10,8-9](Receive message and pattern match)
+@[10,16-18](Flush messages)
 @[2,6,8,10,14](http://learnyousomeerlang.com/distribunomicon)
 
 +++
