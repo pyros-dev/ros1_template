@@ -399,20 +399,19 @@ FWYTYK : time is relative
 -------------------------
 <table>
 <tr><td>This</td><td>can print:</td></tr>
-<tr>
-<td rowspan="5">
+<tr rowspan="5">
+<td>
 ```
 a=time.now()
 b=time.now()
 print(a>b)
 ```
 </td>
-<td>`True`</td>
-<td>`False`</td>
-<td>`no idea`</td>
-<td><span style="color:orange">`Error`</span></td>
-<td><span style="color:red">Crash</span></td>
-</tr>
+<tr><td>`True`</td></tr>
+<tr><td>`False`</td></tr>
+<tr><td>`no idea`</td></tr>
+<tr><td><span style="color:orange">`Error`</span></td></tr>
+<tr><td><span style="color:red">Crash</span></td></tr>
 </table>
               
 +++
@@ -422,22 +421,22 @@ FWYTYK : no total order
 
 <table>
 <tr><td>This</td><td>can print:</td></tr>
-<tr>
-<td rowspan="7">
+<tr rowspan="7">
+<td>
 ```
 int a=1
 a= a+1
 print(a)
 ```
 </td>
-<td>`1`</td>
-<td>`2`</td>
-<td>`42`</td>
-<td>`0`</td>
-<td>...</td>
-<td><span style="color:orange">`Error`</span></td>
-<td><span style="color:red">Crash</span></td>
 </tr>
+<tr><td>`1`</td></tr>
+<tr><td>`2`</td></tr>
+<tr><td>`42`</td></tr>
+<tr><td>`0`</td></tr>
+<tr><td>...</td></tr>
+<tr><td><span style="color:orange">`Error`</span></td></tr>
+<tr><td><span style="color:red">Crash</span></td></tr>
 </table>
 +++
 
@@ -459,6 +458,7 @@ distributed programming environment
 
 - Nothing mainstream, except Erlang (31 years old)
 - http://learnyousomeerlang.com/distribunomicon
+
 ```erlang
 (Alice@alexv-pc)
 1> net_kernel:connect_node('Bob@alexv-pc').
