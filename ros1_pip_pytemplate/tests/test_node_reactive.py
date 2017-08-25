@@ -99,6 +99,6 @@ class TestHttpbinProxy(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    print("ARGV : %r", sys.argv)
+    print("ARGV : {0}".format(sys.argv))
     # Note : Tests should be able to run with nosetests, or rostest ( which will launch nosetest here )
     rostest_nose.rostest_or_nose_main('ros1_pip_pytemplate', 'test_httpbin', TestHttpbinProxy, sys.argv)

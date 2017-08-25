@@ -92,10 +92,11 @@ class TestHttpbinPub(unittest.TestCase):
         def get_cb(data):
             self.latest_args = {a.key: a.value for a in data.args}
 
-        get_sub = rospy.Subscriber('/httpbin_proactive/get', ros1_template_msgs.Args, get_cb)
+        self.get_sub = rospy.Subscriber('/httpbin_proactive/get', ros1_template_msgs.Args, get_cb)
 
         # No message at first (no param/arg set)
-        assert self.latest_args == None
+        print(self.latest_args)
+        self.assertEqual(self.latest_args, None)
 
         # setting arguments from params
         rospy.set_param('/httpbin_proactive/args', {'arg1': 42})
@@ -105,7 +106,8 @@ class TestHttpbinPub(unittest.TestCase):
         while time.time() - now < 5 and self.latest_args == None:
             time.sleep(0.1)
 
-        assert self.latest_args == {'arg1': '42'}
+        print(self.latest_args)
+        self.assertEqual(self.latest_args, {'arg1': '42'})
 
         # changing argument from params
         rospy.set_param('/httpbin_proactive/args/arg2', 77)
@@ -115,10 +117,11 @@ class TestHttpbinPub(unittest.TestCase):
         while time.time() - now < 5 and self.latest_args == {'arg1': '42'}:
             time.sleep(0.1)
 
-        assert self.latest_args == {'arg1': '42', 'arg2': '77'}
+        print(self.latest_args)
+        self.assertEqual(self.latest_args, {'arg1': '42', 'arg2': '77'})
 
 
 if __name__ == '__main__':
-    print("ARGV : %r", sys.argv)
+    print("ARGV : {0}".format(sys.argv))
     # Note : Tests should be able to run with nosetests, or rostest ( which will launch nosetest here )
     rostest_nose.rostest_or_nose_main('ros1_pip_pytemplate', 'test_httpbin', TestHttpbinPub, sys.argv)

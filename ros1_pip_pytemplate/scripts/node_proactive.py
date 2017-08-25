@@ -105,27 +105,6 @@ def node_spin(name, argv=None):
     # ROS environment is setup here
     import ros1_template_msgs.msg as ros1_template_msgs
 
-    #
-    # def callback(data):
-    #     rospy.loginfo("received request:\n  {t}\n{v}".format(
-    #         t=type(data),
-    #         v="\n".join(["    " + l for l in str(data).splitlines()])))
-    #     response = httpbin.get(params={a.key: a.value for a in data.args})
-    #     if response.status_code == requests.status_codes.codes.OK:
-    #         resp = ros1_template_srvs.GetResponse(
-    #             origin=response.json().get('origin'),
-    #             url=response.json().get('url'),
-    #             args=[ros1_template_msgs.Arg(key=k, value=v)
-    #                   for k, v in response.json().get('args').items()],
-    #         )
-    #         rospy.loginfo("sending response:\n  {t}\n{v}".format(
-    #             t=type(resp),
-    #             v="\n".join(["    " + l for l in str(resp).splitlines()])))
-    #         return resp
-    #     else:
-    #         raise StatusCodeException(response.status_code)
-
-
     # setting up the publisher to the topic
     # This is not hte most appropriate interface for this, but it illustrate
     # the *other way* of handling communicating between two nodes.

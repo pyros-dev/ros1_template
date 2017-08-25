@@ -33,7 +33,7 @@ install(
     PROGRAMS
         scripts/cli.py
         scripts/node_reactive.py
-        # scripts/node_proactive.py
+        scripts/node_proactive.py
     DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
     )
 
@@ -71,7 +71,7 @@ if (CATKIN_ENABLE_TESTING)
     find_package(rostest)
     if (rostest_FOUND)
         add_rostest(tests/node_reactive.test)
-        # add_rostest(tests/node_proactive.test)
+        add_rostest(tests/node_proactive.test)
     endif()
 
 endif()
