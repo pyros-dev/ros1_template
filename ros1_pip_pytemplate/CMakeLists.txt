@@ -20,28 +20,28 @@ find_package(catkin_pip REQUIRED)
 # We usually dont want to do this from CMake, to make sure all mandatory (non-dev) dependencies
 # are properly listed in setup.py
 
-catkin_pip_target(ros1_pip_pytemplate)
-catkin_package()
+# TODO : use catkin_pip_target
+catkin_pip_package(ros1_pip_pytemplate)
 
 
 ##############################################################################
 # Installs
 ##############################################################################
 
-# Should these be handled by setup.py and pip ??
-install(
-    PROGRAMS
-        scripts/cli.py
-        scripts/node_reactive.py
-        scripts/node_proactive.py
-    DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
-    )
-
-install(DIRECTORY launch
-    DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
-
-install(DIRECTORY config
-    DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
+# # Should these be handled by setup.py and pip ??
+# install(
+#     PROGRAMS
+#         scripts/cli.py
+#         scripts/node_reactive.py
+#         scripts/node_proactive.py
+#     DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+#     )
+#
+# install(DIRECTORY launch
+#     DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
+#
+# install(DIRECTORY config
+#     DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
 
 
 ##############################################################################
