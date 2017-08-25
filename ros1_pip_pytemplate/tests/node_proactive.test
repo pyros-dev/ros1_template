@@ -1,0 +1,6 @@
+<launch>
+    <node pkg="ros1_pip_pytemplate" type="node_proactive.py" name="httpbin">
+        <param name="base_url" value="http://httpbin.org"/>
+    </node>
+    <test test-name="test_node_proactive" pkg="ros1_pip_pytemplate" type="test_node_proactive.py"/>
+</launch>
