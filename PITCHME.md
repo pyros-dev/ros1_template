@@ -2,11 +2,12 @@ ROS1 Presentation
 =================
 
 Contents:
-- Why ROS
+- Why ROS ?
 - ROS Basics
-- Mixing C++ and Python
-- Distributed Robot System
-- Testing and Safety Considerations
+- C++ and Python, pick one
+- ROS exercises
+- Distributed System for Robots
+- Testing and Safety
 
 
 ---
@@ -83,8 +84,8 @@ ROS1 Environment
 
 `$ source setup.bash`
 - modify your current SHELL (`bash`) environment.
-- GOOD: easy to modify quickly (`export MY_ROS_ENVVAR=42`)
-- BAD : hard to debug (`ps aux | grep my_ros_program`) => which environment configuration ?
+- <span style="color:green">GOOD</span>: easy to modify quickly (`export MY_ROS_ENVVAR=42`)
+- <span style="color:red">BAD</span> : hard to debug (`ps aux | grep my_ros_program`) => which environment configuration ?
 
 +++
 
@@ -280,30 +281,124 @@ The ROS way
 
 ---
 
-Distributed Robot System
-========================
+ROS C++ Exercises
+=================
 
-- Distributed Software System is hard (heavily researched software topic)
-- Forget what you think you know.
-- Learn erlang.
-- Murphy's Law: Everything that can possibly go wrong WILL go wrong.
-- But Robot system must be reliable (enough) ?!?!
+- Make a C++ "package" without ROS
+- Alex TODO
+
+---
+
+ROS Python Exercises
+====================
+
+- Make a ROS package
+- Make a Python package
+- Turn it into a ROS package
+- Define Architecture
+
++++
+
+Make a ROS package
+------------------
+
+- Follow ROS python tutorials
+- Provide a Number Node that store a number (init at 1)
+- with ROS API for reset() and value()
 
 
 +++
 
-Distributed Software System : time is relative
-----------------------------------------------
+Make a Python package
+---------------------
+
+- Follow http://packaging.python.org
+- Provide a python package with Accumulator module
+- Accumulator stores a number N (init at 1) and a constant C
+- Accumulator can do inc_mod(m) -> (N + m) mod C
+
++++
+
+Turn it into a ROS package
+--------------------------
+
+- Use catkin_pip
+- Unify tests
+- Make a ROS Accumulator node
+- Choose a ROS API to provide access to inc_mod
+
++++
+
+Make a client python script
+---------------------------
+
+- Not a node
+- Uses Number & Accumulator ROS API
+- Implements a Fibonacci modulo sequence
+- Doesnt do any arithmetic (+, - *, /) itself
+
++++
+
+Mutate client into a node
+-------------------------
+
+- Can we improve the communication
+- Is it really better ?
+- What are the problems or risks ? 
+
++++
+
+Review
+------
+
+- We (just) implemented Fibonacci
+- What can we say about the code ?
+- What can we way about the potential bugs ?
+- How can we explain it to someone else ? 
+
+---
+
+
+Distributed Robot System
+========================
+
+- Distributed Computing Fallacies
+- Forget what you think you know
+- Recent research area
+- No mainstream distributed programming environment.
+- Murphy's Law: Everything that can possibly go wrong WILL go wrong.
+- But Robot system must be reliable (enough) ?!?!
+
++++
+
+Distributed Computing Fallacies
+-------------------------------
+
+- the network is _reliable_
+- latency is _zero_
+- bandwith is _infinite_
+- network is _secure_
+- Topology _doesnt change_
+- There is _one administrator_
+- Transport cost is _zero_
+- Network is _homogeneous_
+
++++
+
+FWYTYK : time is relative
+-------------------------
 
 This: `a=time.now()` `b=time.now()` `print(a>b)` can print:
 - `True`
 - `False`
 - `no idea`
+- Error
+- Crash
 
 +++
 
-Distributed Software System : no total order
---------------------------------------------
+FWYTYK : no total order
+-----------------------
 
 This: `int a=1` `a= a+1` `print(a)` can print:
 - `1`
@@ -312,29 +407,66 @@ This: `int a=1` `a= a+1` `print(a)` can print:
 - ...
 - `0`
 - Error
+- Crash
 
 +++
 
-Distributed Software System : CRDT - 2011
------------------------------------------
+Recent Research Area : CRDT - 2011
+----------------------------------
 
-- G-counter: we can count up
-- PN-counter: we can count up and down
-- more to come
-
-
-+++
-
-
-Forget what you think you know
-------------------------------
+- Grow-counter: we can count up !
+- Positive-Negative-counter: we can count down !
+- Grow-only-set: we can group things together !
+- Two-phase-set: we can ungroup things !
+- more coming...
 
 
 +++
 
 
+No mainstream distributed programming environment
+-------------------------------------------------
 
-Learn Erlang
+- Except Erlang (31 years old)
+- http://learnyousomeerlang.com/distribunomicon
+
+```
+(Alice@alexv-pc)1> net_kernel:connect_node('Bob@alexv-pc').
+true
+(Alice@alexv-pc)2> nodes().
+['Bob@alexv-pc']
+(Alice@alexv-pc)3> register(shell, self()).
+true
+(Alice@alexv-pc)4> receive {hello, from, Other} -> Other ! <<"whats up !">> end.
+<<"whats up !">>
+```
+@[1-2]@[3-4]@[5-6] 
+```
+(Bob@alexv-pc)1> nodes().
+['Alice@alexv-pc']
+(Bob@alexv-pc)2> {shell, 'Alice@alexv-pc'} ! {hello, from, self()}.
+{hello,from,<0.39.0>}
+(Bob@alexv-pc)2> flush().
+Shell got <<"whats up !">>
+ok
+```
+@[1-2]@[3-4]@[5-6]
+
++++
+
+Murphy's Law
 ------------
 
-- 
+Everything that can possibly go wrong WILL go wrong
+
++++
+
+But Robot system must be reliable (enough) ?!?!
+-----------------------------------------------
+
+- Specifications : WHAT the robot has to do.
+- Properties : What the robot has to NOT do.
+- Formal Specs : HOW the robot does it.
+- Model Checking : Formal spec is respected.
+- Property testing : Properties are respected
+- Validation testing : Specification is respected. 
