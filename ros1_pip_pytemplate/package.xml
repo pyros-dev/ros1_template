@@ -28,6 +28,10 @@
    for the source version to rely on pip package management (already crossplatform) instead of rosdeps.
   -->
   <run_depend>python-requests</run_depend>
+  <!-- same for yaml -->
+  <run_depend>python-yaml</run_depend>
+  <!-- only for embedded tests -->
+  <run_depend>python-mock</run_depend>
 
   <export>
     <doc> TODO</doc>

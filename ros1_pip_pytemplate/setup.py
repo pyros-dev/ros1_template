@@ -30,7 +30,7 @@ setup(
         # same for pyyaml
         'pyyaml',
         # only for embedded tests
-        'mock'
+        'mock',
     ],
     tests_require=[
         'pytest',
@@ -38,7 +38,7 @@ setup(
     scripts=[
         'scripts/cli.py',
         'scripts/node_reactive.py',
-        #'scripts/node_proactive.py',
+        'scripts/node_proactive.py',
     ],
     author="AlexV",
     author_email="asmodehn@gmail.com",
