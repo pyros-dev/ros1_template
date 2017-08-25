@@ -1,7 +1,6 @@
 ROS1 Presentation
 =================
 
-Contents:
 - Why ROS ?
 - ROS Basics
 - C++ and Python, pick one
@@ -26,7 +25,7 @@ Why ROS ?
 A set of C++ tools
 ------------------
 
-C++ does NOT have de facto tools (like python)
+C++ does NOT have "standard" tools (like python)
 
 ROS provides : 
 - catkin => CMake made easy
@@ -58,7 +57,7 @@ Big community
 - ROS wiki users : 5875
 - ROS pkg downloads : 8,441,279 from 113,000 IPs
 - ROS research papers : 2683
-- ROS Robots : > 100 (source : http://wiki.ros.org/Robots)
+- ROS Robots : > 100 (http://wiki.ros.org/Robots)
 
 source : http://wiki.ros.org/Metrics
 
@@ -77,6 +76,11 @@ Permissive licensing
 ROS1 Basics : Do the tutorials !
 ================================
 
+- Environment and Tools
+- Packages and Dependencies
+- Launchers and Parameters
+- Messages, Topics and Services
+
 +++
 
 ROS1 Environment
@@ -84,18 +88,19 @@ ROS1 Environment
 
 `$ source setup.bash`
 - modify your current SHELL (`bash`) environment.
-- <span style="color:green">GOOD</span>: easy to modify quickly (`export MY_ROS_ENVVAR=42`)
+- <span style="color:green">GOOD</span> : easy to modify quickly (`export MY_ROS_ENVVAR=42`)
 - <span style="color:red">BAD</span> : hard to debug (`ps aux | grep my_ros_program`) => which environment configuration ?
 
 +++
 
-ROS1 Filesystem
----------------
+ROS1 Commands
+-------------
 
 `rosls`, `roscd`, `rospack`, etc.
 - allows easy navigation in ROS environment
-- GOOD: easy to play around in your ROS environment
-- BAD : not fully isolated from the rest of the system
+- <span style="color:green">GOOD</span> : easy to play around in your ROS environment
+- <span style="color:green">GOOD</span> : allow plug-n-play for node / comm checking
+- <span style="color:red">BAD</span> : not fully isolated from the rest of the system
 
 +++
 
@@ -104,11 +109,11 @@ ROS1 Packages
 
 `package.xml` and `CMakeLists.txt`
 - describes a ROS package
-- GOOD: modular compilable source code (`catkin_make` or `catkin build`)
-- GOOD: modular interactive runtime (ROS API)
-- BAD : not easy to compose, easy to shoot yourself
-- GOOD: integrating with your package manager
-- BAD : not quite integrated, it goes into `/opt/ros/<rosdistro>`
+- <span style="color:green">GOOD</span> : modular compilable source code (`catkin_make` or `catkin build`)
+- <span style="color:green">GOOD</span> : modular interactive runtime (ROS API)
+- <span style="color:red">BAD</span> : not easy to compose, easy to shoot yourself
+- <span style="color:green">GOOD</span> : integrating with your package manager
+- <span style="color:red">BAD</span> : not quite integrated, it goes into `/opt/ros/<rosdistro>`
 
 +++
 
@@ -118,8 +123,8 @@ ROS1 Dependencies
 `rosdep resolve depkey`
 
 - enable cross-platform package management
-- GOOD: can edit github's `ros/rosdistro` repository to add dependencies 
-- BAD : currently can confuse ROS packages and dependencies (BUG)
+- <span style="color:green">GOOD</span> : can edit github's `ros/rosdistro` repository to add dependencies 
+- <span style="color:red">BAD</span> : currently can confuse ROS packages and dependencies (BUG)
 
 +++
 
@@ -128,10 +133,10 @@ ROS1 Nodes
 
 `rospy.init_node()` or `ros::init()`
 - declares the current process as a ROS node
-- GOOD: one node match one process
-- BAD : special `rosmaster`, `rosout` nodes
-- BAD : pollute your process global state
-- BAD : async programming can be VERY confusing
+- <span style="color:green">GOOD</span> : one node match one process
+- <span style="color:red">BAD</span> : special `rosmaster`, `rosout` nodes
+- <span style="color:red">BAD</span> : pollute your process global state
+- <span style="color:red">BAD</span> : async programming can be VERY confusing
 C++ has nodelets, which means that one process has N node(let)s
 
 +++
@@ -142,10 +147,10 @@ ROS1 Launchers
 `roslaunch my_pkg my_nodes.launch`
 
 - provides a centralised launch point for multiple process/nodes
-- GOOD: can load yaml files to set parameters for the system
-- GOOD: a launch file can include another
-- BAD : namespaces logic and remapping is not as simple as it could 
-- BAD : XML, but more programming-style logic is needed
+- <span style="color:green">GOOD</span> : can load yaml files to set parameters for the system
+- <span style="color:green">GOOD</span> : a launch file can include another
+- <span style="color:red">BAD</span> : namespaces logic and remapping is not as simple as it could 
+- <span style="color:red">BAD</span> : XML, but more programming-style logic is needed
 
 +++
 
@@ -155,8 +160,8 @@ ROS1 Parameters
 `$ rosparam get` or `rospy.get_param()` or `ros::NodeHandle::getParam()`
 
 - get/set parameters for the running ROS system
-- GOOD: centralised structured data
-- GOOD: dynamically configurable 
+- <span style="color:green">GOOD</span> : centralised structured data
+- <span style="color:green">GOOD</span> : dynamically configurable 
 
 +++
 
@@ -166,25 +171,25 @@ ROS1 Messages
 `$ rosmsg show`
 
 - defines message structure
-- GOOD: provide an API other can use
-- GOOD: provides serialization/deserialization crossplatform
-- BAD : doesnt always check and validate the data type
+- <span style="color:green">GOOD</span> : provide an API other can use
+- <span style="color:green">GOOD</span> : provides serialization/deserialization crossplatform
+- <span style="color:red">BAD</span> : doesnt always check and validate the data type
 
 +++
 
 ROS1 Topics
 -----------
 
-`$ rostopic pub` or `rospy.Publisher()` or `ros::Publisher`
+`rospy.Publisher()` or `ros::Publisher`
 
-`$ rostopic echo` or `rospy.Subscriber()` or `ros::Subscriber`
+`rospy.Subscriber()` or `ros::Subscriber`
 
 - allow ROSTCP/ROSUDP Push communication / event notifications
-- GOOD: low overhead (binary serialization)
-- BAD : lossy
-- BAD : Inverted control flow (deal with your callback threadS)
-- BAD : Cannot be used to interface with non-ROS systems
-- GOOD : need 2 to implement pull communication
+- <span style="color:green">GOOD</span> : low overhead (binary serialization)
+- <span style="color:red">BAD</span> : lossy
+- <span style="color:red">BAD</span> : Inverted control flow (deal with your callback threadS)
+- <span style="color:red">BAD</span> : Cannot be used to interface with non-ROS systems
+- <span style="color:green">GOOD</span> : need 2 to implement pull communication
 
 +++
 
@@ -193,29 +198,29 @@ ROS1 Services
 
 `rospy.Service()` or `ros::Service`
 
-`$ rosservice call` or `rospy.ServiceProxy()` or `ros::ServiceProxy`
+`rospy.ServiceProxy()` or `ros::ServiceProxy`
 
 - allow XMLRPC Pull communication / Remote Procedure Calls
-- BAD : high overhead (XML)
-- GOOD: lossless
-- GOOD: Direct control flow (deal with your main thread)
-- GOOD: CAN be used to interface with non-ROS systems
-- GOOD: need 2 to implement push communication
+- <span style="color:red">BAD</span> : high overhead (XML)
+- <span style="color:green">GOOD</span> : lossless
+- <span style="color:green">GOOD</span> : Direct control flow (deal with your main thread)
+- <span style="color:green">GOOD</span> : CAN be used to interface with non-ROS systems
+- <span style="color:green">GOOD</span> : need 2 to implement push communication
 
 ---
 
-Mixing C++ and Python
-=====================
+Mixing C++ & Python
+===================
 
-- Different tools, standards, community, mindset. Pick a side !
-- C/C++ and Python can mix in different ways (cffi, bindings, ...)
+- Different tools, community, mindset. Pick a side !
+- Can mix in different ways (cffi, bindings, ...)
 - ROS provide the multi-process/local-network way.
-- ROS takes its C++ tools and standards and adapt them (more or less) to python.
+- ROS adapts its C++-like tools to python.
 
 +++
 
-C++
----
+  C++
+-----
 
 - Build : GNU make, CMake, QMake, Ninja, Gradle, SCons, Premake, etc.
 - Docs  : Doxygen, Sphinx, etc.
@@ -256,7 +261,7 @@ Dynamic
 - Check if you can
 - Compile if you need
 - Change if you need
-- Be open
+- Be flexible
 
 +++
 
@@ -295,7 +300,9 @@ ROS Python Exercises
 - Make a ROS package
 - Make a Python package
 - Turn it into a ROS package
-- Define Architecture
+- Make a client python script
+- Mutate client into a node
+- Review
 
 +++
 
@@ -303,8 +310,11 @@ Make a ROS package
 ------------------
 
 - Follow ROS python tutorials
-- Provide a Number Node that store a number (init at 1)
-- with ROS API for reset() and value()
+- Provide a Number Node
+- stores a number (initialized at 1)
+- provides reset() for resetting it
+- provides value() for getting its value
+- provides a ROS API for reset() and value()
 
 
 +++
@@ -322,7 +332,7 @@ Make a Python package
 Turn it into a ROS package
 --------------------------
 
-- Use catkin_pip
+- Use https://github.com/pyros-dev/catkin_pip
 - Unify tests
 - Make a ROS Accumulator node
 - Choose a ROS API to provide access to inc_mod
@@ -359,8 +369,8 @@ Review
 ---
 
 
-Distributed Robot System
-========================
+Distributed System
+==================
 
 - Distributed Computing Fallacies
 - Forget what you think you know
@@ -388,12 +398,13 @@ Distributed Computing Fallacies
 FWYTYK : time is relative
 -------------------------
 
-This: `a=time.now()` `b=time.now()` `print(a>b)` can print:
-- `True`
-- `False`
-- `no idea`
-- Error
-- Crash
+This            | can print:
+--------------- | ----------
+`a=time.now()`  | - `True`
+`b=time.now()`  | - `False`
+`print(a>b)`    | - `no idea`
+                | - Error
+                | Crash
 
 +++
 
@@ -414,10 +425,10 @@ This: `int a=1` `a= a+1` `print(a)` can print:
 Recent Research Area : CRDT - 2011
 ----------------------------------
 
-- Grow-counter: we can count up !
+- Grow-counter: we can count up ! (not down)
 - Positive-Negative-counter: we can count down !
-- Grow-only-set: we can group things together !
-- Two-phase-set: we can ungroup things !
+- Grow-only-set: we can group things together ! (not ungroup)
+- Two-phase-set: we can ungroup things ! (only once)
 - more coming...
 
 
@@ -431,26 +442,28 @@ No mainstream distributed programming environment
 - http://learnyousomeerlang.com/distribunomicon
 
 ```
-(Alice@alexv-pc)1> net_kernel:connect_node('Bob@alexv-pc').
+(Alice@alexv-pc)
+1> net_kernel:connect_node('Bob@alexv-pc').
 true
-(Alice@alexv-pc)2> nodes().
+2> nodes().
 ['Bob@alexv-pc']
-(Alice@alexv-pc)3> register(shell, self()).
+3> register(shell, self()).
 true
-(Alice@alexv-pc)4> receive {hello, from, Other} -> Other ! <<"whats up !">> end.
+4> receive {hello, from, Other} -> Other ! <<"whats up !">> end.
 <<"whats up !">>
 ```
-@[1-2]@[3-4]@[5-6] 
+@[1]@[2-3]@[3-4]@[5-6] 
 ```
-(Bob@alexv-pc)1> nodes().
+(Bob@alexv-pc)
+1> nodes().
 ['Alice@alexv-pc']
-(Bob@alexv-pc)2> {shell, 'Alice@alexv-pc'} ! {hello, from, self()}.
+2> {shell, 'Alice@alexv-pc'} ! {hello, from, self()}.
 {hello,from,<0.39.0>}
-(Bob@alexv-pc)2> flush().
+3> flush().
 Shell got <<"whats up !">>
 ok
 ```
-@[1-2]@[3-4]@[5-6]
+@[1]@[2-3]@[4-5]@[6-7]
 
 +++
 
@@ -458,6 +471,12 @@ Murphy's Law
 ------------
 
 Everything that can possibly go wrong WILL go wrong
+- Fail-stop failures
+- Crash failures
+- Omission failures
+- Performance failures
+- Byzantines failures
+
 
 +++
 
