@@ -400,20 +400,18 @@ FWYTYK : time is relative
 <table>
 <tr><td>This</td><td>can print:</td></tr>
 <tr>
-<td>
+<td rowspan="5">
 ```
 a=time.now()
 b=time.now()
 print(a>b)
 ```
 </td>
-<td>
-- `True`
-- `False`
-- `no idea`
-- Error
-Crash
-</td>
+<td>`True`</td>
+<td>`False`</td>
+<td>`no idea`</td>
+<td><span style="color:orange">`Error`</span></td>
+<td><span style="color:red">Crash</span></td>
 </tr>
 </table>
               
@@ -422,15 +420,25 @@ Crash
 FWYTYK : no total order
 -----------------------
 
-This: `int a=1` `a= a+1` `print(a)` can print:
-- `1`
-- `2`
-- `42`
-- ...
-- `0`
-- Error
-- Crash
-
+<table>
+<tr><td>This</td><td>can print:</td></tr>
+<tr>
+<td rowspan="7">
+```
+int a=1
+a= a+1
+print(a)
+```
+</td>
+<td>`1`</td>
+<td>`2`</td>
+<td>`42`</td>
+<td>`0`</td>
+<td>...</td>
+<td><span style="color:orange">`Error`</span></td>
+<td><span style="color:red">Crash</span></td>
+</tr>
+</table>
 +++
 
 Recent Research Area : CRDT - 2011
@@ -446,14 +454,12 @@ Recent Research Area : CRDT - 2011
 +++
 
 
-No mainstream distributed programming environment
--------------------------------------------------
+distributed programming environment
+-----------------------------------
 
-- Except Erlang (31 years old)
+- Nothing mainstream, except Erlang (31 years old)
 - http://learnyousomeerlang.com/distribunomicon
-<table>
-<tr><td>
-```
+```erlang
 (Alice@alexv-pc)
 1> net_kernel:connect_node('Bob@alexv-pc').
 true
@@ -463,11 +469,7 @@ true
 true
 4> receive {hello, from, Other} -> Other ! <<"whats up !">> end.
 <<"whats up !">>
-```
-</td>
-<td>
-@[1]@[2-3]@[3-4]@[5-6] 
-```
+-----------------------------------------
 (Bob@alexv-pc)
 1> nodes().
 ['Alice@alexv-pc']
@@ -477,10 +479,7 @@ true
 Shell got <<"whats up !">>
 ok
 ```
-</td>
-</tr>
-</table>
-@[1]@[2-3]@[4-5]@[6-7]
+@[1,11]@[2-3]@[12-13]@[4-5]@[6-7]@[14-15]@[8-9]@[16-18]
 
 +++
 
@@ -497,8 +496,8 @@ Everything that can possibly go wrong WILL go wrong
 
 +++
 
-But Robot system must be reliable (enough) ?!?!
------------------------------------------------
+But Robot must be reliable ?!?!
+-------------------------------
 
 - Specifications : WHAT the robot has to do.
 - Properties : What the robot has to NOT do.
