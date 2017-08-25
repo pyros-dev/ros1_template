@@ -397,7 +397,7 @@ Distributed Computing Fallacies
 
 FWYTYK : time is relative
 -------------------------
-
+<table>
 <tr><td>This</td><td>can print:</td></tr>
 <tr>
 <td>
@@ -415,6 +415,7 @@ print(a>b)
 Crash
 </td>
 </tr>
+</table>
               
 +++
 
@@ -450,7 +451,7 @@ No mainstream distributed programming environment
 
 - Except Erlang (31 years old)
 - http://learnyousomeerlang.com/distribunomicon
-
+<table>
 <tr><td>
 ```
 (Alice@alexv-pc)
@@ -478,6 +479,7 @@ ok
 ```
 </td>
 </tr>
+</table>
 @[1]@[2-3]@[4-5]@[6-7]
 
 +++
