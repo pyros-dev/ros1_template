@@ -12,4 +12,7 @@ In this package we are following http://wiki.ros.org/BestPractices as much as po
 Are you new to ROS ?
 --------------------
 
-You can get a better idea by looking at the [![GitPitch](https://gitpitch.com/assets/badge.svg)](https://gitpitch.com/pyros-dev/ros1_template/class?grs=github)
+You can get a better idea by looking at the |GitPitch|
+
+.. |GitPitch| image:: https://gitpitch.com/assets/badge.svg
+               :target: https://gitpitch.com/pyros-dev/ros1_template/class?grs=github

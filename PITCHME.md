@@ -73,8 +73,10 @@ Permissive licensing
 
 ---
 
-ROS1 Basics : Do the tutorials !
-================================
+ROS1 Basics
+===========
+
+## Do the tutorials !
 
 - Environment and Tools
 - Packages and Dependencies
@@ -431,9 +433,7 @@ print(a)
 </td>
 </tr>
 <tr><td><pre>1</pre></td></tr>
-<tr><td><pre>2</pre></td></tr>
 <tr><td><pre>42</pre></td></tr>
-<tr><td><pre>0</pre></td></tr>
 <tr><td>...</td></tr>
 <tr><td><span style="color:orange"><pre>Error</pre></span></td></tr>
 <tr><td><span style="color:red">Crash</span></td></tr>
@@ -479,15 +479,15 @@ Shell got <<"whats up !">>
 ok
 ```
 
-@[1,10,11](two Erlang VM)
-@[2-3](connect a node to another)
-@[12-13](check connections from Alice)
-@[4-5](check connections from Bob)
-@[6-7](register current REPL in a variable)
-@[14-15](send message to Alice's REPL)
-@[8-9](receive message and pattern match)
-@[16-18](flush messages)
-@[2,6,8,14](http://learnyousomeerlang.com/distribunomicon)
+@[1,10,11](Two Erlang VMs)
+@[2-3](Connect a node to another)
+@[4-5](Check connections from Alice)
+@[12-13](Check connections from Bob)
+@[6-7](Register current REPL in a variable)
+@[14-15](Send message to Alice's REPL)
+@[8-9](Receive message and pattern match)
+@[16-18](Flush messages)
+@[2,6,8,10,14](http://learnyousomeerlang.com/distribunomicon)
 
 +++
 
