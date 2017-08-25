@@ -401,16 +401,16 @@ FWYTYK : time is relative
 <tr><td>This</td><td>can print:</td></tr>
 <tr>
 <td rowspan="5">
-```
+<pre>
 a=time.now()
 b=time.now()
 print(a>b)
-```
+</pre>
 </td>
-<tr><td>`True`</td></tr>
-<tr><td>`False`</td></tr>
-<tr><td>`no idea`</td></tr>
-<tr><td><span style="color:orange">`Error`</span></td></tr>
+<tr><td><pre>True</pre></td></tr>
+<tr><td><pre>False</pre></td></tr>
+<tr><td><pre>no idea</pre></td></tr>
+<tr><td><span style="color:orange"><pre>Error</pre></span></td></tr>
 <tr><td><span style="color:red">Crash</span></td></tr>
 </table>
               
@@ -423,19 +423,19 @@ FWYTYK : no total order
 <tr><td>This</td><td>can print:</td></tr>
 <tr>
 <td rowspan="7">
-```
+<pre>
 int a=1
 a= a+1
 print(a)
-```
+</pre>
 </td>
 </tr>
-<tr><td>`1`</td></tr>
-<tr><td>`2`</td></tr>
-<tr><td>`42`</td></tr>
-<tr><td>`0`</td></tr>
+<tr><td><pre>1</pre></td></tr>
+<tr><td><pre>2</pre></td></tr>
+<tr><td><pre>42</pre></td></tr>
+<tr><td><pre>0</pre></td></tr>
 <tr><td>...</td></tr>
-<tr><td><span style="color:orange">`Error`</span></td></tr>
+<tr><td><span style="color:orange"><pre>Error</pre></span></td></tr>
 <tr><td><span style="color:red">Crash</span></td></tr>
 </table>
 +++
@@ -457,7 +457,6 @@ distributed programming
 -----------------------
 
 - Nothing mainstream, except Erlang (31 years old)
-- http://learnyousomeerlang.com/distribunomicon
 
 ```erlang
 (Alice@alexv-pc)
@@ -479,7 +478,16 @@ true
 Shell got <<"whats up !">>
 ok
 ```
-@[1,11]@[2-3]@[12-13]@[4-5]@[6-7]@[14-15]@[8-9]@[16-18]
+
+@[1,10,11](two Erlang VM)
+@[2-3](connect a node to another)
+@[12-13](check connections from Alice)
+@[4-5](check connections from Bob)
+@[6-7](register current REPL in a variable)
+@[14-15](send message to Alice's REPL)
+@[8-9](receive message and pattern match)
+@[16-18](flush messages)
+@[2,6,8,14](http://learnyousomeerlang.com/distribunomicon)
 
 +++
 
