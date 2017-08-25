@@ -286,6 +286,18 @@ The ROS way
 - basic network management code
 
 
++++
+
+ROS1 Template
+-------------
+
+- A reference for ROS nodes
+- "pure" C++ library
+- C++ / ROS nodes and package
+- ROS / python nodes and package
+- "pure" python nodes and package
+- Nothing beats DIY !
+
 ---
 
 ROS C++ Exercises
@@ -312,7 +324,8 @@ Make a ROS package
 ------------------
 
 - Follow ROS python tutorials
-- Provide a Number Node
+- Refer to [ros1_pytemplate](https://github.com/pyros-dev/ros1_template/tree/master/ros1_pytemplate) 
+- Implement a Number Node
 - stores a number (initialized at 1)
 - provides reset() for resetting it
 - provides value() for getting its value
@@ -325,6 +338,7 @@ Make a Python package
 ---------------------
 
 - Follow http://packaging.python.org
+- Refer to [cookiecutters](https://github.com/audreyr/cookiecutter)
 - Provide a python package with Accumulator module
 - Accumulator stores a number N (init at 1) and a constant C
 - Accumulator can do inc_mod(m) -> (N + m) mod C
@@ -335,6 +349,7 @@ Turn it into a ROS package
 --------------------------
 
 - Use https://github.com/pyros-dev/catkin_pip
+- Refer to [ros1_pip_pytemplate](https://github.com/pyros-dev/ros1_template/tree/master/ros1_pip_pytemplate))
 - Unify tests
 - Make a ROS Accumulator node
 - Choose a ROS API to provide access to inc_mod
