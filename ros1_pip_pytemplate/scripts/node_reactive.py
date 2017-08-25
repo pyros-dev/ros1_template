@@ -30,9 +30,6 @@ logging.config.dictConfig(
     {
         'version': 1,
         'formatters': {
-            'verbose': {
-                'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
-            },
             'simple': {
                 'format': '%(levelname)s %(name)s:%(message)s'
             },
@@ -44,14 +41,6 @@ logging.config.dictConfig(
                 'formatter': 'simple',
                 'stream': 'ext://sys.stdout',
             },
-            'logfile': {
-                'level': 'DEBUG',
-                'class': 'logging.handlers.RotatingFileHandler',
-                'filename': 'ros1_pip_pytemplate.log',
-                'maxBytes': 1024,
-                'backupCount': 3,
-                'formatter': 'verbose'
-            },
         },
         'loggers': {
             'ros1_pip_pytemplate': {
@@ -62,7 +51,7 @@ logging.config.dictConfig(
         }
     }
 )
-
+# Note : rospy /rosout already configure a logger for the node process.
 
 ##############################################################################
 # ROS isolated in one function
@@ -83,6 +72,8 @@ def node_spin(name, argv=None):
         pyros_setup.configurable_import().configure().activate()
         import rospy
 
+    # This might break if current environment not setup
+    # (catkin devel space sourced, pyros-setup config, or proper venv setup)
     import ros1_pip_pytemplate
 
     # We define the exception here instead of inside the library,
@@ -93,10 +84,10 @@ def node_spin(name, argv=None):
         pass
 
     # Note : log_level here is about rosgraph logs, not python logging logs
-    rospy.init_node(name, argv=None)
+    rospy.init_node(name, argv=argv)
 
     # retrieving ros parameters
-    base_url = rospy.get_param("~base_url")
+    base_url = rospy.get_param("~base_url", None)
 
     httpbin = ros1_pip_pytemplate.Httpbin(base_url=base_url)
 
@@ -180,5 +171,5 @@ if __name__ == '__main__':
         sys.argv.append('_base_url' + ':=' + parsed_known_args.base_url)
 
     # We can now init the node (a ROS node is a process - this process -, that is an instance of the python interpreter)
-    node_spin('httpbin')
+    node_spin('httpbin_reactive', sys.argv)
 

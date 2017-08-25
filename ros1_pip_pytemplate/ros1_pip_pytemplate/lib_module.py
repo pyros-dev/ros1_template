@@ -23,11 +23,13 @@ class Httpbin(object):
     """Unit of testable functionality as a class, calling functionality from other libraries"""
     def __init__(self, base_url=None):
         self.basename = base_url or 'http://httpbin.org'
+        # for http connection pooling, see : http://docs.python-requests.org/en/master/user/advanced/#session-objects
+        self.session = requests.session()
         _logger.debug("Httpbin proxy was initialized!")
 
     def get(self, headers=None, params=None):
         _logger.info("Sending GET request to {0}...".format(self.basename + '/get'))
-        return requests.get(self.basename + '/get', headers=headers or {}, params=params or {})
+        return self.session.get(self.basename + '/get', headers=headers or {}, params=params or {})
 
     # Note a more complete version of this is available there :
     # https://github.com/asmodehn/pyros-schemas-examples/tree/master/pyros_httpbin

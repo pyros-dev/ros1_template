@@ -22,6 +22,7 @@ add_message_files(
   FILES
     Fibonacci.msg
     Arg.msg
+    Args.msg
 )
 
 ##############################################################################

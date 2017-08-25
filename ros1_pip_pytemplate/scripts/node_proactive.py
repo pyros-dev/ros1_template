@@ -83,6 +83,8 @@ def node_spin(name, argv=None):
         pyros_setup.configurable_import().configure().activate()
         import rospy
 
+    # This might break if current environment not setup
+    # (catkin devel space sourced, pyros-setup config, or proper venv setup)
     import ros1_pip_pytemplate
 
     # We define the exception here instead of inside the library,
@@ -93,43 +95,71 @@ def node_spin(name, argv=None):
         pass
 
     # Note : log_level here is about rosgraph logs, not python logging logs
-    rospy.init_node(name, argv=None)
+    rospy.init_node(name, argv=argv)
 
     # retrieving ros parameters
-    base_url = rospy.get_param("~base_url")
+    base_url = rospy.get_param("~base_url", None)
 
     httpbin = ros1_pip_pytemplate.Httpbin(base_url=base_url)
 
     # ROS environment is setup here
     import ros1_template_msgs.msg as ros1_template_msgs
-    import ros1_template_msgs.srv as ros1_template_srvs
 
-    def callback(data):
-        rospy.loginfo("received request:\n  {t}\n{v}".format(
-            t=type(data),
-            v="\n".join(["    " + l for l in str(data).splitlines()])))
-        response = httpbin.get(params={a.key: a.value for a in data.args})
-        if response.status_code == requests.status_codes.codes.OK:
-            resp = ros1_template_srvs.GetResponse(
-                origin=response.json().get('origin'),
-                url=response.json().get('url'),
-                args=[ros1_template_msgs.Arg(key=k, value=v)
-                      for k, v in response.json().get('args').items()],
-            )
-            rospy.loginfo("sending response:\n  {t}\n{v}".format(
-                t=type(resp),
-                v="\n".join(["    " + l for l in str(resp).splitlines()])))
-            return resp
-        else:
-            raise StatusCodeException(response.status_code)
+    #
+    # def callback(data):
+    #     rospy.loginfo("received request:\n  {t}\n{v}".format(
+    #         t=type(data),
+    #         v="\n".join(["    " + l for l in str(data).splitlines()])))
+    #     response = httpbin.get(params={a.key: a.value for a in data.args})
+    #     if response.status_code == requests.status_codes.codes.OK:
+    #         resp = ros1_template_srvs.GetResponse(
+    #             origin=response.json().get('origin'),
+    #             url=response.json().get('url'),
+    #             args=[ros1_template_msgs.Arg(key=k, value=v)
+    #                   for k, v in response.json().get('args').items()],
+    #         )
+    #         rospy.loginfo("sending response:\n  {t}\n{v}".format(
+    #             t=type(resp),
+    #             v="\n".join(["    " + l for l in str(resp).splitlines()])))
+    #         return resp
+    #     else:
+    #         raise StatusCodeException(response.status_code)
 
-    # setting up the proxy service
-    rospy.Service('~get', ros1_template_srvs.Get, callback)
 
-    # Just spin for ever, everything else is reactive !
-    rospy.spin()
+    # setting up the publisher to the topic
+    # This is not hte most appropriate interface for this, but it illustrate
+    # the *other way* of handling communicating between two nodes.
+    fibonacci_pub = rospy.Publisher('~get', ros1_template_msgs.Args, queue_size=1, latch=True)
 
-    rospy.logwarn("{0} is shutting down !".format(rospy.get_name()))
+    rate = rospy.Rate(1)  # 1Hz
+
+    prev_webargs={}
+
+    try:
+        # Just spin and publish for ever, be proactive !
+        while not rospy.is_shutdown():
+            # getting our params
+            rosargs = rospy.get_param('~args', {})
+            # calling httpbin via proxy class:
+            response = httpbin.get(params={k: v for k, v in rosargs.items()})
+            if response.status_code == requests.codes.OK:
+                # retrieving the returned args
+                webargs = response.json().get("args")
+                if webargs != prev_webargs:
+                    # building the message we need to broadcast
+                    fib_number = [ros1_template_msgs.Arg(key=k, value=v) for k, v in webargs.items()]
+                    # logging it first
+                    rospy.loginfo("publishing : {0}".format(fib_number))
+                    # publishing it
+                    fibonacci_pub.publish(ros1_template_msgs.Args(fib_number))
+                    prev_webargs = webargs
+            # sleeping a bit to not burn the CPU
+            rate.sleep()
+
+    except Exception as exc:
+        rospy.logwarn("{0} detected in node {1} : {2}".format(type(exc), rospy.get_name(), str(exc)))
+    finally:
+        rospy.logwarn("{0} is shutting down !".format(rospy.get_name()))
 
 
 ##############################################################################
@@ -180,5 +210,7 @@ if __name__ == '__main__':
         sys.argv.append('_base_url' + ':=' + parsed_known_args.base_url)
 
     # We can now init the node (a ROS node is a process - this process -, that is an instance of the python interpreter)
-    node_spin('httpbin')
+    node_spin('httpbin_proactive', sys.argv)
+
+    # TODO : ddynamice_reconfigure for argument to send to httpbin webservice
 
