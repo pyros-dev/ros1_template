@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<package>
+<package format="2">
   <name>ros1_pip_pytemplate</name>
   <version>0.1.1</version>
   <description>
