@@ -317,6 +317,64 @@ ROS C++ Exercises
 - Make a C++ "package" without ROS
 - Alex TODO
 
++++
+
+Make a C++ project
+------------------
+
+- CMake project
+- Sum last x numbers library
+- Demo Executable
+- Add catkin and ROS package
+- Add tests
+
++++
+
+Make a ROS package
+------------------
+
+- Nodelet with standalone launcher
+- Publish config file parameter
+- Publish dyn. reconfigure parameter
+- Add rostest which fails for negative number
+
++++
+
+Combine packages
+----------------
+
+- Use library package in ROS package
+- Publish sum of config parameter
+- Add subscriber as additional input
+- Add logging, cout and rosconsole
+- Separate logging file
+
++++
+
+Logging
+-------
+
+- Add logging, cout and rosconsole
+- Separate logging file for package
+
++++
+
+pub-sub fun
+-----------
+
+- Nodelets subscring in a circle
+- Publish sum of input from before
+- Trigger with command line publish
+
++++
+
+pub-sub fun 2
+-----------
+
+- Two nodelets, pub-sub each other
+- Publish sum of numbers before
+- Synchronized publish after each other
+
 ---
 
 ROS Python Exercises
