@@ -33,6 +33,9 @@
   <!-- only for embedded tests -->
   <run_depend>python-mock</run_depend>
 
+  <doc_depend>python-catkin-sphinx</doc_depend>
+  <doc_depend>python-catkin-pkg</doc_depend>
+
   <export>
     <rosdoc config="rosdoc.yaml"/>
   </export>
