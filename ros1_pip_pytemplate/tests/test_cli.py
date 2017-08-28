@@ -96,7 +96,7 @@ class TestCLI(object):  # not a unittest.TestCase, since we rely on pytest capsy
         assert "STATUS: 200" in out
         assert "args: {arg1: val1, arg2: val2}" in out
         assert "origin: " in out  # origin will depend on machine
-        assert "url: http://httpbin.org/get?arg1=val1&arg2=val2" in out
+        assert "url: http://httpbin.org/get?arg1=val1&arg2=val2" or "url: http://httpbin.org/get?arg2=val2&arg1=val1" in out
 
     def test_bad_arg(self, capsys):
         # redirecting stdout and stderr since we are testing a script running on command line
