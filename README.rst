@@ -21,14 +21,13 @@ You can get a better idea by looking at the |GitPitch|
 CI Status
 ---------
 
-======  =======  ===================  ====================
-    Travis                         OSRF
----------------  -----------------------------------------
-    ROS LTS            Indigo               Kinetic
-===============  ===================  ====================
-|travis-devel|   |osrf-indigo-devel|  |osrf-kinetic-devel|
-|travis-doc|     |osrf-indigo-doc|    |osrf-kinetic-doc|
-===============  ===================  ====================
++-------+--------------+-------------------+--------------------+
+|       |   Travis     |   OSRF Indigo     |    OSRF Kinetic    |
++=======+==============+===================+====================+
+|*build*||travis-devel|||osrf-indigo-devel|||osrf-kinetic-devel||
++-------+--------------+-------------------+--------------------+
+|*doc*  ||travis-doc|  ||osrf-indigo-doc|  ||osrf-kinetic-doc|  |
++-------+--------------+-------------------+--------------------+
 
 .. |travis-devel| image:: https://travis-ci.org/pyros-dev/ros1_template.svg?branch=master
                           :target: https://travis-ci.org/pyros-dev/ros1_template

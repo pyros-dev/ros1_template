@@ -3,3 +3,5 @@ build
 .cache
 *.egg-info
 .tox
+doc/manifest.yaml
+doc/html
