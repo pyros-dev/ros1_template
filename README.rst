@@ -1,10 +1,6 @@
 ROS1 Template
 =============
 
-.. image:: https://travis-ci.org/pyros-dev/ros1_template.svg?branch=master
-    :target: https://travis-ci.org/pyros-dev/ros1_template
-
-
 This package is a template to be used as a reference when creating a new ROS1 node to be used with catkin.
 In this package we are following http://wiki.ros.org/BestPractices as much as possible, where it makes sense.
 
@@ -26,7 +22,7 @@ CI Status
 +=======+==============+===================+====================+
 |*build*||travis-devel|||osrf-indigo-devel|||osrf-kinetic-devel||
 +-------+--------------+-------------------+--------------------+
-|*doc*  ||travis-doc|  ||osrf-indigo-doc|  ||osrf-kinetic-doc|  |
+|*doc*  |              ||osrf-indigo-doc|  ||osrf-kinetic-doc|  |
 +-------+--------------+-------------------+--------------------+
 
 .. |travis-devel| image:: https://travis-ci.org/pyros-dev/ros1_template.svg?branch=master
@@ -46,3 +42,9 @@ CI Status
 
 .. |osrf-kinetic-doc| image:: http://build.ros.org/buildStatus/icon?job=Idoc__ros1_template__ubuntu_xenial_amd64
                         :target: http://build.ros.org/job/Idoc__ros1_template__ubuntu_xenial_amd64/
+
+
+Releases Status
+---------------
+
+No package releases will be made from this package, as it is mostly just an empty template.
