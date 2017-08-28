@@ -314,8 +314,11 @@ ROS1 Template
 ROS C++ Exercises
 =================
 
-- Make a C++ "package" without ROS
-- Alex TODO
+- Make a C++ package "without" ROS
+- Make ROS package
+- Combine packages
+- Logging
+- Nodelet interaction
 
 +++
 
