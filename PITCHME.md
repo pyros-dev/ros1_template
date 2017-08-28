@@ -369,9 +369,20 @@ Make a client python script
 Mutate client into a node
 -------------------------
 
-- Can we improve the communication
+- Can we improve the communication ?
 - Is it really better ?
 - What are the problems or risks ? 
+
++++
+
+
+Break
+-----
+
+- Questions ?
+- Do the exercises !
+- In groups if you want.
+- We shall meet again...
 
 +++
 
