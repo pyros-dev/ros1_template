@@ -16,3 +16,34 @@ You can get a better idea by looking at the |GitPitch|
 
 .. |GitPitch| image:: https://gitpitch.com/assets/badge.svg
                :target: https://gitpitch.com/pyros-dev/ros1_template/class?grs=github
+
+
+CI Status
+---------
+
+======  =======  ===================  ====================
+    Travis                         OSRF
+---------------  -----------------------------------------
+    ROS LTS            Indigo               Kinetic
+===============  ===================  ====================
+|travis-devel|   |osrf-indigo-devel|  |osrf-kinetic-devel|
+|travis-doc|     |osrf-indigo-doc|    |osrf-kinetic-doc|
+===============  ===================  ====================
+
+.. |travis-devel| image:: https://travis-ci.org/pyros-dev/ros1_template.svg?branch=master
+                          :target: https://travis-ci.org/pyros-dev/ros1_template
+
+.. |travis-doc| image:: https://travis-ci.org/pyros-dev/ros1_template.svg?branch=master
+                          :target: https://travis-ci.org/pyros-dev/ros1_template
+
+.. |osrf-indigo-devel| image:: http://build.ros.org/buildStatus/icon?job=Idev__ros1_template__ubuntu_trusty_amd64
+                        :target: http://build.ros.org/job/Idev__ros1_template__ubuntu_trusty_amd64/
+
+.. |osrf-indigo-doc| image:: http://build.ros.org/buildStatus/icon?job=Idoc__ros1_template__ubuntu_trusty_amd64
+                        :target: http://build.ros.org/job/Idoc__ros1_template__ubuntu_trusty_amd64/
+
+.. |osrf-kinetic-devel| image:: http://build.ros.org/buildStatus/icon?job=Idev__ros1_template__ubuntu_xenial_amd64
+                        :target: http://build.ros.org/job/Idev__ros1_template__ubuntu_xenial_amd64/
+
+.. |osrf-kinetic-doc| image:: http://build.ros.org/buildStatus/icon?job=Idoc__ros1_template__ubuntu_xenial_amd64
+                        :target: http://build.ros.org/job/Idoc__ros1_template__ubuntu_xenial_amd64/
