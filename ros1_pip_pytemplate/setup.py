@@ -27,14 +27,18 @@ setup(
         # Look for it in https://github.com/ros/rosdistro/blob/master/python.yaml
         # From source, we rely on basic python/pip system for it however (and we don't rely on ros dependency system).
         'requests',
+        # same for pyyaml
+        'pyyaml',
+        # only for embedded tests
+        'mock',
     ],
     tests_require=[
-        'pytest'
+        'pytest',
     ],
     scripts=[
-        'scripts/httpbin_cli.py',
-        'scripts/httpbin_node.py',
-        'scripts/httpbin_launch.py',
+        'scripts/cli.py',
+        'scripts/node_reactive.py',
+        'scripts/node_proactive.py',
     ],
     author="AlexV",
     author_email="asmodehn@gmail.com",

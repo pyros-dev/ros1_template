@@ -79,5 +79,14 @@ Usage from python
 
 To create a pip package from this template, you should follow https://packaging.python.org/tutorials/distributing-packages
 
+ROS Integration
+---------------
+
+This package can integrate in a ROS system, by relying on catkin (with catkin_pip) and launch files.
+Other launch files can launch it (including the provided launch file, or directly calling the node script) and use this node's provided ROS interface.
+
 Note that this template can be used when porting existing pip packages to ROS.
+Other benefits include being able to test the whole logic in different virtual environments (testing different version of dependencies for example),
+before testing the behavior of its ROS interface (which can be done separately on a third-party patched release repo)
+
 More documentation can be found at http://docs.ros.org/kinetic/api/catkin_pip/html/

@@ -21,6 +21,8 @@ add_message_files(
     msg
   FILES
     Fibonacci.msg
+    Arg.msg
+    Args.msg
 )
 
 ##############################################################################
@@ -32,6 +34,7 @@ add_service_files(
     srv
   FILES
     Answer.srv
+    Get.srv
 )
 
 generate_messages()
