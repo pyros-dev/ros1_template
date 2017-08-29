@@ -349,8 +349,6 @@ Combine packages
 - Use library package in ROS package
 - Publish sum of config parameter
 - Add subscriber as additional input
-- Add logging, cout and rosconsole
-- Separate logging file
 
 +++
 
