@@ -20,8 +20,8 @@ public:
   /**
    * Constructor
    *
-   * @param node_handle node node_handle
-   * @param topic_name subscriber topic name
+   * @param node_handle  NodeHandle the subscriber will be registered under
+   * @param topic_name Subscriber topic name
    */
   Subscriber(ros::NodeHandle& node_handle, const std::string& topic_name);
 
@@ -32,7 +32,9 @@ public:
 
 protected:
   /**
-   * Publish the next Fibonacci number
+   * Callback for next Fibonacci number
+   * 
+   * @param number Msg with next number
    */
   virtual void callback(const std_msgs::Int32Ptr& number);
 
@@ -43,6 +45,7 @@ protected:
   {
   }
 
+  /// Actual subscriber
   ros::Subscriber subscriber_;
 };
 typedef std::shared_ptr<Subscriber> SubscriberPtr;
