@@ -69,11 +69,12 @@ if __name__ == '__main__':
 
     # retrieving ros parameters
     fib_init = rospy.get_param("~fib_init")
+    fib_max = rospy.get_param("~fibonacci_max_number")
 
     # setting up the publisher to the topic
     fibonacci_pub = rospy.Publisher('~fibonacci', ros1_template_msgs.Fibonacci, queue_size=1)
 
-    fib = ros1_pytemplate.Fibonacci(fib_init[0], fib_init[1])
+    fib = ros1_pytemplate.Fibonacci(fib_init[0], fib_init[1], max=fib_max)
 
     rate = rospy.Rate(1)  # 1Hz
 
