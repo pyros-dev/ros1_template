@@ -22,6 +22,8 @@ public:
    * Constructor
    *
    * @param atomic_fibonacci shared pointer to AtomicFibonacci object
+   * @param node_handle NodeHandle the publisher will be registered under
+   * @param output_topic_name publish topic name
    */
   explicit Publisher(ros1_cpptemplate::AtomicFibonacciPtr atomic_fibonacci,
                      ros::NodeHandle& node_handle,

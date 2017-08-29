@@ -23,6 +23,8 @@ public:
    * Constructor
    *
    * @param atomic_fibonacci shared pointer to AtomicFibonacci object
+   * @param node_handle NodeHandle the service will be registered under
+   * @param service_topic_name service topic name
    */
   explicit Service(ros1_cpptemplate::AtomicFibonacciPtr atomic_fibonacci,
                      ros::NodeHandle& node_handle,

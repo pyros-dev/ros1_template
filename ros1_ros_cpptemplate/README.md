@@ -1,8 +1,8 @@
 <!--- Kind of hackish way to make it work on github and Doxygen) -->
 
-[//]: # (/*! \mainpage ( ROS1 CPP Template */)
+[//]: # (/*! \mainpage ( ROS1 ROS CPP Template */)
 
-ROS1 CPP Template
+ROS1 ROS CPP Template
 =================
 
 This package is a template for a ROS nodelet package depending on another C++ library package for implementation details.<br>
@@ -27,6 +27,10 @@ Usage
 - run all the tests::
 
     $ catkin run_tests
+
+- build the documentation::
+
+    $ rosdoc_lite src/ros1_template/ros1_ros_cpptemplate -o src/ros1_template/ros1_ros_cpptemplate/doc/
 
 - launch the demo application::
 
