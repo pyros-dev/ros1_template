@@ -2,3 +2,4 @@
 fib_init:
 - 0
 - 2
+fibonacci_max_number: 1024
