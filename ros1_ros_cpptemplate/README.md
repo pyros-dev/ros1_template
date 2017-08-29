@@ -5,9 +5,10 @@
 ROS1 CPP Template
 =================
 
-This package is a template for a ROS nodelet package depending on another C++ library package for implementation details.
+This package is a template for a ROS nodelet package depending on another C++ library package for implementation details.<br>
 It is supposed to show the ROS part if using a separate ROS and C++ library packages.
-In this package we are following http://wiki.ros.org/BestPractices as much as possible, where it makes sense.
+
+In this package we are following http://wiki.ros.org/BestPractices as much as possible, where it makes sense.<br>
 
 Usage
 -----
