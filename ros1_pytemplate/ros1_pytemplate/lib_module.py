@@ -12,7 +12,12 @@ _logger.addHandler(logging.NullHandler())
 
 
 class Answer(object):
-    """Unit of testable functionality as a class"""
+    """Unit of testable functionality as a class
+    Tested documentation:
+    >>> a=Answer(6)
+    >>> a.retrieve()
+    42
+    """
     def __init__(self, answer_portion):
         self.part = answer_portion
         _logger.debug("The Answer was initialized!")
@@ -23,7 +28,12 @@ class Answer(object):
 
 
 class Fibonacci(object):
-    """Unit of testable functionality as an iterator"""
+    """Unit of testable functionality as an iterator
+    Tested documentation:
+    >>> fib=Fibonacci(6,7)
+    >>> fib.next()
+    13
+    """
     def __init__(self, init_first, init_second, max=256):
         self.n = init_first
         self.m = init_second

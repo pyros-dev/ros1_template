@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
-# ros1_pytemplate documentation build configuration file, created by
-# sphinx-quickstart on Mon Aug 28 14:55:30 2017.
+# ros1_pip_pytemplate documentation build configuration file, created by
+# sphinx-quickstart on Mon Aug 28 14:45:54 2017.
 #
 # This file is execfile()d with the current directory set to its
 # containing dir.
@@ -19,9 +19,9 @@ import os
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #sys.path.insert(0, os.path.abspath('.'))
-sys.path.insert(0, os.path.abspath('..'))  # relative to project root
+sys.path.insert(0, os.path.abspath('..'))
 
-from ros1_pytemplate._version import __version__
+from ros1_pip_pytemplate._version import __version__
 
 # -- General configuration ------------------------------------------------
 
@@ -52,7 +52,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'ros1_pytemplate'
+project = u'ros1_pip_pytemplate'
 copyright = u'2017, AlexV'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -114,7 +114,6 @@ html_theme_path = [catkin_sphinx.get_theme_path()]
 
 # Use ROS theme
 html_theme = 'ros-theme'
-
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
@@ -192,7 +191,7 @@ html_static_path = ['_static']
 #html_file_suffix = None
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'ros1_pytemplatedoc'
+htmlhelp_basename = 'ros1_pip_pytemplatedoc'
 
 
 # -- Options for LaTeX output ---------------------------------------------
@@ -212,7 +211,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-  ('index', 'ros1_pytemplate.tex', u'ros1\\_pytemplate Documentation',
+  ('index', 'ros1_pip_pytemplate.tex', u'ros1\\_pip\\_pytemplate Documentation',
    u'AlexV', 'manual'),
 ]
 
@@ -242,7 +241,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'ros1_pytemplate', u'ros1_pytemplate Documentation',
+    ('index', 'ros1_pip_pytemplate', u'ros1_pip_pytemplate Documentation',
      [u'AlexV'], 1)
 ]
 
@@ -256,8 +255,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  ('index', 'ros1_pytemplate', u'ros1_pytemplate Documentation',
-   u'AlexV', 'ros1_pytemplate', 'One line description of project.',
+  ('index', 'ros1_pip_pytemplate', u'ros1_pip_pytemplate Documentation',
+   u'AlexV', 'ros1_pip_pytemplate', 'One line description of project.',
    'Miscellaneous'),
 ]
 

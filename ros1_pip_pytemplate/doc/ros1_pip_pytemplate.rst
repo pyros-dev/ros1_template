@@ -1,5 +1,5 @@
 ros1_pip_pytemplate package
-=========================
+===========================
 
 Subpackages
 -----------
@@ -12,7 +12,7 @@ Submodules
 ----------
 
 ros1_pip_pytemplate.lib_module module
------------------------------------
+-------------------------------------
 
 .. automodule:: ros1_pip_pytemplate.lib_module
     :members:
