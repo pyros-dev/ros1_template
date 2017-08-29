@@ -5,3 +5,4 @@ ros1_pip_pytemplate
    :maxdepth: 4
 
    ros1_pip_pytemplate
+   tests
