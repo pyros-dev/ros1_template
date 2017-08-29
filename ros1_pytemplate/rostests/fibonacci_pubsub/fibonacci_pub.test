@@ -1,6 +1,7 @@
 <launch>
   <node pkg="ros1_pytemplate" type="fibonacci_pub_node.py" name="fibonacci_pub">
     <param name="fib_init" value="[0, 1]"/>
+    <param name="fibonacci_max_number" value="256"/>
   </node>
   <test test-name="test_fibonacci_pub" pkg="ros1_pytemplate" type="test_fibonacci_pub.py"/>
 </launch>

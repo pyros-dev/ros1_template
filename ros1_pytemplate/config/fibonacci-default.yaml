@@ -3,3 +3,4 @@
 fib_init:
 - 0
 - 1
+fibonacci_max_number: 256

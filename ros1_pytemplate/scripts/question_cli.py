@@ -10,6 +10,7 @@ from __future__ import absolute_import, division, print_function
 ##############################################################################
 import os
 import sys
+import argparse
 import ros1_pytemplate
 
 import logging.config
@@ -56,11 +57,38 @@ logging.config.dictConfig(
 )
 
 
+def show_description():
+    return "ros template test script"
+
+
+def show_usage(cmd=None):
+    cmd = os.path.relpath(sys.argv[0], os.getcwd()) if cmd is None else cmd
+    return "{0} [-h|--help] [--version]".format(cmd)
+
+
+def show_epilog():
+    return "never enough testing"
+
 ##############################################################################
 # Main
 ##############################################################################
 
 if __name__ == '__main__':
+    # Ref : https://docs.python.org/2/library/argparse
+    parser = argparse.ArgumentParser(description=show_description(),
+                                     usage=show_usage(),
+                                     epilog=show_epilog(),
+                                     formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+
+    parser.add_argument("--version", action='store_true', help="display the version number and exits.")
+
+    parsed_known_args, unknown_args = parser.parse_known_args(sys.argv[1:])
+
+    if parsed_known_args.version:
+        print("ROS1 pytemplate version " + ros1_pytemplate.__version__ +
+              "\n from " + ros1_pytemplate.__file__)
+        sys.exit(0)
+
     logger = logging.getLogger("question")
     answer = ros1_pytemplate.Answer(6)
     logger.info(answer.retrieve())

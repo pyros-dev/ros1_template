@@ -20,6 +20,7 @@ import sys
 import time
 
 import rospy
+import ros1_pytemplate
 import ros1_template_msgs.msg as ros1_template_msgs
 
 
@@ -28,12 +29,12 @@ import ros1_template_msgs.msg as ros1_template_msgs
 ##############################################################################
 
 def show_description():
-    return "ros template client test script"
+    return "fibonacci subscriber node"
 
 
-def show_usage(cmd):
-    cmd = cmd or sys.argv[0]
-    return "{0} <origin_url> <replica_url> [--async]".format(cmd)
+def show_usage(cmd=None):
+    cmd = os.path.relpath(sys.argv[0], os.getcwd()) if cmd is None else cmd
+    return "{0} [-h|--help] [--version]".format(cmd)
 
 
 def show_epilog():
@@ -52,13 +53,18 @@ if __name__ == '__main__':
 
     # Ref : https://docs.python.org/2/library/argparse
     parser = argparse.ArgumentParser(description=show_description(),
-                                     usage=show_usage(args[0]),
+                                     usage=show_usage(),
                                      epilog=show_epilog(),
                                      formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
-    parsed_args = parser.parse_args(args[1:])
+    parser.add_argument("--version", action='store_true', help="display the version number and exits.")
 
-    # Here we have parsed all CLI arguments
+    parsed_known_args, unknown_args = parser.parse_known_args(sys.argv[1:])
+
+    if parsed_known_args.version:
+        print("ROS1 pytemplate version " + ros1_pytemplate.__version__ +
+              "\n from " + ros1_pytemplate.__file__)
+        sys.exit(0)
 
     # We can now init the node (a ROS node is a process, that is an instance of the python interpreter)
     rospy.init_node('fibonacci_sub_node')
