@@ -37,11 +37,11 @@ CI Status
 .. |osrf-indigo-doc| image:: http://build.ros.org/buildStatus/icon?job=Idoc__ros1_template__ubuntu_trusty_amd64
                         :target: http://build.ros.org/job/Idoc__ros1_template__ubuntu_trusty_amd64/
 
-.. |osrf-kinetic-devel| image:: http://build.ros.org/buildStatus/icon?job=Idev__ros1_template__ubuntu_xenial_amd64
-                        :target: http://build.ros.org/job/Idev__ros1_template__ubuntu_xenial_amd64/
+.. |osrf-kinetic-devel| image:: http://build.ros.org/buildStatus/icon?job=Kdev__ros1_template__ubuntu_xenial_amd64
+                        :target: http://build.ros.org/job/Kdev__ros1_template__ubuntu_xenial_amd64/
 
-.. |osrf-kinetic-doc| image:: http://build.ros.org/buildStatus/icon?job=Idoc__ros1_template__ubuntu_xenial_amd64
-                        :target: http://build.ros.org/job/Idoc__ros1_template__ubuntu_xenial_amd64/
+.. |osrf-kinetic-doc| image:: http://build.ros.org/buildStatus/icon?job=Kdoc__ros1_template__ubuntu_xenial_amd64
+                        :target: http://build.ros.org/job/Kdoc__ros1_template__ubuntu_xenial_amd64/
 
 
 Releases Status
