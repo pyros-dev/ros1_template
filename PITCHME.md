@@ -27,7 +27,7 @@ A set of C++ tools
 
 C++ does NOT have "standard" tools (like python)
 
-ROS provides : 
+ROS provides :
 - catkin => CMake made easy
 - rosdoc => doxygen made easy
 - rostest => gtest made easy
@@ -125,7 +125,7 @@ ROS1 Dependencies
 `rosdep resolve depkey`
 
 - enable cross-platform package management
-- <span style="color:green">GOOD</span> : can edit github's `ros/rosdistro` repository to add dependencies 
+- <span style="color:green">GOOD</span> : can edit github's `ros/rosdistro` repository to add dependencies
 - <span style="color:red">BAD</span> : currently can confuse ROS packages and dependencies (BUG)
 
 +++
@@ -139,7 +139,18 @@ ROS1 Nodes
 - <span style="color:red">BAD</span> : special `rosmaster`, `rosout` nodes
 - <span style="color:red">BAD</span> : pollute your process global state
 - <span style="color:red">BAD</span> : async programming can be VERY confusing
-C++ has nodelets, which means that one process has N node(let)s
+
++++
+
+ROS1 Nodelets
+----------
+
+`class MyNodeletClass : public nodelet::Nodelet`
+- declares the current class a nodelet
+- <span style="color:green">GOOD</span> : zero copy passing between nodelets
+- <span style="color:green">GOOD</span> : easily portable from node
+- <span style="color:red">BAD</span> : multithreaded if not purely callback based
+- <span style="color:red">BAD</span> : debugging a bit harder (multiple nodelets in same process)
 
 +++
 
@@ -151,7 +162,7 @@ ROS1 Launchers
 - provides a centralised launch point for multiple process/nodes
 - <span style="color:green">GOOD</span> : can load yaml files to set parameters for the system
 - <span style="color:green">GOOD</span> : a launch file can include another
-- <span style="color:red">BAD</span> : namespaces logic and remapping is not as simple as it could 
+- <span style="color:red">BAD</span> : namespaces logic and remapping is not as simple as it could
 - <span style="color:red">BAD</span> : XML, but more programming-style logic is needed
 
 +++
@@ -163,7 +174,7 @@ ROS1 Parameters
 
 - get/set parameters for the running ROS system
 - <span style="color:green">GOOD</span> : centralised structured data
-- <span style="color:green">GOOD</span> : dynamically configurable 
+- <span style="color:green">GOOD</span> : dynamically configurable
 
 +++
 
@@ -230,7 +241,7 @@ Mixing C++ & Python
 - Logs  : Boost.Log, log4cpp, log4cxx, etc.
 - Style : astyle, uncrustify, etc.
 - Analysis: cppcheck, cpplint, clang, etc.
-- packaging: deb, rpm, CPack, etc. 
+- packaging: deb, rpm, CPack, etc.
 
 +++
 
@@ -303,8 +314,69 @@ ROS1 Template
 ROS C++ Exercises
 =================
 
-- Make a C++ "package" without ROS
-- Alex TODO
+- Make a C++ package "without" ROS
+- Make ROS package
+- Combine packages
+- Logging
+- Nodelet interaction
+
++++
+
+Make a C++ project
+------------------
+
+- CMake project
+- Sum last x numbers library
+- Demo Executable
+- Add catkin and ROS package
+- Add tests
+
++++
+
+Make a ROS package
+------------------
+
+- Nodelet with standalone launcher
+- Publish config file parameter
+- Publish dyn. reconfigure parameter
+- Add rostest which fails for negative number
+
++++
+
+Combine packages
+----------------
+
+- Use library package in ROS package
+- Publish sum of config parameter
+- Add subscriber as additional input
+- Add logging, cout and rosconsole
+- Separate logging file
+
++++
+
+Logging
+-------
+
+- Add logging, cout and rosconsole
+- Separate logging file for package
+
++++
+
+pub-sub fun
+-----------
+
+- Nodelets subscring in a circle
+- Publish sum of input from before
+- Trigger with command line publish
+
++++
+
+pub-sub fun 2
+-----------
+
+- Two nodelets, pub-sub each other
+- Publish sum of numbers before
+- Synchronized publish after each other
 
 ---
 
@@ -324,7 +396,7 @@ Make a ROS package
 ------------------
 
 - Follow ROS python tutorials
-- Refer to [ros1_pytemplate](https://github.com/pyros-dev/ros1_template/tree/master/ros1_pytemplate) 
+- Refer to [ros1_pytemplate](https://github.com/pyros-dev/ros1_template/tree/master/ros1_pytemplate)
 - Implement a Number Node
 - stores a number (initialized at 1)
 - provides reset() for resetting it
@@ -371,7 +443,7 @@ Mutate client into a node
 
 - Can we improve the communication ?
 - Is it really better ?
-- What are the problems or risks ? 
+- What are the problems or risks ?
 
 +++
 
@@ -392,7 +464,7 @@ Review
 - We (just) implemented Fibonacci
 - What can we say about the code ?
 - What can we way about the potential bugs ?
-- How can we explain it to someone else ? 
+- How can we explain it to someone else ?
 
 ---
 
@@ -441,7 +513,7 @@ print(a>b)
 <tr><td><span style="color:orange"><pre>Error</pre></span></td></tr>
 <tr><td><span style="color:red">Crash</span></td></tr>
 </table>
-              
+
 +++
 
 FWYTYK : no total order
@@ -479,7 +551,7 @@ Recent Research Area : CRDT - 2011
 +++
 
 
-distributed programming 
+distributed programming
 -----------------------
 
 - Nothing mainstream, except Erlang (31 years old)
@@ -538,4 +610,4 @@ But Robot must be reliable ?!?!
 - Formal Specs : HOW the robot does it.
 - Model Checking : Formal spec is respected.
 - Property testing : Properties are respected
-- Validation testing : Specification is respected. 
+- Validation testing : Specification is respected.
