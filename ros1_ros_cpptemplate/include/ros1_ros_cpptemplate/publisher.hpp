@@ -49,7 +49,7 @@ protected:
 
   /// AtomicFibonacci supplier (shared)
   ros1_cpptemplate::AtomicFibonacciPtr atomic_fibonacci_;
-  
+
   /// Actual publisher
   ros::Publisher publisher_;
 };

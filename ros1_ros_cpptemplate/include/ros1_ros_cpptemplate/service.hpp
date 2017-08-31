@@ -51,7 +51,7 @@ protected:
 
   /// AtomicFibonacci supplier (shared)
   ros1_cpptemplate::AtomicFibonacciPtr atomic_fibonacci_;
-  
+
   /// Actual service
   ros::ServiceServer service_;
 };
