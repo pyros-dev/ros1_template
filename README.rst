@@ -11,7 +11,7 @@ Are you new to ROS ?
 You can get a better idea by looking at the |GitPitch|
 
 .. |GitPitch| image:: https://gitpitch.com/assets/badge.svg
-               :target: https://gitpitch.com/pyros-dev/ros1_template/class?grs=github
+               :target: https://gitpitch.com/pyros-dev/ros1_template?grs=github
 
 
 CI Status
