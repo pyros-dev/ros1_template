@@ -22,7 +22,9 @@ public:
   /**
    * Constructor
    *
-   * @param atomic_fibonacci shared pointer to AtomicFibonacci object
+   * @param atomic_fibonacci Shared pointer to AtomicFibonacci object
+   * @param node_handle NodeHandle the service will be registered under
+   * @param service_topic_name Service topic name
    */
   explicit Service(ros1_cpptemplate::AtomicFibonacciPtr atomic_fibonacci,
                      ros::NodeHandle& node_handle,
@@ -47,7 +49,10 @@ protected:
   virtual bool serve(ros1_template_msgs::Answer::Request &request,
                      ros1_template_msgs::Answer::Response &response);
 
+  /// AtomicFibonacci supplier (shared)
   ros1_cpptemplate::AtomicFibonacciPtr atomic_fibonacci_;
+
+  /// Actual service
   ros::ServiceServer service_;
 };
 typedef std::shared_ptr<Service> ServicePtr;

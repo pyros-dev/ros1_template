@@ -10,7 +10,8 @@ namespace ros1_ros_cpptemplate
 using ros1_cpptemplate::AtomicFibonacci;
 using ros1_cpptemplate::AtomicFibonacciPtr;
 
-Service::Service(AtomicFibonacciPtr atomic_fibonacci, ros::NodeHandle& node_handle,
+Service::Service(ros1_cpptemplate::AtomicFibonacciPtr atomic_fibonacci,
+                 ros::NodeHandle& node_handle,
                  const std::string& service_topic_name)
 {
   int queue_size = 1;

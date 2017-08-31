@@ -20,9 +20,10 @@ public:
    * If \p max_number is reached the sqeuence is reset to (<b>0, 1</b>)
    * making \c last_number_ \b 0 and \c current_number_ \b 1
    *
-   * @param last_number initial last Fibonacci number
-   * @param current_number initial current Fibonacci number
+   * @param last_number Initial last Fibonacci number
+   * @param current_number Initial current Fibonacci number
    * @param max_number max_number after the sequence gets reset to (0, 1)
+   * @param name Name used for logging prefix
    */
   AtomicFibonacci(const int& last_number, const int& current_number,
                   const int& max_number = 256, const std::string& name = "");
@@ -32,15 +33,15 @@ public:
    */
   virtual ~AtomicFibonacci();
 
-    /**
+  /**
    * Get the next Fibonacci number and log it
-   * @return next Fibonacci number
+   * @return Next Fibonacci number
    */
   virtual int nextAndLog(const std::string& log_prefix = "");
 
   /**
    * Get the next Fibonacci number
-   * @return next Fibonacci number
+   * @return Next Fibonacci number
    */
   virtual int next();
 
@@ -48,10 +49,14 @@ public:
    * Get the Fibonacci number after the next Fibonacci number
    * This advances the sequence of the internal state by two steps
    * (bascially it calls next() twice)
-   * @return next next Fibonacci number
+   * @return Next next Fibonacci number
    */
   virtual int nextNext();
 
+  /**
+   * Set the max Fibonacci number before reset to (0, 1)
+   * @param value New value
+   */
   virtual void setMax(const int& value);
 
 protected:
@@ -68,20 +73,20 @@ protected:
 private:
   /**
    * Get the next Fibonacci number without locking
-   * @return next Fibonacci number
+   * @return Next Fibonacci number
    */
   int next_();
 
-  /// last Fibonacci number
+  /// Last Fibonacci number
   int last_number_;
 
-  /// current Fibonacci number
+  /// Current Fibonacci number
   int current_number_;
 
-  /// max Fibonacci number before reseting the sequence
+  /// Max Fibonacci number before reseting the sequence
   std::atomic<int> max_number_;
 
-  /// log prefix
+  /// Log prefix
   std::string log_prefix_;
 };
 typedef std::shared_ptr<AtomicFibonacci> AtomicFibonacciPtr;

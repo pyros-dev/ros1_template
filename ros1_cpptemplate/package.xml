@@ -17,6 +17,6 @@
   <depend>rosconsole</depend>
 
   <export>
-    <doc> TODO</doc>
+    <rosdoc config="doc/rosdoc.yaml" />
   </export>
 </package>

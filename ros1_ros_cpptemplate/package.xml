@@ -22,6 +22,6 @@
 
   <export>
     <nodelet plugin="${prefix}/nodelets.xml"/>
-    <doc> TODO</doc>
+    <rosdoc config="doc/rosdoc.yaml" />
   </export>
 </package>
